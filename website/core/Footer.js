@@ -28,16 +28,16 @@ class Footer extends React.Component {
               <img
                 src={this.props.config.baseUrl + this.props.config.footerIcon}
                 alt={this.props.config.title}
-                width="66"
-                height="58"
+                width="64"
+                height="64"
               />
             )}
           </a>
           <div>
             <h5>Projects</h5>
-            <a href="http://greendonut.io">Green Donut</a>
-            <a href="http://hotchocolate.io">Hot Chocolate</a>
-            <a href="http://react-rasta.com">React Rasta</a>
+            <a href="https://greendonut.io">Green Donut</a>
+            <a href="https://hotchocolate.io">Hot Chocolate</a>
+            <a href="https://react-rasta.com">React Rasta</a>
             <a href="https://github.com/ChilliCream/thor-core">Thor</a>
           </div>
           <div>

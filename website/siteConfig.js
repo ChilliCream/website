@@ -10,7 +10,7 @@
 const siteConfig = {
   title: "ChilliCream",
   tagline: "We build hot & smooth software",
-  url: "http://chillicream.com",
+  url: "https://chillicream.com",
   cname: "chillicream.com",
   baseUrl: "/",
   gaTrackingId: "UA-72800164-1",
