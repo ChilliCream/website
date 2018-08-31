@@ -1,0 +1,39 @@
+.homeContainer {
+  background: #d51616;
+}
+
+.homeContainer .homeWrapper {
+  padding: 80px 10px;
+}
+
+.homeContainer .section.logo {
+  display: inline-block !important;
+  margin-bottom: 30px;
+}
+
+.homeContainer .section.logo>img {
+  width: 40%;
+}
+
+.homeContainer .projectTitle {
+  color: #fff;
+  font-size: 28px;
+}
+
+.pluginWrapper.buttonWrapper>.button {
+  background: #fff;
+  border: 0 none;
+  color: #d51616;
+  font-size: 18px;
+  margin: 13px;
+  text-transform: none;
+}
+
+.pluginWrapper.buttonWrapper>.button:hover {
+  color: #432a19;
+}
+
+.mainContainer .darkBackground h2 p {
+  /*color: #fbae18;*/
+  font-size: 30px;
+}

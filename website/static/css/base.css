@@ -1,0 +1,43 @@
+body {
+  background: #363f4c;
+}
+
+.fixedHeaderContainer header .headerTitleWithLogo {
+  font-size: 1.75em;
+  margin-top: 5px;
+}
+
+.mainContainer,
+.navPusher,
+.navPusher>.docMainWrapper>.mainContainer {
+  background: #fff;
+}
+
+#footer {
+  background: #363f4c;
+}
+
+#footer .sitemap h5 {
+  font-size: 20px;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: "Yanone Kaffeesatz", sans-serif !important;
+  font-weight: 400 !important;
+}
+
+@media screen and (min-width: 1024px) {
+  .navPusher> :first-child {
+    flex-grow: 0;
+  }
+
+  #footer {
+    flex-grow: 1;
+    flex-shrink: 0;
+  }
+}
