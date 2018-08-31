@@ -2,43 +2,43 @@
 <rss version="2.0">
     <channel>
         <title>ChilliCream Blog</title>
-        <link>http://chillicream.com/blog</link>
+        <link>https://chillicream.com/blog</link>
         <description>The best place to stay up-to-date with the latest ChilliCream news and events.</description>
         <lastBuildDate>Thu, 30 Aug 2018 06:00:00 GMT</lastBuildDate>
         <docs>http://blogs.law.harvard.edu/tech/rss</docs>
         <generator>Feed for Node.js</generator>
         <image>
             <title>ChilliCream Blog</title>
-            <url>http://chillicream.com/img/signet.png</url>
-            <link>http://chillicream.com/blog</link>
+            <url>https://chillicream.com/img/signet.png</url>
+            <link>https://chillicream.com/blog</link>
         </image>
         <copyright>Copyright © 2018 ChilliCream</copyright>
         <item>
             <title><![CDATA[Green Donut 1.0.0]]></title>
-            <link>http://chillicream.com/blog/2018/08/30/green-donut-1.0.0.html</link>
-            <guid>http://chillicream.com/blog/2018/08/30/green-donut-1.0.0.html</guid>
+            <link>https://chillicream.com/blog/2018/08/30/green-donut-1.0.0.html</link>
+            <guid>https://chillicream.com/blog/2018/08/30/green-donut-1.0.0.html</guid>
             <pubDate>Thu, 30 Aug 2018 06:00:00 GMT</pubDate>
             <description><![CDATA[<p>With this release we fixed a few concurrency issues.</p> ]]></description>
         </item>
         <item>
             <title><![CDATA[React Rasta 1.0.4]]></title>
-            <link>http://chillicream.com/blog/2018/08/29/react-rasta-1.0.4.html</link>
-            <guid>http://chillicream.com/blog/2018/08/29/react-rasta-1.0.4.html</guid>
+            <link>https://chillicream.com/blog/2018/08/29/react-rasta-1.0.4.html</link>
+            <guid>https://chillicream.com/blog/2018/08/29/react-rasta-1.0.4.html</guid>
             <pubDate>Wed, 29 Aug 2018 06:00:00 GMT</pubDate>
             <description><![CDATA[<p>With this release we added an additional precompiled version for <em>ES5</em>.</p>
 ]]></description>
         </item>
         <item>
             <title><![CDATA[React Rasta 1.0.3]]></title>
-            <link>http://chillicream.com/blog/2018/08/29/react-rasta-1.0.3.html</link>
-            <guid>http://chillicream.com/blog/2018/08/29/react-rasta-1.0.3.html</guid>
+            <link>https://chillicream.com/blog/2018/08/29/react-rasta-1.0.3.html</link>
+            <guid>https://chillicream.com/blog/2018/08/29/react-rasta-1.0.3.html</guid>
             <pubDate>Wed, 29 Aug 2018 06:00:00 GMT</pubDate>
             <description><![CDATA[<p>This version is deprecated due to an deploy issue; use instead version 1.0.4.</p> ]]></description>
         </item>
         <item>
             <title><![CDATA[Green Donut 0.2.0]]></title>
-            <link>http://chillicream.com/blog/2018/07/30/green-donut-0.2.0.html</link>
-            <guid>http://chillicream.com/blog/2018/07/30/green-donut-0.2.0.html</guid>
+            <link>https://chillicream.com/blog/2018/07/30/green-donut-0.2.0.html</link>
+            <guid>https://chillicream.com/blog/2018/07/30/green-donut-0.2.0.html</guid>
             <pubDate>Mon, 30 Jul 2018 06:00:00 GMT</pubDate>
             <description><![CDATA[<p>Today we proudly released the first version of <em>Green Donut</em> -- a <em>DataLoader</em> implementation for
 <em>.net core</em> and <em>classic</em>.</p>
@@ -46,23 +46,23 @@
         </item>
         <item>
             <title><![CDATA[React Rasta 1.0.2]]></title>
-            <link>http://chillicream.com/blog/2018/06/11/react-rasta-1.0.2.html</link>
-            <guid>http://chillicream.com/blog/2018/06/11/react-rasta-1.0.2.html</guid>
+            <link>https://chillicream.com/blog/2018/06/11/react-rasta-1.0.2.html</link>
+            <guid>https://chillicream.com/blog/2018/06/11/react-rasta-1.0.2.html</guid>
             <pubDate>Mon, 11 Jun 2018 06:00:00 GMT</pubDate>
             <description><![CDATA[<p>With this release we fixed an issue regarding the gutter width.</p> ]]></description>
         </item>
         <item>
             <title><![CDATA[React Rasta 1.0.1]]></title>
-            <link>http://chillicream.com/blog/2018/05/13/react-rasta-1.0.1.html</link>
-            <guid>http://chillicream.com/blog/2018/05/13/react-rasta-1.0.1.html</guid>
+            <link>https://chillicream.com/blog/2018/05/13/react-rasta-1.0.1.html</link>
+            <guid>https://chillicream.com/blog/2018/05/13/react-rasta-1.0.1.html</guid>
             <pubDate>Sun, 13 May 2018 06:00:00 GMT</pubDate>
             <description><![CDATA[<p>Yeah, our first patch is on its way ;-)</p>
 ]]></description>
         </item>
         <item>
             <title><![CDATA[React Rasta 1.0.0]]></title>
-            <link>http://chillicream.com/blog/2018/05/03/react-rasta-1.0.0.html</link>
-            <guid>http://chillicream.com/blog/2018/05/03/react-rasta-1.0.0.html</guid>
+            <link>https://chillicream.com/blog/2018/05/03/react-rasta-1.0.0.html</link>
+            <guid>https://chillicream.com/blog/2018/05/03/react-rasta-1.0.0.html</guid>
             <pubDate>Thu, 03 May 2018 06:00:00 GMT</pubDate>
             <description><![CDATA[<p>Today we proudly released the first version of <em>React Rasta</em>.</p>
 ]]></description>
