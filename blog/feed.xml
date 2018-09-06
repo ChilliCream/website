@@ -4,7 +4,7 @@
         <title>ChilliCream Blog</title>
         <link>https://chillicream.com/blog</link>
         <description>The best place to stay up-to-date with the latest ChilliCream news and events.</description>
-        <lastBuildDate>Thu, 30 Aug 2018 06:00:00 GMT</lastBuildDate>
+        <lastBuildDate>Sun, 02 Sep 2018 06:00:00 GMT</lastBuildDate>
         <docs>http://blogs.law.harvard.edu/tech/rss</docs>
         <generator>Feed for Node.js</generator>
         <image>
@@ -13,6 +13,14 @@
             <link>https://chillicream.com/blog</link>
         </image>
         <copyright>Copyright © 2018 ChilliCream</copyright>
+        <item>
+            <title><![CDATA[Hot Chocolate 0.4.5]]></title>
+            <link>https://chillicream.com/blog/2018/09/02/hot-chocolate-0.4.5.html</link>
+            <guid>https://chillicream.com/blog/2018/09/02/hot-chocolate-0.4.5.html</guid>
+            <pubDate>Sun, 02 Sep 2018 06:00:00 GMT</pubDate>
+            <description><![CDATA[<p>With version 0.4.5 we closed a lot of spec gaps and refined the schema configuration API.</p>
+]]></description>
+        </item>
         <item>
             <title><![CDATA[Green Donut 1.0.0]]></title>
             <link>https://chillicream.com/blog/2018/08/30/green-donut-1.0.0.html</link>
@@ -34,6 +42,14 @@
             <guid>https://chillicream.com/blog/2018/08/29/react-rasta-1.0.3.html</guid>
             <pubDate>Wed, 29 Aug 2018 06:00:00 GMT</pubDate>
             <description><![CDATA[<p>This version is deprecated due to an deploy issue; use instead version 1.0.4.</p> ]]></description>
+        </item>
+        <item>
+            <title><![CDATA[Hot Chocolate 0.4.0]]></title>
+            <link>https://chillicream.com/blog/2018/07/31/hot-chocolate-0.4.0.html</link>
+            <guid>https://chillicream.com/blog/2018/07/31/hot-chocolate-0.4.0.html</guid>
+            <pubDate>Tue, 31 Jul 2018 06:00:00 GMT</pubDate>
+            <description><![CDATA[<p>With this version we introduce support for <em>DataLoaders</em> and custom context objects.</p>
+]]></description>
         </item>
         <item>
             <title><![CDATA[Green Donut 0.2.0]]></title>
