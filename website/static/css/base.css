@@ -21,6 +21,11 @@ body {
   font-size: 20px;
 }
 
+#footer .sitemap .nav-home {
+  width: 84px;
+  height: 84px;
+}
+
 h1,
 h2,
 h3,

@@ -35,10 +35,10 @@ class Footer extends React.Component {
           </a>
           <div>
             <h5>Projects</h5>
-            <a href="https://greendonut.io">Green Donut</a>
-            <a href="https://hotchocolate.io">Hot Chocolate</a>
-            <a href="https://react-rasta.com">React Rasta</a>
-            <a href="https://github.com/ChilliCream/thor-core">Thor</a>
+            <a href="https://greendonut.io" target="_blank">Green Donut</a>
+            <a href="https://hotchocolate.io" target="_blank">Hot Chocolate</a>
+            <a href="https://react-rasta.com" target="_blank">React Rasta</a>
+            <a href="https://github.com/ChilliCream/thor-core" target="_blank">Thor</a>
           </div>
           <div>
             <h5>Community</h5>
@@ -52,8 +52,8 @@ class Footer extends React.Component {
           <div>
             <h5>More</h5>
             <a href={`${this.props.config.baseUrl}blog`}>Blog</a>
-            <a href={this.props.config.repoUrl}>GitHub</a>
-            <a href={this.props.config.repoUrl + "/issues"}>Issues</a>
+            <a href={this.props.config.repoUrl} target="_blank">GitHub</a>
+            <a href={this.props.config.repoUrl + "/issues"} target="_blank">Issues</a>
             <a
               className="github-button"
               href={this.props.config.repoUrl}

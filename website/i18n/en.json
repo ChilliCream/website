@@ -4,8 +4,15 @@
     "next": "Next",
     "previous": "Previous",
     "tagline": "We build hot & smooth software",
-    "example": "Example",
-    "Blog": "Blog"
+    "docs": {
+      "example": {
+        "title": "Example"
+      }
+    },
+    "links": {
+      "Blog": "Blog"
+    },
+    "categories": {}
   },
   "pages-strings": {
     "Help Translate|recruit community translators for your project": "Help Translate",
