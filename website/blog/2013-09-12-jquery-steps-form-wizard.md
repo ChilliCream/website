@@ -5,7 +5,7 @@ authorURL: https://github.com/rstaib
 authorImageURL: https://avatars0.githubusercontent.com/u/4325318?s=100&v=4
 ---
 
-This blog article previously published here _http://www.rafaelstaib.com/post/How-to-create-a-Form-Wizard-using-jQuery-Steps_.
+This blog article was previously published on _http://www.rafaelstaib.com/post/How-to-create-a-Form-Wizard-using-jQuery-Steps_.
 
 <!--truncate-->
 
@@ -89,7 +89,7 @@ What else? We have to replace this <div id="wizard"></div> part by our own form 
     <fieldset>
         <legend>Terms and Conditions</legend>
 
-        <input id="acceptTerms" name="acceptTerms" type="checkbox" class="required"> 
+        <input id="acceptTerms" name="acceptTerms" type="checkbox" class="required">
         <label for="acceptTerms">I agree with the Terms and Conditions.</label>
     </fieldset>
 </form>
