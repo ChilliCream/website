@@ -10,5 +10,6 @@
 <url> <loc>https://chillicream.com/blog/2018/06/11/react-rasta-1.0.2</loc> <changefreq>weekly</changefreq> <priority>0.3</priority> </url>
 <url> <loc>https://chillicream.com/blog/2018/05/13/react-rasta-1.0.1</loc> <changefreq>weekly</changefreq> <priority>0.3</priority> </url>
 <url> <loc>https://chillicream.com/blog/2018/05/03/react-rasta-1.0.0</loc> <changefreq>weekly</changefreq> <priority>0.3</priority> </url>
+<url> <loc>https://chillicream.com/blog/2013/09/12/jquery-steps-form-wizard</loc> <changefreq>weekly</changefreq> <priority>0.3</priority> </url>
 <url> <loc>https://chillicream.com/docs/example</loc> <changefreq>hourly</changefreq> <priority>1.0</priority> <xhtml:link rel="alternate" hreflang="en" href="https://chillicream.com/docs/example" /> </url>
 </urlset>
