@@ -30,19 +30,32 @@ const siteConfig = {
     primaryColor: "#d51616",
     secondaryColor: "#432a19"
   },
-  stylesheets: ["https://fonts.googleapis.com/css?family=Yanone+Kaffeesatz:700,400"],
+  stylesheets: [
+    "https://fonts.googleapis.com/css?family=Yanone+Kaffeesatz:700,400",
+    "/css/code-block-buttons.css"
+  ],
   copyright: `Copyright © ${new Date().getFullYear()} ${title}`,
   editUrl: "https://github.com/ChilliCream/website/edit/master/docs/",
   highlight: {
     // Highlight.js theme to use for syntax highlighting in code blocks
     theme: "androidstudio"
   },
-  scripts: ["https://buttons.github.io/buttons.js"],
+  scripts: [
+    "https://buttons.github.io/buttons.js",
+    "https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.0/clipboard.min.js",
+    "/js/code-block-buttons.js",
+  ],
   onPageNav: "separate",
   twitter: true,
   twitterUsername: "Chilli_Cream",
   twitterImage: "img/signet.png",
   cleanUrl: true,
+  scrollToTop: true,
+  scrollToTopOptions: {
+    zIndex: 100,
+  },
+  enableUpdateTime: true,
+  enableUpdateBy: true,
   blogSidebarCount: "ALL",
   blogSidebarTitle: {
     default: "Recent posts",
