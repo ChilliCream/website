@@ -8,9 +8,9 @@ authorImageURL: https://avatars0.githubusercontent.com/u/4325318?s=100&v=4
 I recently run into an HTTP 404 error when calling /docs on my _Docusaurus_ websites. This isn't
 actually nice, because I expected to land on my documentation entry page e.g. introduction. First I
 thought, perhaps this is an issue with my setup. But I found out that even the _Docusaurus_ website
-itself is suffering from this issue as well. So I tried to find a solution on the internet. But no
-I couldn't find anything except issues on github describing the same behavior. So with this article
-I tried to help everyone saving there time and making the experiance with _Docusaurus_ even better.
+itself is suffering from this issue as well. So I tried to find a solution on the internet. But
+I couldn't find anything except an issue on github describing the same behavior. So, with this article
+I try to help everyone saving there time and making the experiance with _Docusaurus_ even better.
 
 <!--truncate-->
 
