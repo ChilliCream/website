@@ -2,12 +2,30 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://chillicream.com/blog</id>
     <title>ChilliCream Blog</title>
-    <updated>2018-09-02T06:00:00Z</updated>
+    <updated>2018-11-07T06:00:00Z</updated>
     <generator>Feed for Node.js</generator>
     <link rel="alternate" href="https://chillicream.com/blog"/>
     <subtitle>The best place to stay up-to-date with the latest ChilliCream news and events.</subtitle>
     <logo>https://chillicream.com/img/signet.png</logo>
     <rights>Copyright © 2018 ChilliCream</rights>
+    <entry>
+        <title type="html"><![CDATA[Docusaurus - How to redirect requests to /docs to a default url instead of getting a 404 error]]></title>
+        <id>https://chillicream.com/blog/2018/11/07/docusaurus-docs-redirect.html</id>
+        <link href="https://chillicream.com/blog/2018/11/07/docusaurus-docs-redirect.html">
+        </link>
+        <updated>2018-11-07T06:00:00Z</updated>
+        <summary type="html"><![CDATA[<p>I recently run into an HTTP 404 error when calling /docs on my <em>Docusaurus</em> websites. This isn't
+actually nice, because I expected to land on my documentation entry page e.g. introduction. First I
+thought, perhaps this is an issue with my setup. But I found out that even the <em>Docusaurus</em> website
+itself is suffering from this issue as well. So I tried to find a solution on the internet. But no
+I couldn't find anything except issues on github describing the same behavior. So with this article
+I tried to help everyone saving there time and making the experiance with <em>Docusaurus</em> even better.</p>
+]]></summary>
+        <author>
+            <name>Rafael Staib</name>
+            <uri>https://github.com/rstaib</uri>
+        </author>
+    </entry>
     <entry>
         <title type="html"><![CDATA[Hot Chocolate 0.4.5]]></title>
         <id>https://chillicream.com/blog/2018/09/02/hot-chocolate-0.4.5.html</id>
