@@ -17,9 +17,9 @@
         <summary type="html"><![CDATA[<p>I recently run into an HTTP 404 error when calling /docs on my <em>Docusaurus</em> websites. This isn't
 actually nice, because I expected to land on my documentation entry page e.g. introduction. First I
 thought, perhaps this is an issue with my setup. But I found out that even the <em>Docusaurus</em> website
-itself is suffering from this issue as well. So I tried to find a solution on the internet. But no
-I couldn't find anything except issues on github describing the same behavior. So with this article
-I tried to help everyone saving there time and making the experiance with <em>Docusaurus</em> even better.</p>
+itself is suffering from this issue as well. So I tried to find a solution on the internet. But
+I couldn't find anything except an issue on github describing the same behavior. So, with this article
+I try to help everyone saving there time and making the experiance with <em>Docusaurus</em> even better.</p>
 ]]></summary>
         <author>
             <name>Rafael Staib</name>
