@@ -43,7 +43,9 @@ const siteConfig = {
   scripts: [
     "https://buttons.github.io/buttons.js",
     "https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.0/clipboard.min.js",
+    "https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js",
     "/js/code-block-buttons.js",
+    "/js/google-adsense.js",
   ],
   onPageNav: "separate",
   twitter: true,
