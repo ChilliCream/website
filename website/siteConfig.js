@@ -46,6 +46,7 @@ const siteConfig = {
     "https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js",
     "/js/code-block-buttons.js",
     "/js/google-adsense.js",
+    "/js/disqus.js"
   ],
   onPageNav: "separate",
   twitter: true,
