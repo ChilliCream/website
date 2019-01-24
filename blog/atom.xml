@@ -2,12 +2,25 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://chillicream.com/blog</id>
     <title>ChilliCream Blog</title>
-    <updated>2018-11-07T06:00:00Z</updated>
+    <updated>2019-01-24T06:00:00Z</updated>
     <generator>Feed for Node.js</generator>
     <link rel="alternate" href="https://chillicream.com/blog"/>
     <subtitle>The best place to stay up-to-date with the latest ChilliCream news and events.</subtitle>
     <logo>https://chillicream.com/img/signet.png</logo>
     <rights>Copyright © 2019 ChilliCream</rights>
+    <entry>
+        <title type="html"><![CDATA[GraphQL - Schema Stitching]]></title>
+        <id>https://chillicream.com/blog/2019/01/24/schema-stitching.html</id>
+        <link href="https://chillicream.com/blog/2019/01/24/schema-stitching.html">
+        </link>
+        <updated>2019-01-24T06:00:00Z</updated>
+        <summary type="html"><![CDATA[<p>What is schema stitching actually? Schema stitching is the capability to merge multiple GraphQL schemas into one schema on which queries can be executed.</p>
+]]></summary>
+        <author>
+            <name>Michael Staib</name>
+            <uri>https://github.com/michaelstaib</uri>
+        </author>
+    </entry>
     <entry>
         <title type="html"><![CDATA[Docusaurus - How to redirect requests to /docs to a default url instead of getting a 404 error]]></title>
         <id>https://chillicream.com/blog/2018/11/07/docusaurus-docs-redirect.html</id>
