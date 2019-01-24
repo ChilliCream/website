@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><title>GraphQL - Schema Stitching · ChilliCream</title><meta name="viewport" content="width=device-width"/><meta name="generator" content="Docusaurus"/><meta name="description" content="What is schema stitching actually? Schema stitching is the capability to merge multiple GraphQL schemas into one schema on which queries can be executed."/><meta name="docsearch:language" content="en"/><meta property="og:title" content="GraphQL - Schema Stitching · ChilliCream"/><meta property="og:type" content="website"/><meta property="og:url" content="https://chillicream.com/blog/2019/01/24/schema-stitching"/><meta property="og:description" content="What is schema stitching actually? Schema stitching is the capability to merge multiple GraphQL schemas into one schema on which queries can be executed."/><meta name="twitter:card" content="summary"/><meta name="twitter:image" content="https://chillicream.com/img/signet.png"/><link rel="shortcut icon" href="/img/favicon.png"/><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/androidstudio.min.css"/><link rel="alternate" type="application/atom+xml" href="https://chillicream.com/blog/atom.xml" title="ChilliCream Blog ATOM Feed"/><link rel="alternate" type="application/rss+xml" href="https://chillicream.com/blog/feed.xml" title="ChilliCream Blog RSS Feed"/><script>
+<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><title>GraphQL - Schema Stitching · ChilliCream</title><meta name="viewport" content="width=device-width"/><meta name="generator" content="Docusaurus"/><meta name="description" content="What is schema stitching actually? Schema stitching is the capability to merge multiple GraphQL schemas into one schema on which queries can be queried."/><meta name="docsearch:language" content="en"/><meta property="og:title" content="GraphQL - Schema Stitching · ChilliCream"/><meta property="og:type" content="website"/><meta property="og:url" content="https://chillicream.com/blog/2019/01/24/schema-stitching"/><meta property="og:description" content="What is schema stitching actually? Schema stitching is the capability to merge multiple GraphQL schemas into one schema on which queries can be queried."/><meta name="twitter:card" content="summary"/><meta name="twitter:image" content="https://chillicream.com/img/signet.png"/><link rel="shortcut icon" href="/img/favicon.png"/><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/androidstudio.min.css"/><link rel="alternate" type="application/atom+xml" href="https://chillicream.com/blog/atom.xml" title="ChilliCream Blog ATOM Feed"/><link rel="alternate" type="application/rss+xml" href="https://chillicream.com/blog/feed.xml" title="ChilliCream Blog RSS Feed"/><script>
               (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
               (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
               m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
@@ -62,18 +62,18 @@
                 };
               }
             });
-        </script></nav></div><div class="container mainContainer postContainer blogContainer"><div class="wrapper"><div class="lonePost"><div class="post"><header class="postHeader"><h1 class="postHeaderTitle"><a href="/blog/2019/01/24/schema-stitching">GraphQL - Schema Stitching</a></h1><p class="post-meta">January 24, 2019</p><div class="authorBlock"><p class="post-authorName"><a href="https://github.com/michaelstaib" target="_blank" rel="noreferrer noopener">Michael Staib</a></p><div class="authorPhoto"><a href="https://github.com/michaelstaib" target="_blank" rel="noreferrer noopener"><img src="https://avatars1.githubusercontent.com/u/9714350?s=100&amp;v=4" alt="Michael Staib"/></a></div></div></header><div><span><p>What is schema stitching actually? Schema stitching is the capability to merge multiple GraphQL schemas into one schema on which queries can be executed.</p>
+        </script></nav></div><div class="container mainContainer postContainer blogContainer"><div class="wrapper"><div class="lonePost"><div class="post"><header class="postHeader"><h1 class="postHeaderTitle"><a href="/blog/2019/01/24/schema-stitching">GraphQL - Schema Stitching</a></h1><p class="post-meta">January 24, 2019</p><div class="authorBlock"><p class="post-authorName"><a href="https://github.com/michaelstaib" target="_blank" rel="noreferrer noopener">Michael Staib</a></p><div class="authorPhoto"><a href="https://github.com/michaelstaib" target="_blank" rel="noreferrer noopener"><img src="https://avatars1.githubusercontent.com/u/9714350?s=100&amp;v=4" alt="Michael Staib"/></a></div></div></header><div><span><p>What is schema stitching actually? Schema stitching is the capability to merge multiple GraphQL schemas into one schema on which queries can be queried.</p>
 <!--truncate-->
 <h2><a class="anchor" aria-hidden="true" id="introduction"></a><a href="#introduction" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Introduction</h2>
 <p>So, for what is that useful? In our case we have lots of specialized services that serve data for a specific problem domain. Some of these services are GraphQL services, some of them are REST services and yes sadly a little portion of those are still SOAP services.</p>
-<p>Also, think about this, you cannot always start fresh and with schema stitching you can now create the schema of your <strong>dreams</strong> and merge all those other services into that one and new glorified schema.</p>
-<p>Apart from that UI teams tend to not want to know about all those domain services and their specifics. They want to be able to fetch the data they need with one call, no under- or over-fetching and most importantly no repeated fetching.</p>
+<p>Also, think about this, you cannot always start fresh and with schema stitching you can now create the schema of your <strong>dreams</strong> and merge all those other services into that new glorified schema.</p>
+<p>Apart from that UI teams tend to <strong>NOT</strong> want to know about all those domain services and their specifics. They want to be able to fetch the data they need with one call, no under- or over-fetching and most importantly no repeated fetching because you first needed to fetch that special id with which you now can fetch this other thing. No, what we really want here is to have one source of truth and one call to get exactly what we want. That's what GraphQL is all about.</p>
 <p>Furthermore, we believe the schemas should be consistent and provide a way that is easily to consume.</p>
 <p>With the preview version 0.7.0-preview.35 we are now introducing schema stitching capabilities to <em>Hot Chocolate</em>.</p>
 <p>In this post I will walk you through how you can use schema stitching, what will be available with version 0.7.0 and what features come with the next releases.</p>
 <h2><a class="anchor" aria-hidden="true" id="getting-started"></a><a href="#getting-started" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Getting Started</h2>
-<p>Assume we have two schemas one dealing with the customer data, basically the data that would be located in a CRM system, the other representing insurance data about the customer.</p>
-<p>The stitching layer is not limited to two schemas you can actually stitch together how many schemas you want.</p>
+<p>Assume we have two schemas one dealing with the customer data, basically the data that would be located in a CRM system of a company, the other representing insurance data about the customer, basically the technical domain specific data that gives you all the insights into the customers insurance contracts.</p>
+<p>The stitching layer is not limited to two schemas, you can actually stitch together how many schemas you want. But for our example we use those two mentioned schemas about customers and their contracts.</p>
 <p>So, let's say our customer schema looks something like the following:</p>
 <pre><code class="hljs css language-graphql">type Query {
   customer(id: ID!):<span class="hljs-built_in"> Customer
@@ -91,6 +91,7 @@ type </span>Consultant {
   name: String!
 }
 </code></pre>
+<p>In real life this schema would boast a lot more information about our customer but this will surfice for our little demo.</p>
 <p>And our second schema dealing with the insurance contracts looks like the following:</p>
 <pre><code class="hljs css language-graphql">type Query {
   contract(contractId: ID!): Contract
@@ -143,7 +144,8 @@ type </span>SomeOtherContract implements Contract {
 }
 </code></pre>
 <p>In order to make that happen you do not have to write actual code, we have create some directives that will tell the stitching layer what to do.</p>
-<p>Before we start, we have to give our schemas some names, these names will be needed to direct the remote queries into the right direction. Let's name the customer schema <code>customers</code> and the contract schema <code>contracts</code>. With that let's decorate our desired schema.</p>
+<p>Before we start, we have to give our schemas some names, these names will be used to direct remote queries to the right endpoint.</p>
+<p>Let's name the customer schema <code>customers</code> and the contract schema <code>contracts</code>. With that let's decorate our desired schema.</p>
 <pre><code class="hljs css language-graphql">type Query {
   customer(id: ID!):<span class="hljs-built_in"> Customer
 </span>    @schema(name: <span class="hljs-string">"customer"</span>)
@@ -178,10 +180,10 @@ type </span>SomeOtherContract implements Contract {
   expiryDate: DateTime
 }
 </code></pre>
-<p><code>@schema</code> basically point to the source schema, so the stitching middleware will redirect calls to a schema with the name that is specified by this directive.</p>
+<p><code>@schema</code> basically points to the source schema, so the stitching middleware will redirect calls to a schema with the name that is specified by this directive.</p>
 <p><code>@delegate</code> specifies how the data is fetched. If <code>@delegate</code> does not have any path specified than the middleware expects that the field on the target schema has the same specification.</p>
-<p>If we look at the <code>customer</code> field then the middleware will assume that the source schema has the same customer field as root field.
-The <code>contracts</code> on the other hand specifies a delegation path <code>contracts(customerId:$fields:id)</code>. The delegation path specifies the field that is called and where the arguments get their input from.</p>
+<p>If we look at the <code>customer</code> field then the middleware will assume that the source schema has the same customer field as root field as our stitched schema.</p>
+<p>The <code>contracts</code> field on the other hand specifies a delegation path <code>contracts(customerId:$fields:id)</code>. The delegation path specifies the field that is called and where the arguments get their input from.</p>
 <p>Let us assume you have a deeper field from which you want to fetch data like the following.</p>
 <pre><code class="hljs css language-graphql"><span class="hljs-selector-tag">foo</span>(<span class="hljs-attribute">id</span>:<span class="hljs-number">123</span>) {
   <span class="hljs-selector-tag">bar</span> {
@@ -194,7 +196,7 @@ The <code>contracts</code> on the other hand specifies a delegation path <code>c
 <p>Since, we did not want to cram a query like this into one string we allow this to be done with a flat path.</p>
 <pre><code class="hljs"><span class="hljs-function"><span class="hljs-title">foo</span><span class="hljs-params">(id:<span class="hljs-variable">$arguments</span>:arg1)</span></span><span class="hljs-selector-class">.bar</span><span class="hljs-selector-class">.baz</span>(<span class="hljs-attribute">top</span>:<span class="hljs-number">1</span>)
 </code></pre>
-<p>The argument assignment in the path can be done with GraphQL literals or with scope variables. The scope variables basically can refer to the fields of the declaring type (in case of our contracts field the declaring type is customer) and to the arguments of the field.</p>
+<p>The argument assignment in the path can be done with GraphQL literals or with scope variables. The scope variables basically can refer to the fields of the declaring type (in case of our contracts field the declaring type is customer) and to the arguments of the field, in our case contracts has no arguments in the stitched schema.</p>
 <h2><a class="anchor" aria-hidden="true" id="server-configuration"></a><a href="#server-configuration" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Server Configuration</h2>
 <p>Now that we have configured our schema let's create our server. The fastest way to do that is to use our server template.</p>
 <p>Install the server template to your dotnet CLI:</p>
@@ -205,7 +207,7 @@ The <code>contracts</code> on the other hand specifies a delegation path <code>c
 dotnet new graphql-server
 </code></pre>
 <p>Open the server in the editor of your choice and upgrade the packages to 0.7.0-preview.35.</p>
-<p>Go to the Startup.cs and add the HTTP clients that shall access remote schema endpoints like the following:</p>
+<p>Go to the Startup.cs and add the HTTP clients that shall access the remote schema endpoints like the following:</p>
 <pre><code class="hljs css language-csharp">services.AddHttpClient(<span class="hljs-string">"customer"</span>, client =&gt;
 {
     client.BaseAddress = <span class="hljs-keyword">new</span> Uri(<span class="hljs-string">"http://127.0.0.1:5050"</span>);
@@ -216,16 +218,17 @@ services.AddHttpClient(<span class="hljs-string">"contract"</span>, client =&gt;
     client.BaseAddress = <span class="hljs-keyword">new</span> Uri(<span class="hljs-string">"http://127.0.0.1:5051"</span>);
 });
 </code></pre>
-<p>Also, the authentication and header properties for your remote endpoints have to be added to your clients.</p>
+<p>Note that this is also the place where you would add authentication and header properties in order to access your remote schema endpoint.</p>
 <p>The clients must be named clients and have to use the schema name that we used in our schema directive earlier.</p>
-<p>Next let's setup our remote schemas. Remote schemas are actually local schemas representing the remote schemas and allowing us to treat the remote schema as if it were a usual schema written with <em>Hot Chocolate</em>. This also allows us to create middleware components and other things on such a schema althogh the schema does not actually live in our process.</p>
-<p>So let us start with the customer schema, the customer schema does only use scalars defined in the spec. This means we do not have to declare any extra scalars.</p>
+<p>Next let's setup our remote schemas. Remote schemas are actually local schemas representing the remote schemas and allowing us to treat the remote schema as if it were a usual schema written with <em>Hot Chocolate</em>.</p>
+<p>This also allows us to create middleware components and other things on such a schema althogh the schema does not actually live in our process.</p>
+<p>So let us start with the customer schema, the customer schema does only use scalars defined in the spec. This means we do not have to declare any extra scalars to our stitching layer.</p>
 <pre><code class="hljs css language-csharp">serviceCollection.AddRemoteQueryExecutor(b =&gt; b
     .SetSchemaName(<span class="hljs-string">"customer"</span>)
     .SetSchema(File.ReadAllText(<span class="hljs-string">"Customer.graphql"</span>)));
 </code></pre>
-<p>Again we use our the schema name that we used earlier and we are loading a schema file describing the remote schema into the remote executor. We are basically building with that a schema the way you would to with the schema-first approach.</p>
-<p>Next, let's setup our contracts schema. The contracts schema uses a <code>DateTime</code> scalar, this one is not specified in the spec so we have to tell our schema to use this one. Since <em>Hot Chocolate</em> specified a bunch of extended scalars we can import one of those. If we do not have a scalar matching the one of the scalar in a remote schema we would need to implement this one by extending the class ScalarType.</p>
+<p>Again we use our schema name that we used earlier and we are loading a schema file describing the remote schema into the remote executor. We are basically building with that a schema the way you would with the schema-first approach.</p>
+<p>Next, let's setup our contracts schema. The contracts schema uses a <code>DateTime</code> scalar, this one is not specified in the spec so we have to tell our schema to use this one. Since <em>Hot Chocolate</em> specified a bunch of extended scalars we can import one of those. If we do not have a scalar matching the one of the  remote schema we would need to implement this one by extending the class <code>ScalarType</code>.</p>
 <pre><code class="hljs css language-csharp">serviceCollection.AddRemoteQueryExecutor(b =&gt; b
     .SetSchemaName(<span class="hljs-string">"contract"</span>)
     .SetSchema(FileResource.Open(<span class="hljs-string">"Contract.graphql"</span>))
@@ -236,10 +239,13 @@ services.AddHttpClient(<span class="hljs-string">"contract"</span>, client =&gt;
     FileResource.Open(<span class="hljs-string">"Stitching.graphql"</span>),
     c =&gt; c.RegisterType&lt;DateTimeType&gt;());
 </code></pre>
-<p>Again like before we have to provide the extended scalar type that we used.</p>
+<p>Again like before we have to provide the extended scalar type that we used for the contracts schema.</p>
+<p>No, we are basically done and can fire up our server.</p>
 <h2><a class="anchor" aria-hidden="true" id="further-thoughts"></a><a href="#further-thoughts" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Further Thoughts</h2>
-<p>Since, remote schemas have a local schema representing the remote schema in our process and the stitching layer working on those local schema we can also use native <em>Hot Chocolate</em> schemas to further extend a stitched schema.</p>
-<p>So, all what I have described so far is included in the current preview release. We are still not done and are heavy at work getting our schema stitching even better. With the next view preview builds we will introduce a batching layer to the schema stitching. Think <em>DataLoader</em>. We will basically batch all request to a schema in one go. Imagine we had two delegated query for one remote schema:</p>
+<p>Since, remote schemas have a local schema representation in our process and the stitching layer is working on those local schemas we can also use native <em>Hot Chocolate</em> schemas to further extend a stitched schema.</p>
+<p>So, all what I have described so far is included in the current preview release. We are still not done and are heavy at work getting our schema stitching even better.</p>
+<p>With the next view preview builds we will introduce a batching layer to the schema stitching.</p>
+<p>Think <em>DataLoader</em>. We will basically batch all request to a schema in one go. Imagine we had two delegated query for one remote schema:</p>
 <p>Query A:</p>
 <pre><code class="hljs css language-graphql">{
   <span class="hljs-selector-tag">a</span> {
@@ -269,13 +275,39 @@ services.AddHttpClient(<span class="hljs-string">"contract"</span>, client =&gt;
 <h2><a class="anchor" aria-hidden="true" id="comming-with-080"></a><a href="#comming-with-080" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Comming with 0.8.0</h2>
 <p>Furthermore, we will introduce the ability to rename types. This is useful when you either want to make names more clear or if you have naming collisions. So, with the next releases we will introduce '@name' as a way to rename types and fields.</p>
 <p>Also, the ability to auto-stitch schemas and auto-fetch the a remote schema via introspection is on our todo list.</p>
-<p>In the beginning of this post I talked about stitching SOAP and REST, we are currently working on a feature that is called HTTP directives. HTTP directives let you decorate a schema SDL and thus let you map REST services onto a GraphQL schema. This schema can also be included into a stitched schema. We will tell more about that once we have a stable version of that ready.</p>
+<p>In the beginning of this post I talked about stitching SOAP and REST, we are currently working on a feature that is called HTTP directives.</p>
+<p>HTTP directives let you decorate a schema SDL and thus let you map REST services onto a GraphQL schema. This schema can also be included into a stitched schema. We will tell you more about that once we have a stable version ready to go.</p>
+<p>Moreover, we will introduce a cast feature to our delegation path. This will basically allow you to use fragments without having to write the code.</p>
+<pre><code class="hljs">foo.bar&lt;baz&gt;(<span class="hljs-selector-tag">a</span>:<span class="hljs-number">1</span>).qux(<span class="hljs-selector-tag">b</span>:<span class="hljs-number">1</span>)
+</code></pre>
+<p>This transalates basically to:</p>
+<pre><code class="hljs css language-graphql">{
+  foo {
+    bar(<span class="hljs-name">a:1</span>) {
+      ... on baz
+      {
+        qux(<span class="hljs-name">b:1</span>)
+      }
+    }
+  }
+}
+</code></pre>
 <h2><a class="anchor" aria-hidden="true" id="wrapping-things-up"></a><a href="#wrapping-things-up" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Wrapping things up</h2>
 <p>We have uploaded the above example to the following GitHub repo so you can see a working example of the schema stitching.</p>
 <p><a href="https://github.com/ChilliCream/hotchocolate-examples">Stitching Example</a></p>
 <p>If you are using the example start the two remote schemas by switching to their respective directory and call <code>dotnet run</code>.</p>
-<p>After bot schemas are running start the stitching layer. The stitching layer has <code>Apollo Tracing</code> enabled. Start the stitching layer also with <code>dotnet run</code> since the debugger slows the performance significantly down.</p>
-<p>The first call an the stitched api takes a little bit longer (maybe 300 ~ 500 ms) since we are compiling the resolvers into a in-memory assembly all further calls are fast (4 ~ 8 ms).</p>
+<p>After both schemas are running start the stitching layer. The stitching layer has <code>Apollo Tracing</code> enabled. Start the stitching layer also with <code>dotnet run</code> since the debugger slows the performance significantly down.</p>
+<p>The first call on the stitched schema takes a little longer (maybe 300 ~ 500 ms) since we are compiling the resolvers into a in-memory assembly. All further calls are fast (4 ~ 8 ms) in our example. The real life performance depends on how fast your connection to the stitched remote schemas is and how many data you are fetching. With the new batching layer that is coming soon the performance of the schema stitching should further improve.</p>
 <p>Open playground on <a href="http://localhost:5000/playground">http://localhost:5000/playground</a> in order to fire up some requests agains our stitched schema and checkout the tracing tab for performance insights.</p>
+<p>The following query might be a good starting point since it will expose the ids of our objects.</p>
+<pre><code class="hljs css language-graphql">{
+  customers {
+    id
+    contracts {
+      id
+    }
+  }
+}
+</code></pre>
 <p>If you have further questions or need help you join our slack group: <a href="https://join.slack.com/t/hotchocolategraphql/shared_invite/enQtNTA4NjA0ODYwOTQ0LTBkZjNjZWIzMmNlZjQ5MDQyNDNjMmY3NzYzZjgyYTVmZDU2YjVmNDlhNjNlNTk2ZWRiYzIxMTkwYzA4ODA5Yzg">Hot Chocolate on Slack</a>.</p>
 </span></div></div><div class="blogSocialSection"><div class="blogSocialSectionItem"><a href="https://twitter.com/share" class="twitter-share-button" data-text="GraphQL - Schema Stitching" data-url="https://chillicream.com/blog/2019/01/24/schema-stitching" data-related="true" data-show-count="false">Tweet</a></div></div></div><div class="blog-recent"><a class="button" href="/blog">Recent posts</a></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#introduction">Introduction</a></li><li><a href="#getting-started">Getting Started</a></li><li><a href="#server-configuration">Server Configuration</a></li><li><a href="#further-thoughts">Further Thoughts</a></li><li><a href="#comming-with-080">Comming with 0.8.0</a></li><li><a href="#wrapping-things-up">Wrapping things up</a></li></ul></nav></div><footer class="nav-footer" id="footer"><section class="sitemap"><a href="/" class="nav-home"><img src="/img/signet.png" alt="ChilliCream" width="64" height="64"/></a><div><h5>Projects</h5><a href="https://greendonut.io" target="_blank">Green Donut</a><a href="https://hotchocolate.io" target="_blank">Hot Chocolate</a><a href="https://react-rasta.com" target="_blank">React Rasta</a><a href="https://github.com/ChilliCream/thor-core" target="_blank">Thor</a></div><div><h5>Community</h5><a href="https://twitter.com/Chilli_Cream" target="_blank" rel="noreferrer noopener">Follow us on Twitter</a></div><div><h5>More</h5><a href="/blog">Blog</a><a href="https://github.com/ChilliCream/website" target="_blank">GitHub</a><a href="https://github.com/ChilliCream/website/issues" target="_blank">Issues</a><a class="github-button" href="https://github.com/ChilliCream/website" data-icon="octicon-star" data-count-href="/chillicream/website/stargazers" data-show-count="true" data-count-aria-label="# stargazers on GitHub" aria-label="Star this project on GitHub">Star</a></div></section><section class="copyright">Copyright © 2019 ChilliCream</section></footer></div><script>window.twttr=(function(d,s, id){var js,fjs=d.getElementsByTagName(s)[0],t=window.twttr||{};if(d.getElementById(id))return t;js=d.createElement(s);js.id=id;js.src='https://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js, fjs);t._e = [];t.ready = function(f) {t._e.push(f);};return t;}(document, 'script', 'twitter-wjs'));</script></body></html>

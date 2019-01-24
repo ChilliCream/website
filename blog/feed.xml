@@ -18,7 +18,7 @@
             <link>https://chillicream.com/blog/2019/01/24/schema-stitching.html</link>
             <guid>https://chillicream.com/blog/2019/01/24/schema-stitching.html</guid>
             <pubDate>Thu, 24 Jan 2019 06:00:00 GMT</pubDate>
-            <description><![CDATA[<p>What is schema stitching actually? Schema stitching is the capability to merge multiple GraphQL schemas into one schema on which queries can be executed.</p>
+            <description><![CDATA[<p>What is schema stitching actually? Schema stitching is the capability to merge multiple GraphQL schemas into one schema on which queries can be queried.</p>
 ]]></description>
         </item>
         <item>
