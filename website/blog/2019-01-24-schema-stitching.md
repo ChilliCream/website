@@ -19,7 +19,7 @@ Apart from that UI teams tend to **NOT** want to know about all those domain ser
 
 Furthermore, we believe the schemas should be consistent and provide a way that is easily to consume.
 
-With the preview version 0.7.0-preview.35 we are now introducing schema stitching capabilities to _Hot Chocolate_.
+With the preview version 0.7.0-preview.35 we are now introducing schema stitching capabilities to [_Hot Chocolate_](https://hotchocolate.io/).
 
 In this post I will walk you through how you can use schema stitching, what will be available with version 0.7.0 and what features come with the next releases.
 
