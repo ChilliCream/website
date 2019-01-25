@@ -248,7 +248,7 @@ serviceCollection.AddStitchedSchema(
 
 Again like before we have to provide the extended scalar type that we used for the contracts schema.
 
-No, we are basically done and can fire up our server.
+Now, we are basically done and can fire up our server.
 
 ## Further Thoughts
 
