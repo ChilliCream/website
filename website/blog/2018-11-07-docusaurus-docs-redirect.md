@@ -10,7 +10,7 @@ actually nice, because I expected to land on my documentation entry page e.g. in
 thought, perhaps this is an issue with my setup. But I found out that even the _Docusaurus_ website
 itself is suffering from this issue as well. So I tried to find a solution on the internet. But
 I couldn't find anything except an issue on github describing the same behavior. So, with this article
-I try to help everyone saving there time and making the experiance with _Docusaurus_ even better.
+I try to help everyone saving their time and making the experience with _Docusaurus_ even better.
 
 <!--truncate-->
 
