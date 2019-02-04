@@ -22,7 +22,7 @@
 we wanne talk about here, namely <em>Apollo Tracing</em> which is extremely powerful in
 identifing things like performance bottlenecks in our <em>GraphQL</em> <em>APIs</em> for
 example. As a result, we had to enhance our general instrumentation layer, which
-we all benefit from. For instance, now it's a way easier to register a
+we all benefit from. For instance, now it's way easier to register a
 <em>DiagnosticObserver</em> and bring in your own tracing framework, respectively. In
 this blog article we will focus on these two topics.</p>
 ]]></description>
