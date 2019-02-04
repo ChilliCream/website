@@ -14,7 +14,7 @@
         </image>
         <copyright>Copyright © 2019 ChilliCream</copyright>
         <item>
-            <title><![CDATA[Hot Chocolate 0.7.0]]></title>
+            <title><![CDATA[GraphQL - Hot Chocolate 0.7.0]]></title>
             <link>https://chillicream.com/blog/2019/02/04/hot-chocolate-0.7.0.html</link>
             <guid>https://chillicream.com/blog/2019/02/04/hot-chocolate-0.7.0.html</guid>
             <pubDate>Mon, 04 Feb 2019 06:00:00 GMT</pubDate>
@@ -43,7 +43,7 @@ I try to help everyone saving their time and making the experience with <em>Docu
 ]]></description>
         </item>
         <item>
-            <title><![CDATA[Hot Chocolate 0.4.5]]></title>
+            <title><![CDATA[GraphQL - Hot Chocolate 0.4.5]]></title>
             <link>https://chillicream.com/blog/2018/09/02/hot-chocolate-0.4.5.html</link>
             <guid>https://chillicream.com/blog/2018/09/02/hot-chocolate-0.4.5.html</guid>
             <pubDate>Sun, 02 Sep 2018 06:00:00 GMT</pubDate>
@@ -73,7 +73,7 @@ I try to help everyone saving their time and making the experience with <em>Docu
             <description><![CDATA[<p>This version is deprecated due to an deploy issue; use instead version 1.0.4.</p> ]]></description>
         </item>
         <item>
-            <title><![CDATA[Hot Chocolate 0.4.0]]></title>
+            <title><![CDATA[GraphQL - Hot Chocolate 0.4.0]]></title>
             <link>https://chillicream.com/blog/2018/07/31/hot-chocolate-0.4.0.html</link>
             <guid>https://chillicream.com/blog/2018/07/31/hot-chocolate-0.4.0.html</guid>
             <pubDate>Tue, 31 Jul 2018 06:00:00 GMT</pubDate>
