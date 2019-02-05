@@ -78,7 +78,7 @@ Imagine we have two servers serving up those schemas. The schema that we actuall
 
 ```graphql
 type Query {
-  customer(id: ID!):Customer
+  customer(id: ID!): Customer
 }
 
 type Customer {
@@ -110,15 +110,13 @@ type SomeOtherContract implements Contract {
 
 In order to make that happen you do not have to write actual code, we have create some directives that will tell the stitching layer what to do.
 
-Before we start, we have to give our schemas some names, these names will be used to direct remote queries to the right endpoint. 
+Before we start, we have to give our schemas some names, these names will be used to direct remote queries to the right endpoint.
 
 Let's name the customer schema `customers` and the contract schema `contracts`. With that let's decorate our desired schema.
 
 ```graphql
 type Query {
-  customer(id: ID!): Customer
-    @schema(name: "customer")
-    @delegate
+  customer(id: ID!): Customer @schema(name: "customer") @delegate
 }
 
 type Customer {
@@ -215,7 +213,7 @@ Note that this is also the place where you would add authentication and header p
 
 The clients must be named clients and have to use the schema name that we used in our schema directive earlier.
 
-Next let's setup our remote schemas. Remote schemas are actually local schemas representing the remote schemas and allowing us to treat the remote schema as if it were a usual schema written with _Hot Chocolate_. 
+Next let's setup our remote schemas. Remote schemas are actually local schemas representing the remote schemas and allowing us to treat the remote schema as if it were a usual schema written with _Hot Chocolate_.
 
 This also allows us to create middleware components and other things on such a schema althogh the schema does not actually live in our process.
 
@@ -229,7 +227,7 @@ serviceCollection.AddRemoteQueryExecutor(b => b
 
 Again we use our schema name that we used earlier and we are loading a schema file describing the remote schema into the remote executor. We are basically building with that a schema the way you would with the schema-first approach.
 
-Next, let's setup our contracts schema. The contracts schema uses a `DateTime` scalar, this one is not specified in the spec so we have to tell our schema to use this one. Since _Hot Chocolate_ specified a bunch of extended scalars we can import one of those. If we do not have a scalar matching the one of the  remote schema we would need to implement this one by extending the class `ScalarType`.
+Next, let's setup our contracts schema. The contracts schema uses a `DateTime` scalar, this one is not specified in the spec so we have to tell our schema to use this one. Since _Hot Chocolate_ specified a bunch of extended scalars we can import one of those. If we do not have a scalar matching the one of the remote schema we would need to implement this one by extending the class `ScalarType`.
 
 ```csharp
 serviceCollection.AddRemoteQueryExecutor(b => b
@@ -254,9 +252,9 @@ Now, we are basically done and can fire up our server.
 
 Since, remote schemas have a local schema representation in our process and the stitching layer is working on those local schemas we can also use native _Hot Chocolate_ schemas to further extend a stitched schema.
 
-So, all what I have described so far is included in the current preview release. We are still not done and are heavy at work getting our schema stitching even better. 
+So, all what I have described so far is included in the current preview release. We are still not done and are heavy at work getting our schema stitching even better.
 
-With the next view preview builds we will introduce a batching layer to the schema stitching. 
+With the next view preview builds we will introduce a batching layer to the schema stitching.
 
 Think _DataLoader_. We will basically batch all request to a schema in one go. Imagine we had two delegated query for one remote schema:
 
@@ -265,7 +263,7 @@ Query A:
 ```graphql
 {
   a {
-      b
+    b
   }
 }
 ```
@@ -275,7 +273,7 @@ Query B:
 ```graphql
 {
   c {
-      d
+    d
   }
 }
 ```
@@ -285,11 +283,11 @@ The batching layer will rewrite those queries into one and send just one request
 ```graphql
 {
   __1: a {
-      b
+    b
   }
 
   __2: c {
-      d
+    d
   }
 }
 ```
@@ -317,10 +315,9 @@ This transalates basically to:
 ```graphql
 {
   foo {
-    bar(a:1) {
-      ... on baz
-      {
-        qux(b:1)
+    bar(a: 1) {
+      ... on baz {
+        qux(b: 1)
       }
     }
   }
@@ -355,3 +352,11 @@ The following query might be a good starting point since it will expose the ids 
 ```
 
 If you have further questions or need help you join our slack group: [Hot Chocolate on Slack](https://join.slack.com/t/hotchocolategraphql/shared_invite/enQtNTA4NjA0ODYwOTQ0LTBkZjNjZWIzMmNlZjQ5MDQyNDNjMmY3NzYzZjgyYTVmZDU2YjVmNDlhNjNlNTk2ZWRiYzIxMTkwYzA4ODA5Yzg).
+
+_Links:_
+
+- [Hot Chocolate Documentation](https://hotchocolate.io)
+- [Hot Chocolate on GitHub](https://github.com/ChilliCream/hotchocolate)
+
+[hot chocolate]: https://hotchocolate.io
+[hot chocolate source code]: https://github.com/ChilliCream/hotchocolate

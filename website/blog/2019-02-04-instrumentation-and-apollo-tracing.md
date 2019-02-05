@@ -111,11 +111,13 @@ diagnostic events.
 We hope you enjoyed reading and be welcome to let us know what you think about
 it in the comments section. Thank you!
 
-[Hot Chocolate]:
-https://hotchocolate.io
-[performance tracing specification]:
-https://github.com/apollographql/apollo-tracing
-[specification]:
-https://facebook.github.io/graphql
-[DiagnosticSource]:
-https://www.nuget.org/packages/System.Diagnostics.DiagnosticSource
+_Links:_
+
+- [Hot Chocolate Documentation](https://hotchocolate.io)
+- [Hot Chocolate on GitHub](https://github.com/ChilliCream/hotchocolate)
+
+[hot chocolate]: https://hotchocolate.io
+[hot chocolate source code]: https://github.com/ChilliCream/hotchocolate
+[performance tracing specification]: https://github.com/apollographql/apollo-tracing
+[specification]: https://facebook.github.io/graphql
+[diagnosticsource]: https://www.nuget.org/packages/System.Diagnostics.DiagnosticSource

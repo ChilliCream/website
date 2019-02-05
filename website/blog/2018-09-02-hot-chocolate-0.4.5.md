@@ -80,3 +80,11 @@ With version 0.5 we will focus on subscriptions and custom directives.
 Custom will allow for writing field resolver middlewares that alter or replace the default execution behaviour.
 
 Subscriptions is one of our last spec gaps.
+
+_Links:_
+
+- [Hot Chocolate Documentation](https://hotchocolate.io)
+- [Hot Chocolate on GitHub](https://github.com/ChilliCream/hotchocolate)
+
+[hot chocolate]: https://hotchocolate.io
+[hot chocolate source code]: https://github.com/ChilliCream/hotchocolate

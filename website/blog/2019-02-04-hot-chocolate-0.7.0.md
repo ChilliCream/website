@@ -90,7 +90,7 @@ More about this can be read [here](https://hotchocolate.io/docs/parser).
 With version 0.7.0 we have added support for repeatable directives. This feature is slated for the next GraphQL spec version and allows to pipeline directives like the following:
 
 {
-  a @fetch @replace('a' 'b') @replace('b' 'c')
+a @fetch @replace('a' 'b') @replace('b' 'c')
 }
 
 This behavior feels really awesome when you use executable directives, since with this you can build the field resolver pipeline by stacking directives together.
@@ -212,7 +212,7 @@ Then we do not explicitly need to point to the interface anymore since we can in
 The same works for generic union types where you now can use marker interfaces to assign types to a set. For our purists that only want to you .Net types the following works now to:
 
 ```csharp
-Schema.Create(c => 
+Schema.Create(c =>
 {
     c.RegisterType<IFoo>();
     c.RegisterType<Bar>();
@@ -228,3 +228,11 @@ We now support NuGet source code link. This means that you can debug into the Ho
 Version 7 was a big release with a lot of new features that make it very easy to setup a GraphQL schema in .Net. With this release out we now focus on Version 8 which will focus on schema stitching. We will introduce capabilities like auto-stitching and auto-mocking. We already started working on the new schema stitching stories and if you think you would like to contribute ideas or code or documentation just feel free to talk to us. We are quite happy for any help.
 
 After the schema stitching enhancements we will focus on the new schema builder with Version 9. The schema builder will bring in completely new capabilities that let you extend the schema building process. We are basically opening up the schema building process like we did with the execution engine.
+
+_Links:_
+
+- [Hot Chocolate Documentation](https://hotchocolate.io)
+- [Hot Chocolate on GitHub](https://github.com/ChilliCream/hotchocolate)
+
+[hot chocolate]: https://hotchocolate.io
+[hot chocolate source code]: https://github.com/ChilliCream/hotchocolate

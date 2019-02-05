@@ -66,7 +66,7 @@ public async Task<Person> GetPerson(string id, [Service]IPersonRepository reposi
 }
 ```
 
-The above example would result in two calls to the person repository that would than fetch the persons one by one from our data source. 
+The above example would result in two calls to the person repository that would than fetch the persons one by one from our data source.
 
 If you think that through you can see that each GraphQL request would cause multiple requests to our data source resulting in slugish performance and uneccessary roundtrips to our data source.
 
@@ -249,3 +249,11 @@ It is important to know that http related services are only available if the exe
 From a design standpoint you should avoid accessing this directly and think about a custom context object which would provide some abstraction.
 
 I will write some more on dependency injection sometime later this week.
+
+_Links:_
+
+- [Hot Chocolate Documentation](https://hotchocolate.io)
+- [Hot Chocolate on GitHub](https://github.com/ChilliCream/hotchocolate)
+
+[hot chocolate]: https://hotchocolate.io
+[hot chocolate source code]: https://github.com/ChilliCream/hotchocolate
