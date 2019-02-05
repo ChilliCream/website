@@ -114,8 +114,8 @@ type </span>SomeOtherContract implements Contract {
 </code></pre>
 <p>Imagine we have two servers serving up those schemas. The schema that we actually want for our UI team should look like the following:</p>
 <pre><code class="hljs css language-graphql">type Query {
-  customer(id: ID!):Customer
-}
+  customer(id: ID!):<span class="hljs-built_in"> Customer
+</span>}
 <span class="hljs-built_in">
 type Customer </span>{
   id: ID!
@@ -147,9 +147,7 @@ type </span>SomeOtherContract implements Contract {
 <p>Before we start, we have to give our schemas some names, these names will be used to direct remote queries to the right endpoint.</p>
 <p>Let's name the customer schema <code>customers</code> and the contract schema <code>contracts</code>. With that let's decorate our desired schema.</p>
 <pre><code class="hljs css language-graphql">type Query {
-  customer(id: ID!):<span class="hljs-built_in"> Customer
-</span>    @schema(name: <span class="hljs-string">"customer"</span>)
-    @delegate
+  customer(id: ID!):<span class="hljs-built_in"> Customer </span>@schema(name: <span class="hljs-string">"customer"</span>) @delegate
 }
 <span class="hljs-built_in">
 type Customer </span>{
@@ -228,7 +226,7 @@ services.AddHttpClient(<span class="hljs-string">"contract"</span>, client =&gt;
     .SetSchema(File.ReadAllText(<span class="hljs-string">"Customer.graphql"</span>)));
 </code></pre>
 <p>Again we use our schema name that we used earlier and we are loading a schema file describing the remote schema into the remote executor. We are basically building with that a schema the way you would with the schema-first approach.</p>
-<p>Next, let's setup our contracts schema. The contracts schema uses a <code>DateTime</code> scalar, this one is not specified in the spec so we have to tell our schema to use this one. Since <em>Hot Chocolate</em> specified a bunch of extended scalars we can import one of those. If we do not have a scalar matching the one of the  remote schema we would need to implement this one by extending the class <code>ScalarType</code>.</p>
+<p>Next, let's setup our contracts schema. The contracts schema uses a <code>DateTime</code> scalar, this one is not specified in the spec so we have to tell our schema to use this one. Since <em>Hot Chocolate</em> specified a bunch of extended scalars we can import one of those. If we do not have a scalar matching the one of the remote schema we would need to implement this one by extending the class <code>ScalarType</code>.</p>
 <pre><code class="hljs css language-csharp">serviceCollection.AddRemoteQueryExecutor(b =&gt; b
     .SetSchemaName(<span class="hljs-string">"contract"</span>)
     .SetSchema(FileResource.Open(<span class="hljs-string">"Contract.graphql"</span>))
@@ -249,25 +247,25 @@ services.AddHttpClient(<span class="hljs-string">"contract"</span>, client =&gt;
 <p>Query A:</p>
 <pre><code class="hljs css language-graphql">{
   <span class="hljs-selector-tag">a</span> {
-      <span class="hljs-selector-tag">b</span>
+    <span class="hljs-selector-tag">b</span>
   }
 }
 </code></pre>
 <p>Query B:</p>
 <pre><code class="hljs css language-graphql">{
   c {
-      d
+    d
   }
 }
 </code></pre>
 <p>The batching layer will rewrite those queries into one and send just one request to your remote endpoint:</p>
 <pre><code class="hljs css language-graphql">{
 <span class="hljs-symbol">  __1:</span> <span class="hljs-class">a </span>{
-      b
+    b
   }
 <span class="hljs-symbol">
   __2:</span> <span class="hljs-class">c </span>{
-      d
+    d
   }
 }
 </code></pre>
@@ -283,10 +281,9 @@ services.AddHttpClient(<span class="hljs-string">"contract"</span>, client =&gt;
 <p>This transalates basically to:</p>
 <pre><code class="hljs css language-graphql">{
   foo {
-    bar(<span class="hljs-name">a:1</span>) {
-      ... on baz
-      {
-        qux(<span class="hljs-name">b:1</span>)
+    bar(<span class="hljs-name">a:</span> <span class="hljs-number">1</span>) {
+      ... on baz {
+        qux(<span class="hljs-name">b:</span> <span class="hljs-number">1</span>)
       }
     }
   }
@@ -310,4 +307,9 @@ services.AddHttpClient(<span class="hljs-string">"contract"</span>, client =&gt;
 }
 </code></pre>
 <p>If you have further questions or need help you join our slack group: <a href="https://join.slack.com/t/hotchocolategraphql/shared_invite/enQtNTA4NjA0ODYwOTQ0LTBkZjNjZWIzMmNlZjQ5MDQyNDNjMmY3NzYzZjgyYTVmZDU2YjVmNDlhNjNlNTk2ZWRiYzIxMTkwYzA4ODA5Yzg">Hot Chocolate on Slack</a>.</p>
+<p><em>Links:</em></p>
+<ul>
+<li><a href="https://hotchocolate.io">Hot Chocolate Documentation</a></li>
+<li><a href="https://github.com/ChilliCream/hotchocolate">Hot Chocolate on GitHub</a></li>
+</ul>
 </span></div></div><div class="blogSocialSection"><div class="blogSocialSectionItem"><a href="https://twitter.com/share" class="twitter-share-button" data-text="GraphQL - Schema Stitching" data-url="https://chillicream.com/blog/2019/01/24/schema-stitching" data-related="true" data-show-count="false">Tweet</a></div></div></div><div class="blog-recent"><a class="button" href="/blog">Recent posts</a></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#introduction">Introduction</a></li><li><a href="#getting-started">Getting Started</a></li><li><a href="#server-configuration">Server Configuration</a></li><li><a href="#further-thoughts">Further Thoughts</a></li><li><a href="#comming-with-080">Comming with 0.8.0</a></li><li><a href="#wrapping-things-up">Wrapping things up</a></li></ul></nav></div><footer class="nav-footer" id="footer"><section class="sitemap"><a href="/" class="nav-home"><img src="/img/signet.png" alt="ChilliCream" width="64" height="64"/></a><div><h5>Projects</h5><a href="https://greendonut.io" target="_blank">Green Donut</a><a href="https://hotchocolate.io" target="_blank">Hot Chocolate</a><a href="https://react-rasta.com" target="_blank">React Rasta</a><a href="https://github.com/ChilliCream/thor-core" target="_blank">Thor</a></div><div><h5>Community</h5><a href="https://twitter.com/Chilli_Cream" target="_blank" rel="noreferrer noopener">Follow us on Twitter</a></div><div><h5>More</h5><a href="/blog">Blog</a><a href="https://github.com/ChilliCream/website" target="_blank">GitHub</a><a href="https://github.com/ChilliCream/website/issues" target="_blank">Issues</a><a class="github-button" href="https://github.com/ChilliCream/website" data-icon="octicon-star" data-count-href="/chillicream/website/stargazers" data-show-count="true" data-count-aria-label="# stargazers on GitHub" aria-label="Star this project on GitHub">Star</a></div></section><section class="copyright">Copyright © 2019 ChilliCream</section></footer></div><script>window.twttr=(function(d,s, id){var js,fjs=d.getElementsByTagName(s)[0],t=window.twttr||{};if(d.getElementById(id))return t;js=d.createElement(s);js.id=id;js.src='https://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js, fjs);t._e = [];t.ready = function(f) {t._e.push(f);};return t;}(document, 'script', 'twitter-wjs'));</script></body></html>
