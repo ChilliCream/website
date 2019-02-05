@@ -111,10 +111,9 @@ diagnostic events.
 We hope you enjoyed reading and be welcome to let us know what you think about
 it in the comments section. Thank you!
 
-_Links:_
+| [Hot Chocolate Documentation](https://hotchocolate.io) | [Hot Chocolate on GitHub](https://github.com/ChilliCream/hotchocolate) |
+| ------------------------------------------------------ | ---------------------------------------------------------------------- |
 
-- [Hot Chocolate Documentation](https://hotchocolate.io)
-- [Hot Chocolate on GitHub](https://github.com/ChilliCream/hotchocolate)
 
 [hot chocolate]: https://hotchocolate.io
 [hot chocolate source code]: https://github.com/ChilliCream/hotchocolate

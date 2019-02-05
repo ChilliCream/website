@@ -353,10 +353,9 @@ The following query might be a good starting point since it will expose the ids 
 
 If you have further questions or need help you join our slack group: [Hot Chocolate on Slack](https://join.slack.com/t/hotchocolategraphql/shared_invite/enQtNTA4NjA0ODYwOTQ0LTBkZjNjZWIzMmNlZjQ5MDQyNDNjMmY3NzYzZjgyYTVmZDU2YjVmNDlhNjNlNTk2ZWRiYzIxMTkwYzA4ODA5Yzg).
 
-_Links:_
+| [Hot Chocolate Documentation](https://hotchocolate.io) | [Hot Chocolate on GitHub](https://github.com/ChilliCream/hotchocolate) |
+| ------------------------------------------------------ | ---------------------------------------------------------------------- |
 
-- [Hot Chocolate Documentation](https://hotchocolate.io)
-- [Hot Chocolate on GitHub](https://github.com/ChilliCream/hotchocolate)
 
 [hot chocolate]: https://hotchocolate.io
 [hot chocolate source code]: https://github.com/ChilliCream/hotchocolate
