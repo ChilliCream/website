@@ -78,7 +78,7 @@ using Microsoft.Extensions.DiagnosticAdapter;
 
 namespace CustomNamespace
 {
-    internal class ApolloTracingDiagnosticObserver
+    internal class CustomDiagnosticObserver
         : IDiagnosticObserver
     {
         [DiagnosticName("HotChocolate.Execution.Query")]
