@@ -42,8 +42,9 @@ new QueryExecutionOptions
 });
 ```
 
-There it is. Very simple and straightforward, right? Let's jump over to the next
-topic.
+There it is. Very simple and straightforward, right? For more information head
+over [here](https://hotchocolate.io/docs/apollo-tracing). Let's jump over to
+the next topic.
 
 ## Instrumentation API
 
@@ -105,7 +106,7 @@ namespace CustomNamespace
 ```
 
 In the above example we showed you just a few diagnostic events. Head over
-[here](https://hotchocolate.io/docs/diagnostics) for a complete list of
+[here](https://hotchocolate.io/docs/instrumentation) for a complete list of
 diagnostic events.
 
 We hope you enjoyed reading and be welcome to let us know what you think about
