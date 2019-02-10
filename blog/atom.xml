@@ -14,7 +14,7 @@
         <link href="https://chillicream.com/blog/2019/02/04/instrumentation-and-apollo-tracing.html">
         </link>
         <updated>2019-02-04T06:00:00Z</updated>
-        <summary type="html"><![CDATA[<p>Today we have released [Hot Chocolate] <code>0.7.0</code>, containing one cool new feature,
+        <summary type="html"><![CDATA[<p>Today we have released Hot Chocolate <code>0.7.0</code>, containing one cool new feature,
 we wanne talk about here, namely <em>Apollo Tracing</em> which is extremely powerful in
 identifing things like performance bottlenecks in our <em>GraphQL</em> <em>APIs</em> for
 example. As a result, we had to enhance our general instrumentation layer, which
