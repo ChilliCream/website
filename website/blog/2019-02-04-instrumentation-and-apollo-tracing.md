@@ -5,7 +5,7 @@ authorURL: https://github.com/rstaib
 authorImageURL: https://avatars0.githubusercontent.com/u/4325318?s=100&v=4
 ---
 
-Today we have released [Hot Chocolate] `0.7.0`, containing one cool new feature,
+Today we have released Hot Chocolate `0.7.0`, containing one cool new feature,
 we wanne talk about here, namely _Apollo Tracing_ which is extremely powerful in
 identifing things like performance bottlenecks in our _GraphQL_ _APIs_ for
 example. As a result, we had to enhance our general instrumentation layer, which
@@ -43,7 +43,7 @@ new QueryExecutionOptions
 ```
 
 There it is. Very simple and straightforward, right? For more information head
-over [here](https://hotchocolate.io/docs/apollo-tracing). Let's jump over to
+over [here](https://hotchocolate.io/docs/apollo-tracing). Now, let's jump over to
 the next topic.
 
 ## Instrumentation API
@@ -115,9 +115,5 @@ it in the comments section. Thank you!
 | [Hot Chocolate Documentation](https://hotchocolate.io) | [Hot Chocolate on GitHub](https://github.com/ChilliCream/hotchocolate) |
 | ------------------------------------------------------ | ---------------------------------------------------------------------- |
 
-
-[hot chocolate]: https://hotchocolate.io
-[hot chocolate source code]: https://github.com/ChilliCream/hotchocolate
 [performance tracing specification]: https://github.com/apollographql/apollo-tracing
 [specification]: https://facebook.github.io/graphql
-[diagnosticsource]: https://www.nuget.org/packages/System.Diagnostics.DiagnosticSource
