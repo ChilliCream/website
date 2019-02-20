@@ -1,5 +1,5 @@
 ---
-title: GraphQL - Schema Stitching - Part 2
+title: GraphQL - Schema Stitching with Version 8
 author: Michael Staib
 authorURL: https://github.com/michaelstaib
 authorImageURL: https://avatars1.githubusercontent.com/u/9714350?s=100&v=4
