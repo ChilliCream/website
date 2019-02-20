@@ -110,7 +110,7 @@ type </span>SomeOtherContract implements Contract {
   expiryDate: DateTime
 }
 </code></pre>
-<p>In order to merge the two schemas with pour new API we basically have to write the following code:</p>
+<p>In order to merge the two schemas with our new API we basically have to write the following code:</p>
 <pre><code class="hljs css language-csharp">services.AddHttpClient(<span class="hljs-string">"customer"</span>, client =&gt; client.BaseAddress = <span class="hljs-keyword">new</span> Uri(<span class="hljs-string">"http://127.0.0.1:5050"</span>));
 services.AddHttpClient(<span class="hljs-string">"contract"</span>, client =&gt; client.BaseAddress = <span class="hljs-keyword">new</span> Uri(<span class="hljs-string">"http://127.0.0.1:5051"</span>));
 
