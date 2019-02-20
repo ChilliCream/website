@@ -67,7 +67,7 @@ type SomeOtherContract implements Contract {
 }
 ```
 
-In order to merge the two schemas with pour new API we basically have to write the following code:
+In order to merge the two schemas with our new API we basically have to write the following code:
 
 ```csharp
 services.AddHttpClient("customer", client => client.BaseAddress = new Uri("http://127.0.0.1:5050"));
