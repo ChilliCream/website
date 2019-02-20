@@ -2,12 +2,26 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://chillicream.com/blog</id>
     <title>ChilliCream Blog</title>
-    <updated>2019-02-04T06:00:00Z</updated>
+    <updated>2019-02-20T06:00:00Z</updated>
     <generator>Feed for Node.js</generator>
     <link rel="alternate" href="https://chillicream.com/blog"/>
     <subtitle>The best place to stay up-to-date with the latest ChilliCream news and events.</subtitle>
     <logo>https://chillicream.com/img/signet.png</logo>
     <rights>Copyright © 2019 ChilliCream</rights>
+    <entry>
+        <title type="html"><![CDATA[GraphQL - Schema Stitching - Part 2]]></title>
+        <id>https://chillicream.com/blog/2019/02/20/schema-stitching.html</id>
+        <link href="https://chillicream.com/blog/2019/02/20/schema-stitching.html">
+        </link>
+        <updated>2019-02-20T06:00:00Z</updated>
+        <summary type="html"><![CDATA[<p>We are currently working on version 8 of Hot Chocolate and are mainly focusing on schema stitching with this release.</p>
+<p>One of the most requested features in this area was auto-stitching. Auto-stitching will enable us to automatically pull in schemas from other GraphQL servers and merge those into one schema.</p>
+]]></summary>
+        <author>
+            <name>Michael Staib</name>
+            <uri>https://github.com/michaelstaib</uri>
+        </author>
+    </entry>
     <entry>
         <title type="html"><![CDATA[GraphQL .NET Instrumentation API and Apollo Tracing]]></title>
         <id>https://chillicream.com/blog/2019/02/04/instrumentation-and-apollo-tracing.html</id>
