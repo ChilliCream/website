@@ -331,7 +331,7 @@ builder.AddSchemaConfiguration(config =>
     config.BindResolver(async ctx => 
     {
         IRemoteQueryClient queryClient = 
-            ctx.Service<GetRemoteQueryClient>()
+            ctx.Service<IStitchingContext>()
             .GetRemoteQueryClient("contract");
         IExecutionResult result = await queryClient.ExecuteAsync(
             "{ foo { bar { baz } } }");
