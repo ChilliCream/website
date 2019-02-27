@@ -310,7 +310,7 @@ The type rewriter operates on a type definition and can rename types, add, renam
     config.BindResolver(<span class="hljs-keyword">async</span> ctx =&gt; 
     {
         IRemoteQueryClient queryClient = 
-            ctx.Service&lt;GetRemoteQueryClient&gt;()
+            ctx.Service&lt;IStitchingContext&gt;()
             .GetRemoteQueryClient(<span class="hljs-string">"contract"</span>);
         IExecutionResult result = <span class="hljs-keyword">await</span> queryClient.ExecuteAsync(
             <span class="hljs-string">"{ foo { bar { baz } } }"</span>);
