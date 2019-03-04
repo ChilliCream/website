@@ -4,7 +4,7 @@
         <title>ChilliCream Blog</title>
         <link>https://chillicream.com/blog</link>
         <description>The best place to stay up-to-date with the latest ChilliCream news and events.</description>
-        <lastBuildDate>Wed, 20 Feb 2019 06:00:00 GMT</lastBuildDate>
+        <lastBuildDate>Mon, 04 Mar 2019 06:00:00 GMT</lastBuildDate>
         <docs>http://blogs.law.harvard.edu/tech/rss</docs>
         <generator>Feed for Node.js</generator>
         <image>
@@ -13,6 +13,14 @@
             <link>https://chillicream.com/blog</link>
         </image>
         <copyright>Copyright © 2019 ChilliCream</copyright>
+        <item>
+            <title><![CDATA[GraphQL - Hot Chocolate 0.8.0]]></title>
+            <link>https://chillicream.com/blog/2019/03/04/hot-chocolate-0.8.0.html</link>
+            <guid>https://chillicream.com/blog/2019/03/04/hot-chocolate-0.8.0.html</guid>
+            <pubDate>Mon, 04 Mar 2019 06:00:00 GMT</pubDate>
+            <description><![CDATA[<p>Today we are releasing Hot Chocolate version 8 (0.8.0) which mainly focused on schema stitching and brings our stitching layer to a whole new level.</p>
+]]></description>
+        </item>
         <item>
             <title><![CDATA[GraphQL - Schema Stitching with Version 8]]></title>
             <link>https://chillicream.com/blog/2019/02/20/schema-stitching.html</link>
