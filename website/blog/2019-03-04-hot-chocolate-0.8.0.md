@@ -73,6 +73,12 @@ The _Hot Chocolate UI_ will be a developer focused tool that will be able to rep
 
 By the way, we are still looking for a cool new chillicream compliant name like Hot Chocolate or Green Donut. So, if you have any cool or funny ideas head over to our slack channel
 
+### GraphQL Compatibility Acceptance Tests
+
+With version 8 we have started to invest in the GraphQL Compatibility Acceptance Tests and plan to have them fully implemented and integrated with version 11. This does not mean that we wait until version 11 to use them. Already now we are able to generate some of the test cases. Hopefully, we will have all the parser tests integrated with version 9. This subject is an ongoing effort and we will keep you posted on this one.
+
+For more information on GraphQL Cats visit their [GitHub repository](https://github.com/graphql-cats/graphql-cats).
+
 ### Versioning
 
 With version 9 we will change our versioning and follow the example of react in swapping the leading zero with the nine. So, the version number of version 9 will actually be 9.0.0.
