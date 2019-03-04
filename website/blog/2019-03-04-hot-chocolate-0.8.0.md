@@ -15,7 +15,7 @@ Since, my last blog post we were heavily at work ironing out bugs and making sch
 
 Now, with the release finished, schema stitching with ASP.Net core has become super easy and feels quite nice to use.
 
-Head over to our new documentation for schema stitching [here](https://hotchocolate.io/docs/stitching).
+Head over to our new documentation for [schema stitching](https://hotchocolate.io/docs/stitching).
 
 ## Voyager
 
