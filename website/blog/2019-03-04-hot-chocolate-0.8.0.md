@@ -65,7 +65,7 @@ With the schema stitching version 8 you have to handle the node field on your ow
 
 ### Hot Chocolate UI
 
-GraphQL is really awesome, but we are really not happy with the tooling situation. We now support GraphiQL, Playground and Voyager for _Hot Chocolate_, but none of these is a complete solution.
+GraphQL is really awesome, but we are really not happy with the tooling situation. As of now we support GraphiQL, Playground and Voyager for _Hot Chocolate_, but none of these is a complete solution.
 
 We have started some time ago to create a new developer tool for GraphQL that will replace all of these. We did not base our new UI on GraphiQL since we want to achieve more and create something unique. Look for instance at the tooling around rest, with _Postman_ developers have quite a good tool that enables them to do a lot.
 
