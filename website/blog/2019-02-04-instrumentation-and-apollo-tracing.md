@@ -65,7 +65,7 @@ builder =>
 {
     return builder
         .UseDefaultPipeline()
-        .AddDiagnosticObserver<CustomObserver>();
+        .AddDiagnosticObserver<CustomDiagnosticObserver>();
 });
 ```
 
