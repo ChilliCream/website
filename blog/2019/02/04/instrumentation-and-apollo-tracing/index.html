@@ -111,7 +111,7 @@ builder =&gt;
 {
     <span class="hljs-keyword">return</span> builder
         .UseDefaultPipeline()
-        .AddDiagnosticObserver&lt;CustomObserver&gt;();
+        .AddDiagnosticObserver&lt;CustomDiagnosticObserver&gt;();
 });
 </code></pre>
 <p>So far so good. Writing a custom <em>DiagnosticObservers</em> is not difficult. Let's
