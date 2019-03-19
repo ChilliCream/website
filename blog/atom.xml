@@ -2,12 +2,27 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://chillicream.com/blog</id>
     <title>ChilliCream Blog</title>
-    <updated>2019-03-04T06:00:00Z</updated>
+    <updated>2019-03-19T06:00:00Z</updated>
     <generator>Feed for Node.js</generator>
     <link rel="alternate" href="https://chillicream.com/blog"/>
     <subtitle>The best place to stay up-to-date with the latest ChilliCream news and events.</subtitle>
     <logo>https://chillicream.com/img/signet.png</logo>
     <rights>Copyright © 2019 ChilliCream</rights>
+    <entry>
+        <title type="html"><![CDATA[GraphQL - Tracing with Hot Chocolate]]></title>
+        <id>https://chillicream.com/blog/2019/03/19/logging-with-hotchocolate.html</id>
+        <link href="https://chillicream.com/blog/2019/03/19/logging-with-hotchocolate.html">
+        </link>
+        <updated>2019-03-19T06:00:00Z</updated>
+        <summary type="html"><![CDATA[<p>One common question that comes up on our slack channel is if <em>Hot Chocolate</em> supports some kind of logging infrastructure. My personal opinion here is that logging/tracing is often very project specific and an API should not force one specific logging solution onto its users.</p>
+<p>Instead we have opted to provide diagnostic events through Microsoft`s diagnostic source which does not force us to serialize any payloads. This in turn gives you the ability to pick and choose the information that best fits your need for your tracing/logging solution.</p>
+<p>This post will walk you through on how to add a logger of your choice to <em>Hot Chocolate</em> and get exactly the right amount of information for your project.</p>
+]]></summary>
+        <author>
+            <name>Michael Staib</name>
+            <uri>https://github.com/michaelstaib</uri>
+        </author>
+    </entry>
     <entry>
         <title type="html"><![CDATA[GraphQL - Hot Chocolate 0.8.0]]></title>
         <id>https://chillicream.com/blog/2019/03/04/hot-chocolate-0.8.0.html</id>
