@@ -36,8 +36,7 @@
             <link>https://chillicream.com/blog/2019/02/20/schema-stitching.html</link>
             <guid>https://chillicream.com/blog/2019/02/20/schema-stitching.html</guid>
             <pubDate>Wed, 20 Feb 2019 06:00:00 GMT</pubDate>
-            <description><![CDATA[<p>We are currently working on version 8 of Hot Chocolate and are mainly focusing on schema stitching with this release.</p>
-<p>One of the most requested features in this area was auto-stitching. Auto-stitching will enable us to automatically pull in schemas from other GraphQL servers and merge those into one schema.</p>
+            <description><![CDATA[<p>With version 8 of Hot Chocolate we have mainly focused on schema stitching. One of the most requested features in this area was auto-stitching. Auto-stitching will enable us to automatically pull in schemas from other GraphQL servers and merge those into one schema.</p>
 ]]></description>
         </item>
         <item>
