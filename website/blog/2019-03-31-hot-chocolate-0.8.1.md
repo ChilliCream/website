@@ -11,7 +11,13 @@ Today we release version 8.1 (0.8.1) of _Hot Chocolate_. This release brings imp
 
 ## Instrumentation
 
-One focus of this release was to open up our diagnostic events to be used by developers. When we started thinking about how _Hot Chocolate_ could provide information about its inner workings to users of the library, we opted against using one specific logging framework. Instead we have looked at what Microsoft was doing in ASP.Net and other components with diagnostic sources. Diagnostic sources let us create events that have non-serializable payloads. This means that we basically can provide an event that gives the library user full access to our context objects like the `IQueryContext`. This enables users to now add their own loggers to _Hot Chocolate_ and grab just the information from our diagnostic events that they need to make their tracing solution work.
+One focus of this release was to open up our diagnostic events to be used by developers. When we started thinking about how _Hot Chocolate_ should provide information about its inner workings to users of the library, we opted against using one specific logging framework.
+
+Instead we have looked at what Microsoft was doing in ASP.Net core and other components with diagnostic sources. Diagnostic sources let us create events that have non-serializable payloads.
+
+This means that we can provide an event that gives full access to our context objects like the `IQueryContext`.
+
+This enables users of _Hot Chocolate_ to add their own loggers to a _Hot Chocolate_ server and grab exactly the information from our diagnostic events that they need to make their tracing solution work.
 
 In order to read more on this subject checkout our blog: [Tracing with Hot Chocolate](2019-03-19-logging-with-hotchocolate.md) or head over to our [documentation](https://hotchocolate.io/docs/instrumentation).
 
