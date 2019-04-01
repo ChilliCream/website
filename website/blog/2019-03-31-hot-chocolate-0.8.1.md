@@ -23,7 +23,7 @@ In order to read more on this subject checkout our blog: [Tracing with Hot Choco
 
 ## Stitching Refinements
 
-One new feature that is now available in the stitching layer is support of error filters. This means that you can now write error filters like on a local schema and transform or enrich query errors from remote schemas.
+One new feature that is now available in the stitching layer is support of error filters. This means that you can now write error filters like on a local schema and transform or enrich query errors that were extracted from remote queries.
 
 In order to make it easier to use error filters we have changed the error structure of remote errors and provide the original error object as an extension property:
 
