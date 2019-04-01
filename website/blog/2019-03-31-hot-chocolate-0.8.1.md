@@ -15,9 +15,9 @@ One focus of this release was to open up our diagnostic events to be used by dev
 
 Instead we have looked at what Microsoft was doing in ASP.Net core and other components with diagnostic sources. Diagnostic sources let us create events that have non-serializable payloads.
 
-This means that we can provide an event that gives full access to our context objects like the `IQueryContext`.
+This means that we can provide an event that gives full access to our context objects like the `IQueryContext` or the `IResolverContext`.
 
-This enables users of _Hot Chocolate_ to add their own loggers to a _Hot Chocolate_ server and grab exactly the information from our diagnostic events that they need to make their tracing solution work.
+This enables you to add your own logger to your GraphQL server and grab exactly the information from the _Hot Chocolate_ diagnostic events that you need to make your tracing solution work.
 
 In order to read more on this subject checkout our blog: [Tracing with Hot Chocolate](2019-03-19-logging-with-hotchocolate.md) or head over to our [documentation](https://hotchocolate.io/docs/instrumentation).
 
