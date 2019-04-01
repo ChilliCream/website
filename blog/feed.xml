@@ -4,7 +4,7 @@
         <title>ChilliCream Blog</title>
         <link>https://chillicream.com/blog</link>
         <description>The best place to stay up-to-date with the latest ChilliCream news and events.</description>
-        <lastBuildDate>Tue, 19 Mar 2019 06:00:00 GMT</lastBuildDate>
+        <lastBuildDate>Sun, 31 Mar 2019 06:00:00 GMT</lastBuildDate>
         <docs>http://blogs.law.harvard.edu/tech/rss</docs>
         <generator>Feed for Node.js</generator>
         <image>
@@ -13,6 +13,14 @@
             <link>https://chillicream.com/blog</link>
         </image>
         <copyright>Copyright © 2019 ChilliCream</copyright>
+        <item>
+            <title><![CDATA[GraphQL - Hot Chocolate 0.8.1]]></title>
+            <link>https://chillicream.com/blog/2019/03/31/hot-chocolate-0.8.1.html</link>
+            <guid>https://chillicream.com/blog/2019/03/31/hot-chocolate-0.8.1.html</guid>
+            <pubDate>Sun, 31 Mar 2019 06:00:00 GMT</pubDate>
+            <description><![CDATA[<p>Today we release version 8.1 (0.8.1) of <em>Hot Chocolate</em>. This release brings improvements and bug fixes to the current version 8 release.</p>
+]]></description>
+        </item>
         <item>
             <title><![CDATA[GraphQL - Tracing with Hot Chocolate]]></title>
             <link>https://chillicream.com/blog/2019/03/19/logging-with-hotchocolate.html</link>
