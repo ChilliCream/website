@@ -4,7 +4,7 @@
         <title>ChilliCream Blog</title>
         <link>https://chillicream.com/blog</link>
         <description>The best place to stay up-to-date with the latest ChilliCream news and events.</description>
-        <lastBuildDate>Sun, 31 Mar 2019 06:00:00 GMT</lastBuildDate>
+        <lastBuildDate>Thu, 11 Apr 2019 06:00:00 GMT</lastBuildDate>
         <docs>http://blogs.law.harvard.edu/tech/rss</docs>
         <generator>Feed for Node.js</generator>
         <image>
@@ -13,6 +13,15 @@
             <link>https://chillicream.com/blog</link>
         </image>
         <copyright>Copyright © 2019 ChilliCream</copyright>
+        <item>
+            <title><![CDATA[GraphQL - How to write integration tests against Hot Chocolate]]></title>
+            <link>https://chillicream.com/blog/2019/04/11/integration-tests.html</link>
+            <guid>https://chillicream.com/blog/2019/04/11/integration-tests.html</guid>
+            <pubDate>Thu, 11 Apr 2019 06:00:00 GMT</pubDate>
+            <description><![CDATA[<p>Today I was asked in our slack channel how one could write an integration test against <em>Hot Chocolate</em> without setting up an ASP.Net Core <em>TestServer</em>.
+Though the ASP.Net Core <em>TestServer</em> API is quite nice, it is much more cumbersome to test a schema this way.</p>
+]]></description>
+        </item>
         <item>
             <title><![CDATA[GraphQL - Hot Chocolate 0.8.1]]></title>
             <link>https://chillicream.com/blog/2019/03/31/hot-chocolate-0.8.1.html</link>

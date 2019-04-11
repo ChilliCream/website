@@ -1,0 +1,291 @@
+<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><title>GraphQL - How to write integration tests against Hot Chocolate · ChilliCream</title><meta name="viewport" content="width=device-width"/><meta name="generator" content="Docusaurus"/><meta name="description" content="Today I was asked in our slack channel how one could write an integration test against _Hot Chocolate_ without setting up an ASP.Net Core _TestServer_."/><meta name="docsearch:language" content="en"/><meta property="og:title" content="GraphQL - How to write integration tests against Hot Chocolate · ChilliCream"/><meta property="og:type" content="website"/><meta property="og:url" content="https://chillicream.com/blog/2019/04/11/integration-tests"/><meta property="og:description" content="Today I was asked in our slack channel how one could write an integration test against _Hot Chocolate_ without setting up an ASP.Net Core _TestServer_."/><meta name="twitter:card" content="summary"/><meta name="twitter:image" content="https://chillicream.com/img/signet.png"/><link rel="shortcut icon" href="/img/favicon.png"/><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/androidstudio.min.css"/><link rel="alternate" type="application/atom+xml" href="https://chillicream.com/blog/atom.xml" title="ChilliCream Blog ATOM Feed"/><link rel="alternate" type="application/rss+xml" href="https://chillicream.com/blog/feed.xml" title="ChilliCream Blog RSS Feed"/><script>
+              (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+              (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+              m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+              })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+              ga('create', 'UA-72800164-1', 'auto');
+              ga('send', 'pageview');
+            </script><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Yanone+Kaffeesatz:700,400"/><link rel="stylesheet" href="/css/code-block-buttons.css"/><script type="text/javascript" src="https://buttons.github.io/buttons.js"></script><script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.0/clipboard.min.js"></script><script type="text/javascript" src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script><script type="text/javascript" src="/js/code-block-buttons.js"></script><script type="text/javascript" src="/js/google-adsense.js"></script><script type="text/javascript" src="/js/disqus.js"></script><script src="https://unpkg.com/vanilla-back-to-top@7.1.14/dist/vanilla-back-to-top.min.js"></script><script>
+        document.addEventListener('DOMContentLoaded', function() {
+          addBackToTop(
+            {"zIndex":100}
+          )
+        });
+        </script><link rel="stylesheet" href="/css/main.css"/><script src="/js/codetabs.js"></script></head><body class="sideNavVisible separateOnPageNav"><div class="fixedHeaderContainer"><div class="headerWrapper wrapper"><header><a href="/"><img class="logo" src="/img/signet.png" alt="ChilliCream"/><h2 class="headerTitleWithLogo">ChilliCream</h2></a><div class="navigationWrapper navigationSlider"><nav class="slidingNav"><ul class="nav-site nav-site-internal"><li class="siteNavGroupActive"><a href="/blog/" target="_self">Blog</a></li></ul></nav></div></header></div></div><div class="navPusher"><div class="docMainWrapper wrapper"><div class="container docsNavContainer" id="docsNav"><nav class="toc"><div class="toggleNav"><section class="navWrapper wrapper"><div class="navBreadcrumb wrapper"><div class="navToggle" id="navToggler"><i></i></div><h2><i>›</i><span>All blog posts</span></h2><div class="tocToggler" id="tocToggler"><i class="icon-toc"></i></div></div><div class="navGroups"><div class="navGroup"><h3 class="navGroupCategoryTitle">All blog posts</h3><ul class=""><li class="navListItem navListItemActive"><a class="navItem" href="/blog/2019/04/11/integration-tests">GraphQL - How to write integration tests against Hot Chocolate</a></li><li class="navListItem"><a class="navItem" href="/blog/2019/03/31/hot-chocolate-0.8.1">GraphQL - Hot Chocolate 0.8.1</a></li><li class="navListItem"><a class="navItem" href="/blog/2019/03/19/logging-with-hotchocolate">GraphQL - Tracing with Hot Chocolate</a></li><li class="navListItem"><a class="navItem" href="/blog/2019/03/04/hot-chocolate-0.8.0">GraphQL - Hot Chocolate 0.8.0</a></li><li class="navListItem"><a class="navItem" href="/blog/2019/02/20/schema-stitching">GraphQL - Schema Stitching with Version 8</a></li><li class="navListItem"><a class="navItem" href="/blog/2019/02/04/instrumentation-and-apollo-tracing">GraphQL .NET Instrumentation API and Apollo Tracing</a></li><li class="navListItem"><a class="navItem" href="/blog/2019/02/04/hot-chocolate-0.7.0">GraphQL - Hot Chocolate 0.7.0</a></li><li class="navListItem"><a class="navItem" href="/blog/2019/01/24/schema-stitching">GraphQL - Schema Stitching</a></li><li class="navListItem"><a class="navItem" href="/blog/2018/11/07/docusaurus-docs-redirect">Docusaurus - How to redirect requests to /docs to a default url instead of getting a 404 error</a></li><li class="navListItem"><a class="navItem" href="/blog/2018/09/02/hot-chocolate-0.4.5">GraphQL - Hot Chocolate 0.4.5</a></li><li class="navListItem"><a class="navItem" href="/blog/2018/07/31/hot-chocolate-0.4.0">GraphQL - Hot Chocolate 0.4.0</a></li><li class="navListItem"><a class="navItem" href="/blog/2018/07/30/green-donut-0.2.0">Green Donut 0.2.0</a></li><li class="navListItem"><a class="navItem" href="/blog/2018/05/03/react-rasta-1.0.0">React Rasta 1.0.0</a></li><li class="navListItem"><a class="navItem" href="/blog/2013/09/12/jquery-steps-form-wizard">How to create a Form Wizard using jQuery Steps</a></li></ul></div></div></section></div><script>
+            var coll = document.getElementsByClassName('collapsible');
+            var checkActiveCategory = true;
+            for (var i = 0; i < coll.length; i++) {
+              var links = coll[i].nextElementSibling.getElementsByTagName('*');
+              if (checkActiveCategory){
+                for (var j = 0; j < links.length; j++) {
+                  if (links[j].classList.contains('navListItemActive')){
+                    coll[i].nextElementSibling.classList.toggle('hide');
+                    coll[i].childNodes[1].classList.toggle('rotate');
+                    checkActiveCategory = false;
+                    break;
+                  }
+                }
+              }
+
+              coll[i].addEventListener('click', function() {
+                var arrow = this.childNodes[1];
+                arrow.classList.toggle('rotate');
+                var content = this.nextElementSibling;
+                content.classList.toggle('hide');
+              });
+            }
+
+            document.addEventListener('DOMContentLoaded', function() {
+              createToggler('#navToggler', '#docsNav', 'docsSliderActive');
+              createToggler('#tocToggler', 'body', 'tocActive');
+
+              const headings = document.querySelector('.toc-headings');
+              headings && headings.addEventListener('click', function(event) {
+                if (event.target.tagName === 'A') {
+                  document.body.classList.remove('tocActive');
+                }
+              }, false);
+
+              function createToggler(togglerSelector, targetSelector, className) {
+                var toggler = document.querySelector(togglerSelector);
+                var target = document.querySelector(targetSelector);
+
+                if (!toggler) {
+                  return;
+                }
+
+                toggler.onclick = function(event) {
+                  event.preventDefault();
+
+                  target.classList.toggle(className);
+                };
+              }
+            });
+        </script></nav></div><div class="container mainContainer postContainer blogContainer"><div class="wrapper"><div class="lonePost"><div class="post"><header class="postHeader"><h1 class="postHeaderTitle"><a href="/blog/2019/04/11/integration-tests">GraphQL - How to write integration tests against Hot Chocolate</a></h1><p class="post-meta">April 11, 2019</p><div class="authorBlock"><p class="post-authorName"><a href="https://github.com/michaelstaib" target="_blank" rel="noreferrer noopener">Michael Staib</a></p><div class="authorPhoto"><a href="https://github.com/michaelstaib" target="_blank" rel="noreferrer noopener"><img src="https://avatars1.githubusercontent.com/u/9714350?s=100&amp;v=4" alt="Michael Staib"/></a></div></div></header><div><span><p>Today I was asked in our slack channel how one could write an integration test against <em>Hot Chocolate</em> without setting up an ASP.Net Core <em>TestServer</em>.
+Though the ASP.Net Core <em>TestServer</em> API is quite nice, it is much more cumbersome to test a schema this way.</p>
+<!--truncate-->
+<p>For full integration tests through all the layers we could in fact setup a test GraphQL endpoint with the complete ASP.net core pipeline by using the ASP.Net core <em>TestServer</em> API.</p>
+<p>With this approach we could ensure that the GraphQL endpoint is correctly configured and works well within our service. In many cases this seems too much since we only want to test parts of the schema.</p>
+<blockquote>
+<p>If you want to read more about the ASP.Net Core <em>TestServer</em> API there is a nice article on the <a href="https://visualstudiomagazine.com/articles/2017/07/01/testserver.aspx">Visual Studio Magazine</a>.</p>
+</blockquote>
+<h2><a class="anchor" aria-hidden="true" id="setup"></a><a href="#setup" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Setup</h2>
+<p>Before we get started, assume we have a simple query class representing our GraphQL <code>Query</code> type:</p>
+<pre><code class="hljs css language-csharp"><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title">Query</span>
+{
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">string</span> <span class="hljs-title">SayHello</span>(<span class="hljs-params"></span>)</span> =&gt; <span class="hljs-string">"Hello"</span>;
+}
+</code></pre>
+<p>In order to create a schema from that simple type we could just do the following:</p>
+<pre><code class="hljs css language-csharp">ISchema schema = Schema.Create(c =&gt; c.RegisterQueryType&lt;Query&gt;());
+</code></pre>
+<p>OK, now we have a schema against which we can write our tests.</p>
+<p>Let`s take a step back and let us think about what we want to actually test before we go into the how.</p>
+<p>Most of the times we want to write tests that ensure that our internal services are correctly hooked up with the GraphQL layer. Basically, we want to test that our business logic works well in the context of GraphQL and that all data is passed correctly. This means that we want to write queries and assert the results of our query.</p>
+<p>The second thing that might be worth to ensure is that our schema is correctly expressed, so that all the default values are ,correct and no unexpected field is exposed.</p>
+<p>Last but not least we might want to test a query- or field-middleware in various situations.</p>
+<h2><a class="anchor" aria-hidden="true" id="integration-tests"></a><a href="#integration-tests" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Integration Tests</h2>
+<p>All right, let us get started with the integration tests first. In order to write queries against our schema we need to create a query executor:</p>
+<pre><code class="hljs css language-csharp">IQueryExecutor executor = schema.MakeExecutable();
+</code></pre>
+<p>The next thing that is important when testing the query engine in isolation is dependency injection.</p>
+<p>Dependency injection is provided through <code>IServiceProvider</code>, this makes it really easy to provide the services to the execution engine that we might need like our data layer or so on.</p>
+<p>The easiest way ist to create a service collection and setup whatever we need.</p>
+<pre><code class="hljs css language-csharp">IServiceProvider serviceProvider =
+    <span class="hljs-keyword">new</span> ServiceCollection()
+        .AddSingleton&lt;Foo, Bar&gt;()
+        .BuildServiceProvider();
+</code></pre>
+<p>The second thing we have to ensure is that we did not use <code>HttpContext</code> in our resolver- or middleware-logic.</p>
+<p><strong>Wait a minute, but how are we able to access properties from <code>HttpContext</code> when we are not allowed to access it?</strong></p>
+<p>Agreed, in some cases we really need to have access to properties on the <code>HttpContext</code> like the current <code>HttpContext.User</code> or some header value. In these cases, we need to access some parts of the <code>HttpContext</code> and copy those parts we need to our context data. The context data dictionary is thread-safe and can be accessed in query-, field-middleware and the field-resolver. This makes it easy to abstract the user context from ASP.Net Core dependencies like <code>HttpContext</code>. By doing this we will make our schema more testable and less dependant on the service layer.</p>
+<p>We can do this by writing a query middleware that copies these properties to our context or by using our <code>OnCreateRequestAsync</code> hook. I will show how this can be done at the end of this post.</p>
+<p>For now, let us assume we have done that already, then the only thing that we would need to do is to set the context data when we create our request. So, lets put a simple test together to see how we can write a test:</p>
+<pre><code class="hljs css language-csharp">[<span class="hljs-meta">Fact</span>]
+<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">async</span> Task <span class="hljs-title">SayHello_HelloIsReturned</span>(<span class="hljs-params"></span>)</span>
+{
+    <span class="hljs-comment">// arrange</span>
+    IServiceProvider serviceProvider =
+        <span class="hljs-keyword">new</span> ServiceCollection()
+            .AddSingleton&lt;IDataLayer, MyDataLayer&gt;()
+            .BuildServiceProvider();
+
+    IQueryExecutor executor = Schema.Create(c =&gt;
+    {
+        c.RegisterQueryType&lt;Query&gt;();
+    })
+    .MakeExecutable();
+
+    IReadOnlyQueryRequest request =
+        QueryRequestBuilder.New()
+            .SetQuery(<span class="hljs-string">"{ sayHello }"</span>)
+            .SetServices(serviceProvider)
+            .AddProperty(<span class="hljs-string">"Key"</span>, <span class="hljs-string">"value"</span>)
+            .Create();
+
+    <span class="hljs-comment">// act</span>
+    IExecutionResult result = <span class="hljs-keyword">await</span> executor.ExecuteAsync(request);
+
+    <span class="hljs-comment">// assert</span>
+    <span class="hljs-comment">// so how do we assert this thing???</span>
+}
+</code></pre>
+<p>That does look good already, but how do we assert the result and what is the result.</p>
+<p>The query executor will return an execution result, depending on the type of operation it could be a <code>IResponseStream</code> or a <code>IReadOnlyQueryResult</code>.</p>
+<p>An <code>IReadOnlyQueryResult</code> contains basically the result graph of the query, but asserting this could be very tiresome.</p>
+<p>My good friend <a href="https://github.com/nscheibe">Normen</a> who works at Swiss Life created a snapshot testing library that basically works like <a href="https://jestjs.io">jestjs</a>. We use <em>Snapshooter</em> internally to test the <em>Hot Chocolate</em> core.</p>
+<p><a href="https://github.com/SwissLife-OSS/snapshooter">Snapshooter</a> will create a snapshot at the first execution of the test. The snapshots are saved in a folder <code>__snapshot__</code> that is co-located with our test class. Every consecutive test run will be validated against that first snapshot. If the snapshots do not match the test will fail and tell us what part did not match.</p>
+<p>So, let us have a look how our test would look like with this assertion in place.</p>
+<pre><code class="hljs css language-csharp">[<span class="hljs-meta">Fact</span>]
+<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">async</span> Task <span class="hljs-title">SayHello_HelloIsReturned</span>(<span class="hljs-params"></span>)</span>
+{
+    <span class="hljs-comment">// arrange</span>
+    IServiceProvider serviceProvider =
+        <span class="hljs-keyword">new</span> ServiceCollection()
+            .AddSingleton&lt;IDataLayer, MyDataLayer&gt;()
+            .BuildServiceProvider();
+
+    IQueryExecutor executor = Schema.Create(c =&gt;
+    {
+        c.RegisterQueryType&lt;Query&gt;();
+    })
+    .MakeExecutable();
+
+    IReadOnlyQueryRequest request =
+        QueryRequestBuilder.New()
+            .SetQuery(<span class="hljs-string">"{ sayHello }"</span>)
+            .SetServices(serviceProvider)
+            .AddProperty(<span class="hljs-string">"Key"</span>, <span class="hljs-string">"value"</span>)
+            .Create();
+
+    <span class="hljs-comment">// act</span>
+    IExecutionResult result = <span class="hljs-keyword">await</span> executor.ExecuteAsync(request);
+
+    <span class="hljs-comment">// assert</span>
+    result.MatchSnapshot();
+}
+</code></pre>
+<p>This test looks very clean now, the snapshots are serializing to json which makes them easy to read.</p>
+<pre><code class="hljs css language-json">{
+  <span class="hljs-attr">"Data"</span>: {
+    <span class="hljs-attr">"sayHello"</span>: <span class="hljs-string">"hello"</span>
+  },
+  <span class="hljs-attr">"Extensions"</span>: {},
+  <span class="hljs-attr">"Errors"</span>: []
+}
+</code></pre>
+<p>The awesome thing with snapshooter is that we can ignore parts of our result-graph or validate one property of the result-graph in a special way.</p>
+<pre><code class="hljs css language-csharp">result.MatchSnapshot(o =&gt;
+    o.IgnoreField(<span class="hljs-string">"Extensions.SomeProperty"</span>));
+</code></pre>
+<p>For more information about how snapshooter works head over to their repository:</p>
+<p><a href="https://github.com/SwissLife-OSS/snapshooter">https://github.com/SwissLife-OSS/snapshooter</a></p>
+<h2><a class="anchor" aria-hidden="true" id="schema-tests"></a><a href="#schema-tests" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Schema Tests</h2>
+<p>Ok, lets have a look at our second category. This I think is the simplest test we will write and probably we will just have one or two of those tests.</p>
+<p><em>Hot Chocolate</em> lets us print our schema as GraphQL SDL, this means that we can create a simple SDL representation like the following:</p>
+<pre><code class="hljs css language-GraphQL"><span class="hljs-selector-tag">type</span> <span class="hljs-selector-tag">Query</span> {
+  <span class="hljs-attribute">sayHello</span>: String
+}
+</code></pre>
+<p>In order to get this representation we just have to do the following:</p>
+<pre><code class="hljs css language-csharp">Schema.Create(c =&gt; c.RegisterQueryType&lt;Query&gt;()).ToString();
+</code></pre>
+<p>That`s quite simple, just calling <code>ToString()</code> on the schema will return the schema SDL representation.</p>
+<p>The good thing with <em>Snapshooter</em> is that we also can create snapshots of scalar values like a string. <em>Snapshooter</em> will than just save the raw scalar as snapshot, so our SDL will <strong>NOT</strong> be polluted with JSON escape characters.</p>
+<p>Our test could look like the following:</p>
+<pre><code class="hljs css language-csharp">[<span class="hljs-meta">Fact</span>]
+<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">async</span> Task <span class="hljs-title">Ensure_Schema_IsCorrect</span>(<span class="hljs-params"></span>)</span>
+{
+    <span class="hljs-comment">// arrange</span>
+    ISchema schema = Schema.Create(c =&gt;
+    {
+        c.RegisterQueryType&lt;Query&gt;();
+    });
+
+    <span class="hljs-comment">// act</span>
+    <span class="hljs-keyword">string</span> schemaSDL = schema.ToString();
+
+    <span class="hljs-comment">// assert</span>
+    schemaSDL.MatchSnapshot();
+}
+</code></pre>
+<h2><a class="anchor" aria-hidden="true" id="middleware-resolver-tests"></a><a href="#middleware-resolver-tests" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Middleware/Resolver Tests</h2>
+<p>The last category concerns our middleware logic. I would strongly suggest testing a middleware with a unit test and not by firing a query against the query engine. You can use <a href="https://github.com/Moq/moq4/wiki/Quickstart">Moq</a> to create a <code>IResolverContext</code> mock.</p>
+<p>In cases that you want to test a resolver or middleware pipeline of a field you can retrieve those from that type like the following:</p>
+<pre><code class="hljs css language-csharp">[<span class="hljs-meta">Fact</span>]
+<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">async</span> Task <span class="hljs-title">SayHello_HelloIsReturned</span>(<span class="hljs-params"></span>)</span>
+{
+    <span class="hljs-comment">// arrange</span>
+    IServiceProvider serviceProvider =
+        <span class="hljs-keyword">new</span> ServiceCollection()
+            .AddSingleton&lt;IDataLayer, MyDataLayer&gt;()
+            .BuildServiceProvider();
+
+    ISchema schema = Schema.Create(c =&gt;
+    {
+        c.RegisterQueryType&lt;Query&gt;();
+    });
+
+    ObjectType type = schema.GetType&lt;ObjectType&gt;(<span class="hljs-string">"Query"</span>);
+    ObjectField field = type.Fields[<span class="hljs-string">"sayHello"</span>];
+
+    Mock&lt;IResolverContext&gt; contextMock = <span class="hljs-keyword">new</span> Mock&lt;IResolverContext&gt;();
+    <span class="hljs-comment">// note that depending on what you are using in your resolver you will</span>
+    <span class="hljs-comment">// have to setup properties for your mock.</span>
+
+    <span class="hljs-comment">// act</span>
+    <span class="hljs-keyword">object</span> result = <span class="hljs-keyword">await</span> field.Resolver(contextMock.Object)
+
+    <span class="hljs-comment">// assert</span>
+    result.MatchSnapshot();
+}
+</code></pre>
+<p>The resolver-property will just have the isolated resolver logic. In order to access the middleware pipeline, use the <code>Middleware</code> property on the field. The middleware represents the compiled middleware pipeline including the resolver.</p>
+<h2><a class="anchor" aria-hidden="true" id="httpcontext-abstraction"></a><a href="#httpcontext-abstraction" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>HttpContext Abstraction</h2>
+<p>So, lets come back the question about the <code>HttpContext</code>. In order to copy properties from the <code>HttpContext</code> to your GraphQL request I said that we can use <code>OnCreateRequestAsync</code>. This is actually the simplest way to do it.</p>
+<p>Let us grab the user from the <code>HttpContext</code> and copy it to our context data dictionary as an example.</p>
+<pre><code class="hljs css language-csharp">app.UseGraphQL(<span class="hljs-keyword">new</span> QueryMiddlewareOptions
+{
+    OnCreateRequest = (context, builder, ct) =&gt;
+    {
+        builder.SetProperty(<span class="hljs-string">"user"</span>, context.User);
+        <span class="hljs-keyword">return</span> Task.CompletedTask;
+    }
+})
+</code></pre>
+<p>The second way is a little bit more complicated but easier to test and feels cleaner.</p>
+<p>We could write a little query middleware. The middleware could be provided as delegate like the upper example or we could take the extra effort to make a class.</p>
+<pre><code class="hljs css language-csharp"><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title">CopyUserMiddleware</span>
+{
+    <span class="hljs-keyword">private</span> <span class="hljs-keyword">readonly</span> QueryDelegate _next;
+
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-title">CopyVariablesToResolverContextMiddleware</span>(<span class="hljs-params">QueryDelegate next</span>)</span>
+    {
+        _next = next ?? <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> ArgumentNullException(<span class="hljs-keyword">nameof</span>(next));
+    }
+
+    <span class="hljs-function"><span class="hljs-keyword">public</span> Task <span class="hljs-title">InvokeAsync</span>(<span class="hljs-params">IQueryContext context</span>)</span>
+    {
+        IHttpContextAccessor accessor = context.Services.GetService&lt;IHttpContextAccessor&gt;();
+        context.ContextData[<span class="hljs-string">"user"</span>] = accessor.HttpContext.User;
+        <span class="hljs-keyword">return</span> _next.Invoke(context);
+    }
+}
+</code></pre>
+<p>So, this code does the same as our first example but is now easily testable and can be integrated like the following to our GraphQL execution pipeline:</p>
+<pre><code class="hljs css language-csharp">services.AddGraphQL(Schema.Create(c =&gt;
+    {
+        c.RegisterQueryType&lt;Query&gt;();
+    })
+    .MakeExecutable(b =&gt; b.Use&lt;CopyUserMiddleware&gt;().UseDefaultPipeline()));
+</code></pre>
+<p>I hope this little post will help when you start writing tests for your schema. If you run into any issues or if you have further questions/suggestions head over to our slack channel and we will be happy to help you.</p>
+<table>
+<thead>
+<tr><th><a href="https://join.slack.com/t/hotchocolategraphql/shared_invite/enQtNTA4NjA0ODYwOTQ0LTBkZjNjZWIzMmNlZjQ5MDQyNDNjMmY3NzYzZjgyYTVmZDU2YjVmNDlhNjNlNTk2ZWRiYzIxMTkwYzA4ODA5Yzg">HotChocolate Slack Channel</a></th><th><a href="https://hotchocolate.io">Hot Chocolate Documentation</a></th><th><a href="https://github.com/ChilliCream/hotchocolate">Hot Chocolate on GitHub</a></th></tr>
+</thead>
+<tbody>
+</tbody>
+</table>
+</span></div></div><div class="blogSocialSection"><div class="blogSocialSectionItem"><a href="https://twitter.com/share" class="twitter-share-button" data-text="GraphQL - How to write integration tests against Hot Chocolate" data-url="https://chillicream.com/blog/2019/04/11/integration-tests" data-related="true" data-show-count="false">Tweet</a></div></div></div><div class="blog-recent"><a class="button" href="/blog">Recent posts</a></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#setup">Setup</a></li><li><a href="#integration-tests">Integration Tests</a></li><li><a href="#schema-tests">Schema Tests</a></li><li><a href="#middleware-resolver-tests">Middleware/Resolver Tests</a></li><li><a href="#httpcontext-abstraction">HttpContext Abstraction</a></li></ul></nav></div><footer class="nav-footer" id="footer"><section class="sitemap"><a href="/" class="nav-home"><img src="/img/signet.png" alt="ChilliCream" width="64" height="64"/></a><div><h5>Projects</h5><a href="https://greendonut.io" target="_blank">Green Donut</a><a href="https://hotchocolate.io" target="_blank">Hot Chocolate</a><a href="https://react-rasta.com" target="_blank">React Rasta</a><a href="https://github.com/ChilliCream/thor-core" target="_blank">Thor</a></div><div><h5>Community</h5><a href="https://twitter.com/Chilli_Cream" target="_blank" rel="noreferrer noopener">Follow us on Twitter</a></div><div><h5>More</h5><a href="/blog">Blog</a><a href="https://github.com/ChilliCream/website" target="_blank">GitHub</a><a href="https://github.com/ChilliCream/website/issues" target="_blank">Issues</a><a class="github-button" href="https://github.com/ChilliCream/website" data-icon="octicon-star" data-count-href="/chillicream/website/stargazers" data-show-count="true" data-count-aria-label="# stargazers on GitHub" aria-label="Star this project on GitHub">Star</a></div></section><section class="copyright">Copyright © 2019 ChilliCream</section></footer></div><script>window.twttr=(function(d,s, id){var js,fjs=d.getElementsByTagName(s)[0],t=window.twttr||{};if(d.getElementById(id))return t;js=d.createElement(s);js.id=id;js.src='https://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js, fjs);t._e = [];t.ready = function(f) {t._e.push(f);};return t;}(document, 'script', 'twitter-wjs'));</script></body></html>
