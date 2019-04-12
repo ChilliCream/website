@@ -1,0 +1,368 @@
+<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><title>GraphQL - Hot Chocolate 9.0.0 - Type System · ChilliCream</title><meta name="viewport" content="width=device-width"/><meta name="generator" content="Docusaurus"/><meta name="description" content="Originally, I wanted to write a little post about what we are currently working on in version 9 and how those things are coming along, but every time I started writing on this post it got longer and longer and it felt a bit too messy."/><meta name="docsearch:language" content="en"/><meta property="og:title" content="GraphQL - Hot Chocolate 9.0.0 - Type System · ChilliCream"/><meta property="og:type" content="website"/><meta property="og:url" content="https://chillicream.com/blog/2019/04/12/type-system"/><meta property="og:description" content="Originally, I wanted to write a little post about what we are currently working on in version 9 and how those things are coming along, but every time I started writing on this post it got longer and longer and it felt a bit too messy."/><meta name="twitter:card" content="summary"/><meta name="twitter:image" content="https://chillicream.com/img/signet.png"/><link rel="shortcut icon" href="/img/favicon.png"/><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/androidstudio.min.css"/><link rel="alternate" type="application/atom+xml" href="https://chillicream.com/blog/atom.xml" title="ChilliCream Blog ATOM Feed"/><link rel="alternate" type="application/rss+xml" href="https://chillicream.com/blog/feed.xml" title="ChilliCream Blog RSS Feed"/><script>
+              (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+              (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+              m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+              })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+              ga('create', 'UA-72800164-1', 'auto');
+              ga('send', 'pageview');
+            </script><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Yanone+Kaffeesatz:700,400"/><link rel="stylesheet" href="/css/code-block-buttons.css"/><script type="text/javascript" src="https://buttons.github.io/buttons.js"></script><script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.0/clipboard.min.js"></script><script type="text/javascript" src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script><script type="text/javascript" src="/js/code-block-buttons.js"></script><script type="text/javascript" src="/js/google-adsense.js"></script><script type="text/javascript" src="/js/disqus.js"></script><script src="https://unpkg.com/vanilla-back-to-top@7.1.14/dist/vanilla-back-to-top.min.js"></script><script>
+        document.addEventListener('DOMContentLoaded', function() {
+          addBackToTop(
+            {"zIndex":100}
+          )
+        });
+        </script><link rel="stylesheet" href="/css/main.css"/><script src="/js/codetabs.js"></script></head><body class="sideNavVisible separateOnPageNav"><div class="fixedHeaderContainer"><div class="headerWrapper wrapper"><header><a href="/"><img class="logo" src="/img/signet.png" alt="ChilliCream"/><h2 class="headerTitleWithLogo">ChilliCream</h2></a><div class="navigationWrapper navigationSlider"><nav class="slidingNav"><ul class="nav-site nav-site-internal"><li class="siteNavGroupActive"><a href="/blog/" target="_self">Blog</a></li></ul></nav></div></header></div></div><div class="navPusher"><div class="docMainWrapper wrapper"><div class="container docsNavContainer" id="docsNav"><nav class="toc"><div class="toggleNav"><section class="navWrapper wrapper"><div class="navBreadcrumb wrapper"><div class="navToggle" id="navToggler"><i></i></div><h2><i>›</i><span>All blog posts</span></h2><div class="tocToggler" id="tocToggler"><i class="icon-toc"></i></div></div><div class="navGroups"><div class="navGroup"><h3 class="navGroupCategoryTitle">All blog posts</h3><ul class=""><li class="navListItem navListItemActive"><a class="navItem" href="/blog/2019/04/12/type-system">GraphQL - Hot Chocolate 9.0.0 - Type System</a></li><li class="navListItem"><a class="navItem" href="/blog/2019/04/11/integration-tests">GraphQL - How to write integration tests against Hot Chocolate</a></li><li class="navListItem"><a class="navItem" href="/blog/2019/03/31/hot-chocolate-0.8.1">GraphQL - Hot Chocolate 0.8.1</a></li><li class="navListItem"><a class="navItem" href="/blog/2019/03/19/logging-with-hotchocolate">GraphQL - Tracing with Hot Chocolate</a></li><li class="navListItem"><a class="navItem" href="/blog/2019/03/04/hot-chocolate-0.8.0">GraphQL - Hot Chocolate 0.8.0</a></li><li class="navListItem"><a class="navItem" href="/blog/2019/02/20/schema-stitching">GraphQL - Schema Stitching with Version 8</a></li><li class="navListItem"><a class="navItem" href="/blog/2019/02/04/instrumentation-and-apollo-tracing">GraphQL .NET Instrumentation API and Apollo Tracing</a></li><li class="navListItem"><a class="navItem" href="/blog/2019/02/04/hot-chocolate-0.7.0">GraphQL - Hot Chocolate 0.7.0</a></li><li class="navListItem"><a class="navItem" href="/blog/2019/01/24/schema-stitching">GraphQL - Schema Stitching</a></li><li class="navListItem"><a class="navItem" href="/blog/2018/11/07/docusaurus-docs-redirect">Docusaurus - How to redirect requests to /docs to a default url instead of getting a 404 error</a></li><li class="navListItem"><a class="navItem" href="/blog/2018/09/02/hot-chocolate-0.4.5">GraphQL - Hot Chocolate 0.4.5</a></li><li class="navListItem"><a class="navItem" href="/blog/2018/07/31/hot-chocolate-0.4.0">GraphQL - Hot Chocolate 0.4.0</a></li><li class="navListItem"><a class="navItem" href="/blog/2018/07/30/green-donut-0.2.0">Green Donut 0.2.0</a></li><li class="navListItem"><a class="navItem" href="/blog/2018/05/03/react-rasta-1.0.0">React Rasta 1.0.0</a></li><li class="navListItem"><a class="navItem" href="/blog/2013/09/12/jquery-steps-form-wizard">How to create a Form Wizard using jQuery Steps</a></li></ul></div></div></section></div><script>
+            var coll = document.getElementsByClassName('collapsible');
+            var checkActiveCategory = true;
+            for (var i = 0; i < coll.length; i++) {
+              var links = coll[i].nextElementSibling.getElementsByTagName('*');
+              if (checkActiveCategory){
+                for (var j = 0; j < links.length; j++) {
+                  if (links[j].classList.contains('navListItemActive')){
+                    coll[i].nextElementSibling.classList.toggle('hide');
+                    coll[i].childNodes[1].classList.toggle('rotate');
+                    checkActiveCategory = false;
+                    break;
+                  }
+                }
+              }
+
+              coll[i].addEventListener('click', function() {
+                var arrow = this.childNodes[1];
+                arrow.classList.toggle('rotate');
+                var content = this.nextElementSibling;
+                content.classList.toggle('hide');
+              });
+            }
+
+            document.addEventListener('DOMContentLoaded', function() {
+              createToggler('#navToggler', '#docsNav', 'docsSliderActive');
+              createToggler('#tocToggler', 'body', 'tocActive');
+
+              const headings = document.querySelector('.toc-headings');
+              headings && headings.addEventListener('click', function(event) {
+                if (event.target.tagName === 'A') {
+                  document.body.classList.remove('tocActive');
+                }
+              }, false);
+
+              function createToggler(togglerSelector, targetSelector, className) {
+                var toggler = document.querySelector(togglerSelector);
+                var target = document.querySelector(targetSelector);
+
+                if (!toggler) {
+                  return;
+                }
+
+                toggler.onclick = function(event) {
+                  event.preventDefault();
+
+                  target.classList.toggle(className);
+                };
+              }
+            });
+        </script></nav></div><div class="container mainContainer postContainer blogContainer"><div class="wrapper"><div class="lonePost"><div class="post"><header class="postHeader"><h1 class="postHeaderTitle"><a href="/blog/2019/04/12/type-system">GraphQL - Hot Chocolate 9.0.0 - Type System</a></h1><p class="post-meta">April 12, 2019</p><div class="authorBlock"><p class="post-authorName"><a href="https://github.com/michaelstaib" target="_blank" rel="noreferrer noopener">Michael Staib</a></p><div class="authorPhoto"><a href="https://github.com/michaelstaib" target="_blank" rel="noreferrer noopener"><img src="https://avatars1.githubusercontent.com/u/9714350?s=100&amp;v=4" alt="Michael Staib"/></a></div></div></header><div><span><p>Originally, I wanted to write a little post about what we are currently working on in version 9 and how those things are coming along, but every time I started writing on this post it got longer and longer and it felt a bit too messy.</p>
+<p>Starting with this post we will start talking about version 9 in more detail. We will split this into several blog posts that will cover different parts of the new version. This post will focus on the type system improvements.</p>
+<!--truncate-->
+<p>We started with version 9.0.0-preview.9 to deliver more and more parts of the new type system. With version 9.0.0-preview.11 we are delivering a ton of bug fixes and many more new features.</p>
+<h2><a class="anchor" aria-hidden="true" id="schema-builder"></a><a href="#schema-builder" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Schema Builder</h2>
+<p>The most prominent API that we are introducing is the new <code>SchemaBuilder</code>. The <code>SchemaBuilder</code> provides us with a new way to define schemas. Do not worry the current <code>ISchemaConfiguration</code> API is still supported and will not go away. In fact, <code>ISchemaConfiguration</code> now is just an interface over <code>SchemaBuilder</code> and we will evolve both APIs over time so that you can pick the one that you like more.</p>
+<pre><code class="hljs css language-csharp">ISchema schema = SchemaBuilder.New()
+    .AddQueryType&lt;FooType&gt;()
+    .Create();
+</code></pre>
+<p><strong>So, why did we introduce a new API to define a schema?</strong></p>
+<p>First, we wanted the builder API to be decoupled from the actual schema, we wanted to be able to start adding schema types and other parts to a schema builder without being forced to create the schema.</p>
+<p>With the schema builder we are now more flexible in scenarios like schema stitching.</p>
+<pre><code class="hljs css language-csharp">ISchema schema = SchemaBuilder.New()
+    .AddQueryType&lt;FooType&gt;()
+    .AddDirectiveType&lt;BarType&gt;()
+    .AddSchemaFromFile(<span class="hljs-string">"./Schema.graphql"</span>)
+    .AddContextData(<span class="hljs-string">"foo"</span>, <span class="hljs-string">"bar"</span>)
+    .ModifyOptions(options =&gt; {  })
+    .AddServices(services_a)
+    .AddServices(services_b)
+    .Create();
+</code></pre>
+<h2><a class="anchor" aria-hidden="true" id="conventions"></a><a href="#conventions" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Conventions</h2>
+<p>With our new schema builder, we did a lot of work underneath and introduced the ability to use services during type construction.</p>
+<p><strong>For what is that useful?</strong></p>
+<p>For one you can now register our new <code>INamingConverions</code> with the dependency injection and then the new <code>SchemaBuilder</code> will use your naming conventions instead of the built-in naming conventions.</p>
+<p>Also, you can register our new <code>ITypeInspector</code> and override how we infer schema types from POCOs. This will allow you for instance to add support for custom attributes, so no need any more to pollute your API with our attributes.</p>
+<p>But fear not, you do not have to implement the whole <code>INamingConverions</code> interface for instance since you can override each part of our default implementation.</p>
+<p>Since, in many cases we just want to tune existing naming conventions we can inherit from the default implementation <code>DefaultNamingConventions</code> and overwrite just what we want to change.</p>
+<p>So, if we wanted to add to all the input type names the prefix <code>super</code> we could do this like the following:</p>
+<pre><code class="hljs css language-csharp"><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title">MyNamingConventions</span>
+{
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">override</span> NameString <span class="hljs-title">GetTypeName</span>(<span class="hljs-params">Type type, TypeKind kind</span>)</span>
+    {
+        <span class="hljs-keyword">if</span> (type == <span class="hljs-literal">null</span>)
+        {
+            <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> ArgumentNullException(<span class="hljs-keyword">nameof</span>(type));
+        }
+
+        <span class="hljs-keyword">if</span> (kind == TypeKind.InputObject)
+        {
+            <span class="hljs-keyword">if</span> (!name.EndsWith(<span class="hljs-string">"Super"</span>, StringComparison.Ordinal))
+            {
+                name = name + <span class="hljs-string">"Super"</span>;
+            }
+        }
+
+        <span class="hljs-keyword">return</span> <span class="hljs-keyword">base</span>.GetTypeName(type, kind);
+    }
+}
+</code></pre>
+<p>Like with the naming conventions we provide a default implementation <code>DefaultTypeInspector</code> where we can replace or extend parts that we want to modify.</p>
+<p>In order to register our conventions with the schema builder we can do the following:</p>
+<pre><code class="hljs css language-csharp"><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">ConfigureServices</span>(<span class="hljs-params">IServiceCollection services</span>)</span>
+{
+    services.AddSingleton&lt;INamingConverions, MyNamingConventions&gt;();
+    services.AddGraphQL(sp =&gt; Schema.Create(c =&gt;
+    {
+        c.RegisterServiceProvider(sp);
+        c.RegisterQuerType&lt;Foo&gt;();
+    }));
+
+}
+</code></pre>
+<p>Or we could do it like the following with the new schema builder:</p>
+<pre><code class="hljs css language-csharp"><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">ConfigureServices</span>(<span class="hljs-params">IServiceCollection services</span>)</span>
+{
+    services.AddSingleton&lt;INamingConverions, MyNamingConventions&gt;();
+    services.AddGraphQL(sp =&gt; SchemaBuilder.New()
+        .AddQueryType&lt;Foo&gt;()
+        .AddServices(sp));
+}
+</code></pre>
+<h2><a class="anchor" aria-hidden="true" id="extending-types"></a><a href="#extending-types" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Extending Types</h2>
+<p>One other major reason to rethink our type system was that many of you wanted to extend on types. One common thing that people wanted to do is to introduce generic types. We did something like this with our relay types. GraphQL does not really have generic types but the idea here is that you could have a type like the following:</p>
+<pre><code class="hljs css language-csharp">public class EdgeType&lt;TSchemaType&gt;
+    : ObjectType&lt;IEdge&gt;
+    where TSchemaType : IOutputType
+{
+}
+</code></pre>
+<p>If we for instance put in the <code>StringType</code> as TSchemaType then the edge type would become <code>StringEdge</code> in the schema. While this is not so difficult if our <code>StringType</code> has a fixed name, it becomes more difficult if <code>StringType</code> would create its type also depending on another type.</p>
+<p>With version 9 we redesigned the schema initialization process so, that you can register dependencies of a type with the <code>SchemaBuilder</code>. This way the <code>SchemaBuilder</code> knows which type has to be initialized in which order.</p>
+<p>So, let us have a look at how we would create our edge type with version 9:</p>
+<pre><code class="hljs css language-csharp">public class EdgeType&lt;TSchemaType&gt;
+    : ObjectType&lt;IEdge&gt;
+    where T : IOutputType
+{
+    protected override void Configure(
+        IObjectTypeDescriptor&lt;IEdge&gt; descriptor)
+    {
+        descriptor.Name(dependency =&gt; dependency.Name + "Edge")
+            .DependsOn&lt;TSchemaType&gt;();
+    }
+}
+</code></pre>
+<p>With the new <code>Name</code> extension on the type descriptors we are now able to define a delegate that represents the naming algorithm for that type. Moreover, we can now express on which type this algorithm depends.</p>
+<p>This new <code>Name</code> descriptor extension is built upon our new descriptor extension API that provides a new way to extend our descriptors without needing to create a new base class.</p>
+<h3><a class="anchor" aria-hidden="true" id="extending-descriptors"></a><a href="#extending-descriptors" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Extending Descriptors</h3>
+<p>Each descriptor now provides a new method called <code>Extend</code>. <code>Extend</code> returns an extension descriptor that allows us to integrate some logic with the type initialization pipeline.</p>
+<p>Types are created in three phases:</p>
+<ul>
+<li><p>Create Instance
+The initializer creates the type instance and the type definition.
+The type definition contains all information to create and initialize a type.
+After this step the type instance exists and is associated with a native .net type.
+The native .net type can be object but can also be something more specific.
+In this phase the type will also report all of its dependencies to the schema builder.</p></li>
+<li><p>Complete Name
+After all types are created the names of the types will be completed.</p></li>
+<li><p>Complete Type
+In the last step the types will be completed, this means that for instance the fields are assigned, or the directives are retrieved and associated with a type etc.
+After this the type is completed and becomes immutable.</p></li>
+</ul>
+<p>The extension descriptor provides extension points to these three phases:</p>
+<ul>
+<li><p>OnBeforeCreate
+OnBeforeCreate will allow you to customize the type definition.
+It is important to know that this step is not allowed to be dependent on another type object. Also, at this point you will not have access to the type completion context.</p></li>
+<li><p>OnBeforeNaming
+OnBeforeNaming allows to provide logic to generate the name of a type.
+You can declare two kinds of dependencies in this step, either the dependency has to be named first or the dependency is allowed to be in any state.</p></li>
+<li><p>OnBeforeCompletion
+OnBeforeCompletion allows to provide further logic that modifies the type definition. For instance, we could be dependent on another type in order to generate fields based on the fields of that other type.
+You can declare two kinds of dependencies in this step, either the dependency has to be completed first or the dependency is allowed to be in any state.</p></li>
+</ul>
+<p>Let us have a look at how we implemented our own <code>Name</code> extension method in order to understand what <code>Extend</code> is useful for:</p>
+<pre><code class="hljs css language-csharp">descriptor
+  .Extend()
+  .OnBeforeNaming((ctx, definition) =&gt;
+  {
+      INamedType type = ctx.GetType&lt;INamedType&gt;(
+          ClrTypeReference.FromSchemaType(typeInfo.ClrType));
+      definition.Name = createName(type);
+  })
+  .DependsOn(dependency, <span class="hljs-literal">true</span>);
+</code></pre>
+<p>Let us pic that example apart in order to understand what we did here. First, we called <code>Extend</code>, <code>Extend</code> returns the <code>IDescriptorExtension&lt;T&gt;</code> which allows us to register some code with the descriptor events that we have described earlier.</p>
+<p>Each event will provide us with the type definition and the completion context. The completion context is the API to request information from the schema builder. In the case of our <code>Name</code> extension we are requesting the type instance for our <code>TSchemaType</code>. After that we call the naming algorithm with the resolved schema type.</p>
+<p>Also, we added a dependency with <code>DependsOn</code>. The Boolean argument on <code>DependsOn</code> declares that the type has to be named before our delegate can be executed. We can declare as many dependencies as we want, so we are not bound to have just one.</p>
+<p>Let me sum that up. The new <code>Extend</code> method on the descriptors allow us to extend the type descriptors without the need to create a new type base class. This is nice because you can now create extension methods that work across multiple solutions without forcing the user of that extension to opt into a new type base class. This makes it easy to consume those extensions. It is important to know here that <code>Extend</code> is available on all descriptors, so it is available on field descriptors, argument descriptors, or type descriptors.</p>
+<h2><a class="anchor" aria-hidden="true" id="extending-the-base-classes"></a><a href="#extending-the-base-classes" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Extending the Base Classes</h2>
+<p>Though <code>Extend</code> is very capable, in some cases we might want to limit what is available through our descriptor. This basically means we want to remove functionality or replace the descriptor entirely. Let us assume we want to introduce an input type that describes the filter capabilities that can be applied to an output type. Basically, we want to introduce a filter input type like Prisma does.</p>
+<p>So, if we had a type like the following:</p>
+<pre><code class="hljs css language-graphql"><span class="hljs-selector-tag">type</span> <span class="hljs-selector-tag">Foo</span> {
+  <span class="hljs-attribute">bar</span>: String!
+}
+</code></pre>
+<p>We would want to be able to describe the filter capabilities that are available to the user of our API. This could look something like the following:</p>
+<pre><code class="hljs css language-csharp">public class FooFilterType
+    : FilterType&lt;Foo&gt;
+{
+    public void Configure(IFilterDescriptor descriptor)
+    {
+        descriptor.Filter(t =&gt; t.Bar).AllowSmallerThan();
+    }
+}
+</code></pre>
+<p>The <code>FilterType&lt;Foo&gt;</code> inherits from <code>InputObjectType</code> and can with version 9 add its own descriptor. In order to replace the descriptor on our input type we would have to replace the configure method and introduce our new filter descriptor:</p>
+<pre><code class="hljs css language-csharp">public class FilterType&lt;T&gt;
+    : InputObjectType
+{
+    private readonly Action&lt;IFilterTypeDescriptor&lt;T&gt;&gt; _configure;
+
+    public FilterType()
+    {
+        _configure = Configure;
+    }
+
+    public FilterType(Action&lt;IFilterTypeDescriptor&lt;T&gt;&gt; configure)
+    {
+        _configure = configure
+            ?? throw new ArgumentNullException(nameof(configure));
+    }
+
+    #region Configuration
+
+    protected override InputObjectTypeDefinition CreateDefinition(
+        IInitializationContext context)
+    {
+        var descriptor =
+            FilterTypeDescriptor.New&lt;T&gt;(
+                DescriptorContext.Create(context.Services));
+        _configure(descriptor);
+        return descriptor.CreateDefinition();
+    }
+
+    protected virtual void Configure(
+        IFilterTypeDescriptor&lt;T&gt; descriptor)
+    {
+    }
+
+    protected sealed override void Configure(
+        IInputObjectTypeDescriptor descriptor)
+    {
+        throw new NotSupportedException();
+    }
+
+    #endregion
+}
+</code></pre>
+<p>Like the descriptor extend logic we basically can override those three type initialization events.</p>
+<p>In order to replace the old descriptor, we sealed of the old <code>Configure</code> method. Also, we introduced our new <code>Configure</code> method with the new descriptor.</p>
+<pre><code class="hljs css language-csharp"><span class="hljs-function"><span class="hljs-keyword">protected</span> <span class="hljs-keyword">virtual</span> <span class="hljs-keyword">void</span> <span class="hljs-title">Configure</span>(<span class="hljs-params">
+    IFilterTypeDescriptor&lt;T&gt; descriptor</span>)</span>
+{
+}
+
+<span class="hljs-function"><span class="hljs-keyword">protected</span> <span class="hljs-keyword">sealed</span> <span class="hljs-keyword">override</span> <span class="hljs-keyword">void</span> <span class="hljs-title">Configure</span>(<span class="hljs-params">
+    IInputObjectTypeDescriptor descriptor</span>)</span>
+{
+    <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> NotSupportedException();
+}
+</code></pre>
+<p>In order to initialize our new descriptor, we overrode the <code>CreateDefinition</code> method. Our descriptor has to produce a <code>InputObjectTypeDefinition</code> in order to abide to the <code>InputType</code> interface. If you want your descriptor extendable like our descriptors, all you have to do is inherit from our descriptor base. With version 9 all descriptor and type definition classes are now public, and we strongly recommend basing your descriptors on our base classes.</p>
+<h2><a class="anchor" aria-hidden="true" id="context-data"></a><a href="#context-data" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Context Data</h2>
+<p>Also, with the new version we added the context data dictionary to all types, fields and arguments. You can use this to add custom metadata to objects of the type system. Context data can be declared on the type definition and will be copied to the corresponding type object.</p>
+<pre><code class="hljs css language-csharp">descriptor
+  .Extend()
+  .OnBeforeCreate(definition =&gt;
+  {
+      definition.ContextData[<span class="hljs-string">"Foo"</span>] = <span class="hljs-string">"Bar"</span>;
+  });
+</code></pre>
+<p>You can access the context data on a type object like the following:</p>
+<pre><code class="hljs css language-csharp">schema.GetType&lt;ObjectType&gt;(<span class="hljs-string">"Query"</span>).ContextData.ContainsKey(<span class="hljs-string">"Foo"</span>);
+</code></pre>
+<h2><a class="anchor" aria-hidden="true" id="relay"></a><a href="#relay" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Relay</h2>
+<p>With version 9 we are making creating relay compliant schemas a breeze. Lets have a look at the relay server spec parts and see how those translate to <em>Hot Chocolate</em>:</p>
+<p>In order to activate relayjs support you can do now the following:</p>
+<pre><code class="hljs css language-csharp">SchemaBuilder.New()
+    .EnableRelaySupport()
+    .AddQueryType&lt;Foo&gt;()
+    .Create()
+</code></pre>
+<p><code>EnableRelaySupport</code> will add the node field to your query type and setup the general logic of how your nodes will be resolved using an id value. Moreover, this activates the id value serialization and deserialization. The schema will now have opaque identifiers, but you will not have to deal with those in your API.</p>
+<p>In <code>ObjectType</code>s you can now declare a type as node type. That means this type will implement the node interface and can be resolved through the node field:</p>
+<pre><code class="hljs css language-csharp">public class FooType
+    : ObjectType&lt;Foo&gt;
+{
+    protected override void Configure(IObjectTypeDescriptor&lt;Foo&gt; descriptor)
+    {
+        descriptor.AsNode&lt;Foo,int&gt;((ctx, id) =&gt;
+            ctx.Service&lt;IMyRepository&gt;().GetById(id));
+    }
+}
+</code></pre>
+<p>Ok, this is basically all you have to do to fulfill spec item <code>A mechanism for refetching an object.</code>.</p>
+<p>The other spec items for the relay spec were already quite good with version 8. It felt always odd to expose so much logic about those node resolvers to the developers that we refined our current APIs. We used the new <code>Extend</code> mechanism to provide extensions that help you along the way without forcing you to use a special base class.</p>
+<h2><a class="anchor" aria-hidden="true" id="code-first-type-extensions"></a><a href="#code-first-type-extensions" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Code-First Type Extensions</h2>
+<p>The last thing I want to talk about in this post are code-first type extensions. We already supported the <code>extend</code> keyword in the stitching layer but had no real code-first API for this. Also, we only supported this in the stitching layer. With version 9 you can now extend code-first and schema-first. Moreover, type extensions are not bound to the stitching layer and work also on a standard schema.</p>
+<p>Let us say we have the type <code>FooType</code> that has one field <code>description</code>.</p>
+<pre><code class="hljs css language-csharp">public class FooType
+    : ObjectType&lt;Foo&gt;
+{
+    protected override void Configure(
+        IObjectTypeDescriptor&lt;Foo&gt; descriptor)
+    {
+        descriptor.Field(t =&gt; t.Description);
+    }
+}
+</code></pre>
+<p>We can now introduce a type extension for our <code>FooType</code> that adds for instance a new field <code>test</code>.</p>
+<pre><code class="hljs css language-csharp"><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title">FooTypeExtension</span>
+    : <span class="hljs-title">ObjectTypeExtension</span>
+{
+    <span class="hljs-function"><span class="hljs-keyword">protected</span> <span class="hljs-keyword">override</span> <span class="hljs-keyword">void</span> <span class="hljs-title">Configure</span>(<span class="hljs-params">
+        IObjectTypeDescriptor descriptor</span>)</span>
+    {
+        descriptor.Name(<span class="hljs-string">"Foo"</span>);
+        descriptor.Field(<span class="hljs-string">"test"</span>)
+            .Resolver(() =&gt; <span class="hljs-keyword">new</span> List&lt;<span class="hljs-keyword">string</span>&gt;())
+            .Type&lt;ListType&lt;StringType&gt;&gt;();
+    }
+}
+</code></pre>
+<p>The code-first extension types can do much more then, the schema-first variant. For instance, with code-first you can add middleware parts to a field replace or update a field, replace the resolver, add or replace directives on fields, arguments and so on. Also, you have all the extension functionality that you have on normal types. In fact, since the type extension and the type are using the same descriptor you can apply the same extensions to both.</p>
+<p>Also, you can define multiple type extensions for a single type.</p>
+<p>So, let us have a look of how we add type extensions to our schema:</p>
+<pre><code class="hljs css language-csharp">ISchema schema = SchemaBuilder.New()
+  .AddQueryType&lt;FooType&gt;()
+  .AddType&lt;FooTypeExtension&gt;();
+  .Create()
+</code></pre>
+<p>The schema builder basically treats them as types, so there is nothing special that you have to do in order to register them.</p>
+<p>As we go forward, we will also introduce generic variants of the extension types. This will be quite nice in the stitching layer since you can provide a .Net type that we will use to deserialize the object. This means that you can write your resolvers against strong types instead of the generic types that we use per default in the stitching layer.</p>
+<h2><a class="anchor" aria-hidden="true" id="wrapping-it-up"></a><a href="#wrapping-it-up" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Wrapping it up</h2>
+<p>This is just the first bunch of features are included with version 9. The best thing, all of what I have showed you here is already included in version 9.0.0-preview.11 which we have released alongside this blog post.</p>
+<p>The next few posts will focus on execution plan support in our query engine. Execution plans can be cached and persisted and will make stitching so much faster. Also, we need the new execution plan feature to introduce support for <code>@defer</code>.</p>
+<p>Furthermore, we will give a peek at our new high-performance parser.</p>
+<p>Also, we will have a look at subscription stitching and our reworked subscription implementation that is now based on the pipeline API of .Net Core.</p>
+<p>Last but not least, we hope we are be able to squeeze in our new <code>FilterType</code> feature with version 9.</p>
+<p>As you can see version 9 will bring quite a few improvements, so stay tuned for our next post on V9 and try out our previews. Also, join our slack channel and give us your take on GraphQL, tell us what you would like to see next in <em>Hot Chocolate</em>.</p>
+<p>With <em>Hot Chocolate</em> we are building a GraphQL server for the community, so join and help us along.</p>
+<p>We value any kind of contribution, whether you give us a star, a feedback, find a bug, a typo, or whether you contribute code. Every bit matters and makes our project better.</p>
+<table>
+<thead>
+<tr><th><a href="https://join.slack.com/t/hotchocolategraphql/shared_invite/enQtNTA4NjA0ODYwOTQ0LTBkZjNjZWIzMmNlZjQ5MDQyNDNjMmY3NzYzZjgyYTVmZDU2YjVmNDlhNjNlNTk2ZWRiYzIxMTkwYzA4ODA5Yzg">HotChocolate Slack Channel</a></th><th><a href="https://hotchocolate.io">Hot Chocolate Documentation</a></th><th><a href="https://github.com/ChilliCream/hotchocolate">Hot Chocolate on GitHub</a></th></tr>
+</thead>
+<tbody>
+</tbody>
+</table>
+</span></div></div><div class="blogSocialSection"><div class="blogSocialSectionItem"><a href="https://twitter.com/share" class="twitter-share-button" data-text="GraphQL - Hot Chocolate 9.0.0 - Type System" data-url="https://chillicream.com/blog/2019/04/12/type-system" data-related="true" data-show-count="false">Tweet</a></div></div></div><div class="blog-recent"><a class="button" href="/blog">Recent posts</a></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#schema-builder">Schema Builder</a></li><li><a href="#conventions">Conventions</a></li><li><a href="#extending-types">Extending Types</a><ul class="toc-headings"><li><a href="#extending-descriptors">Extending Descriptors</a></li></ul></li><li><a href="#extending-the-base-classes">Extending the Base Classes</a></li><li><a href="#context-data">Context Data</a></li><li><a href="#relay">Relay</a></li><li><a href="#code-first-type-extensions">Code-First Type Extensions</a></li><li><a href="#wrapping-it-up">Wrapping it up</a></li></ul></nav></div><footer class="nav-footer" id="footer"><section class="sitemap"><a href="/" class="nav-home"><img src="/img/signet.png" alt="ChilliCream" width="64" height="64"/></a><div><h5>Projects</h5><a href="https://greendonut.io" target="_blank">Green Donut</a><a href="https://hotchocolate.io" target="_blank">Hot Chocolate</a><a href="https://react-rasta.com" target="_blank">React Rasta</a><a href="https://github.com/ChilliCream/thor-core" target="_blank">Thor</a></div><div><h5>Community</h5><a href="https://twitter.com/Chilli_Cream" target="_blank" rel="noreferrer noopener">Follow us on Twitter</a></div><div><h5>More</h5><a href="/blog">Blog</a><a href="https://github.com/ChilliCream/website" target="_blank">GitHub</a><a href="https://github.com/ChilliCream/website/issues" target="_blank">Issues</a><a class="github-button" href="https://github.com/ChilliCream/website" data-icon="octicon-star" data-count-href="/chillicream/website/stargazers" data-show-count="true" data-count-aria-label="# stargazers on GitHub" aria-label="Star this project on GitHub">Star</a></div></section><section class="copyright">Copyright © 2019 ChilliCream</section></footer></div><script>window.twttr=(function(d,s, id){var js,fjs=d.getElementsByTagName(s)[0],t=window.twttr||{};if(d.getElementById(id))return t;js=d.createElement(s);js.id=id;js.src='https://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js, fjs);t._e = [];t.ready = function(f) {t._e.push(f);};return t;}(document, 'script', 'twitter-wjs'));</script></body></html>

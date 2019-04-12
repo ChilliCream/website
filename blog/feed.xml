@@ -4,7 +4,7 @@
         <title>ChilliCream Blog</title>
         <link>https://chillicream.com/blog</link>
         <description>The best place to stay up-to-date with the latest ChilliCream news and events.</description>
-        <lastBuildDate>Thu, 11 Apr 2019 06:00:00 GMT</lastBuildDate>
+        <lastBuildDate>Fri, 12 Apr 2019 06:00:00 GMT</lastBuildDate>
         <docs>http://blogs.law.harvard.edu/tech/rss</docs>
         <generator>Feed for Node.js</generator>
         <image>
@@ -13,6 +13,15 @@
             <link>https://chillicream.com/blog</link>
         </image>
         <copyright>Copyright © 2019 ChilliCream</copyright>
+        <item>
+            <title><![CDATA[GraphQL - Hot Chocolate 9.0.0 - Type System]]></title>
+            <link>https://chillicream.com/blog/2019/04/12/type-system.html</link>
+            <guid>https://chillicream.com/blog/2019/04/12/type-system.html</guid>
+            <pubDate>Fri, 12 Apr 2019 06:00:00 GMT</pubDate>
+            <description><![CDATA[<p>Originally, I wanted to write a little post about what we are currently working on in version 9 and how those things are coming along, but every time I started writing on this post it got longer and longer and it felt a bit too messy.</p>
+<p>Starting with this post we will start talking about version 9 in more detail. We will split this into several blog posts that will cover different parts of the new version. This post will focus on the type system improvements.</p>
+]]></description>
+        </item>
         <item>
             <title><![CDATA[GraphQL - How to write integration tests against Hot Chocolate]]></title>
             <link>https://chillicream.com/blog/2019/04/11/integration-tests.html</link>
