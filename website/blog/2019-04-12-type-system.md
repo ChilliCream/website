@@ -397,7 +397,7 @@ As we go forward, we will also introduce generic variants of the extension types
 
 ## Wrapping it up
 
-This is just the first bunch of features are included with version 9. The best thing, all of what I have showed you here is already included in version 9.0.0-preview.11 which we have released alongside this blog post.
+This is just the first bunch of features that are included with version 9. The best thing, all of what I have showed you today is already included in version 9.0.0-preview.11 which we have released alongside this blog post.
 
 The next few posts will focus on execution plan support in our query engine. Execution plans can be cached and persisted and will make stitching so much faster. Also, we need the new execution plan feature to introduce support for `@defer`.
 
