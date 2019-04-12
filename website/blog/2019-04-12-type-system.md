@@ -49,7 +49,7 @@ With our new schema builder, we did a lot of work underneath and introduced the 
 
 For one you can now register our new `INamingConverions` with the dependency injection and then the new `SchemaBuilder` will use your naming conventions instead of the built-in naming conventions.
 
-Also, you can register our new `ITypeInspector` and override how we infer schema types from POCOs. This will allow you for instance to add support for custom attributes, so no need anymore to pollute your API with our attributes.
+Also, you can register our new `ITypeInspector` and override how we infer schema types from POCOs. This will allow you for instance to add support for custom attributes, so no need to pollute your API with our attributes anymore.
 
 But fear not, you do not have to implement the whole `INamingConverions` interface for instance since you can override each part of our default implementation.
 
