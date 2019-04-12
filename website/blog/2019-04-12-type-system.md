@@ -80,7 +80,7 @@ public class MyNamingConventions
 }
 ```
 
-Like with the naming conventions we provide a default implementation `DefaultTypeInspector` where we can replace or extend parts that we want to modify.
+Like with the naming conventions we provide a default implementation to `ITypeInspector` where we can replace or extend parts that we want to modify.
 
 In order to register our conventions with the schema builder we can do the following:
 
