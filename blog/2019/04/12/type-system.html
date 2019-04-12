@@ -89,7 +89,7 @@
 <p>With our new schema builder, we did a lot of work underneath and introduced the ability to use services during type construction.</p>
 <p><strong>For what is that useful?</strong></p>
 <p>For one you can now register our new <code>INamingConverions</code> with the dependency injection and then the new <code>SchemaBuilder</code> will use your naming conventions instead of the built-in naming conventions.</p>
-<p>Also, you can register our new <code>ITypeInspector</code> and override how we infer schema types from POCOs. This will allow you for instance to add support for custom attributes, so no need anymore to pollute your API with our attributes.</p>
+<p>Also, you can register our new <code>ITypeInspector</code> and override how we infer schema types from POCOs. This will allow you for instance to add support for custom attributes, so no need to pollute your API with our attributes anymore.</p>
 <p>But fear not, you do not have to implement the whole <code>INamingConverions</code> interface for instance since you can override each part of our default implementation.</p>
 <p>Since, in many cases we just want to tune existing naming conventions we can inherit from the default implementation <code>DefaultNamingConventions</code> and overwrite just what we want to change.</p>
 <p>So, if we wanted to add to all the input type names the prefix <code>super</code> we could do this like the following:</p>
