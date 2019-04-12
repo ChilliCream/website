@@ -145,7 +145,7 @@
 }
 </code></pre>
 <p>If we for instance put in the <code>StringType</code> as TSchemaType then the edge type would become <code>StringEdge</code> in the schema. While this is not so difficult if our <code>StringType</code> has a fixed name, it becomes more difficult if <code>StringType</code> would create its name also depending on another type.</p>
-<p>With version 9 we redesigned the schema initialization process so, that you can register dependencies of a type with the <code>SchemaBuilder</code>. This way the <code>SchemaBuilder</code> knows which type has to be initialized in which order.</p>
+<p>With version 9 we redesigned the schema initialization process so, that you can register dependencies for a type with the <code>SchemaBuilder</code>. This way the <code>SchemaBuilder</code> knows which type has to be initialized in which order.</p>
 <p>So, let us have a look at how we would create our edge type with version 9:</p>
 <pre><code class="hljs css language-csharp">public class EdgeType&lt;TSchemaType&gt;
     : ObjectType&lt;IEdge&gt;
