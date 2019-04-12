@@ -121,7 +121,7 @@ public class EdgeType<TSchemaType>
 }
 ```
 
-If we for instance put in the `StringType` as TSchemaType then the edge type would become `StringEdge` in the schema. While this is not so difficult if our `StringType` has a fixed name, it becomes more difficult if `StringType` would create its type also depending on another type.
+If we for instance put in the `StringType` as TSchemaType then the edge type would become `StringEdge` in the schema. While this is not so difficult if our `StringType` has a fixed name, it becomes more difficult if `StringType` would create its name also depending on another type.
 
 With version 9 we redesigned the schema initialization process so, that you can register dependencies of a type with the `SchemaBuilder`. This way the `SchemaBuilder` knows which type has to be initialized in which order.
 
