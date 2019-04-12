@@ -190,12 +190,12 @@ descriptor
           ClrTypeReference.FromSchemaType(typeInfo.ClrType));
       definition.Name = createName(type);
   })
-  .DependsOn(dependency, true);
+  .DependsOn(dependency, mustBeNamed:true);
 ```
 
-Let us pic that example apart in order to understand what we did here. First, we called `Extend`, `Extend` returns the `IDescriptorExtension<T>` which allows us to register some code with the descriptor events that we have described earlier.
+Let us pic that example apart in order to understand what we did here. First, we called `Extend`, `Extend` returns the `IDescriptorExtension<T>` which allows us to register some code with the descriptor events that I have described earlier.
 
-Each event will provide us with the type definition and the completion context. The completion context is the API to request information from the schema builder. In the case of our `Name` extension we are requesting the type instance for our `TSchemaType`. After that we call the naming algorithm with the resolved schema type.
+Each event will provide us with the type definition and the completion context. The `ICompletionContext` is the API to request information from the schema builder. In the case of our `Name` extension we are requesting the type instance for our `TSchemaType`. After that we call the naming algorithm with the resolved schema type.
 
 Also, we added a dependency with `DependsOn`. The Boolean argument on `DependsOn` declares that the type has to be named before our delegate can be executed. We can declare as many dependencies as we want, so we are not bound to have just one.
 
