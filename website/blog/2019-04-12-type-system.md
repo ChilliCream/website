@@ -201,7 +201,7 @@ Also, we added a dependency with `DependsOn`. The Boolean argument on `DependsOn
 
 Let me sum that up. The new `Extend` method on the descriptors allow us to extend the type descriptors without the need to create a new type base class. This is nice because you can now create extension methods that work across multiple solutions without forcing the user of that extension to opt into a new type base class. This makes it easy to consume those extensions. It is important to know here that `Extend` is available on all descriptors, so it is available on field descriptors, argument descriptors, or type descriptors.
 
-## Extending the Base Classes
+### Replacing Descriptors
 
 Though `Extend` is very capable, in some cases we might want to limit what is available through our descriptor. This basically means we want to remove functionality or replace the descriptor entirely. Let us assume we want to introduce an input type that describes the filter capabilities that can be applied to an output type. Basically, we want to introduce a filter input type like Prisma does.
 
