@@ -291,7 +291,7 @@ protected sealed override void Configure(
 
 In order to initialize our new descriptor, we overrode the `CreateDefinition` method. Our descriptor has to produce a `InputObjectTypeDefinition` in order to abide to the `InputType` interface. If you want your descriptor extendable like our descriptors, all you have to do is inherit from our descriptor base. With version 9 all descriptor and type definition classes are now public, and we strongly recommend basing your descriptors on our base classes.
 
-## Context Data
+## Context Data Support on Types
 
 Also, with the new version we added the context data dictionary to all types, fields and arguments. You can use this to add custom metadata to objects of the type system. Context data can be declared on the type definition and will be copied to the corresponding type object.
 
@@ -310,7 +310,7 @@ You can access the context data on a type object like the following:
 schema.GetType<ObjectType>("Query").ContextData.ContainsKey("Foo");
 ```
 
-## Relay
+## Improved Relay Support
 
 With version 9 we are making creating relay compliant schemas a breeze. Lets have a look at the relay server spec parts and see how those translate to _Hot Chocolate_:
 
