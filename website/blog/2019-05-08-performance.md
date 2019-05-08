@@ -11,7 +11,9 @@ This post will describe what we have done since preview 9 and where we are headi
 
 <!--truncate-->
 
-One of the main focuses on the second part of this release was performance. Performance will stay one big focus point for us.
+One of the main focuses on the second part of this release was performance. Performance will stay one big focus point for us going forward. This means that every new release should be faster then the previous.
+
+Lets have a look at what we did with version 9 and what we are planing to do in this area in the next releases.
 
 ## Parser
 
