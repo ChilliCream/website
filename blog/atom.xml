@@ -2,12 +2,26 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://chillicream.com/blog</id>
     <title>ChilliCream Blog</title>
-    <updated>2019-04-12T06:00:00Z</updated>
+    <updated>2019-05-08T06:00:00Z</updated>
     <generator>Feed for Node.js</generator>
     <link rel="alternate" href="https://chillicream.com/blog"/>
     <subtitle>The best place to stay up-to-date with the latest ChilliCream news and events.</subtitle>
     <logo>https://chillicream.com/img/signet.png</logo>
     <rights>Copyright © 2019 ChilliCream</rights>
+    <entry>
+        <title type="html"><![CDATA[GraphQL - Hot Chocolate 9.0.0 - Performance]]></title>
+        <id>https://chillicream.com/blog/2019/05/08/performance.html</id>
+        <link href="https://chillicream.com/blog/2019/05/08/performance.html">
+        </link>
+        <updated>2019-05-08T06:00:00Z</updated>
+        <summary type="html"><![CDATA[<p>Today we release preview 27 of version 9 and we are heading toward RC status which we are planning to hit next week.</p>
+<p>This post will describe what we have done since preview 9 and where we are heading.</p>
+]]></summary>
+        <author>
+            <name>Michael Staib</name>
+            <uri>https://github.com/michaelstaib</uri>
+        </author>
+    </entry>
     <entry>
         <title type="html"><![CDATA[GraphQL - Hot Chocolate 9.0.0 - Type System]]></title>
         <id>https://chillicream.com/blog/2019/04/12/type-system.html</id>
