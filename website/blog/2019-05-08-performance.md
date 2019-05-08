@@ -47,21 +47,21 @@ Also, as a side note the version 9 parser now supports all the GraphQL draft fea
 
 With version 9 we have removed the Roslyn compiler and are now using the expression compiler to compile our resolvers. This change was done since Roslyn caused the server to consume a lot of memory. Most of the memory was consumed by native metadata references and we were not able to solve that. At Microsoft Build I talked to David Fowler about that and he knew about the issue and recommended that we move to expressions. The downside here is that the resolvers produced by the expression compiler are actually a little bit slower than resolvers compiled with roslyn. This has many reasons I do not want to go in here.
 
-With version 9.1 we will further optimize the resolver compilation by allowing lazy compilation, this will imnprove startup performance and memory usage.
+With version 9.1 we will further optimize the resolver compilation by allowing lazy compilation, this will improve startup performance and memory usage.
 
 ## Execution Engine
 
 We have updated our execution engine to use less memory and execute faster. The new execution engine is at least 2.3 times faster and uses half of the memory GraphQL-DotNet does to execute a query. If you are using schema first we are actually seeing 8.9 times faster executon of queries with _Hot Chocolate_ compared to GraphQL-DotNet.
 
-GraphQL-DotNet is still faster when validating queries, but this is offset since we are caching validation results. Validation, will be one of the things we will work on for version 9.1. So, expect improvements here.
+GraphQL-DotNet is still faster when validating queries, but this is offset since we are caching validation results. Validation will be one of the things we will work on for version 9.1. So, expect improvements here.
 
-Also we are putting a lot of work in our new execution plan feature. With execution plans we are seeing 3 times faster queyr executions compared to the current _Hot Chocolate_ version 9 preview bits.
+Also, we are putting a lot of work in our new execution plan feature. With execution plans we are seeing 3 times faster queyr executions compared to the current _Hot Chocolate_ version 9 preview bits.
 
 The execution plan feature allows us to pre-analyze the query graph and in many cases optimize the execution of resolvers significantly. We will talk about this in more detail after we have shipped version 9.
 
 ## Serialization
 
-The serialization of query results is one of the areas we want to improve. Microsoft, did a lot of work in this area and we are waiting here for the new UTF8 APIs that will ship with .Net Core 3. We are completly removing Json.Net over the next releases in order to improve performance further.
+The serialization of query results is one of the areas we want to improve. Microsoft did a lot of work in this area and we are waiting here for the new UTF8 APIs that will ship with .Net Core 3. We are completely removing Json.Net over the next releases in order to improve performance further.
 
 ## Summary
 
