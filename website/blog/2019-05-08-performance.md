@@ -71,7 +71,7 @@ We have updated our execution engine to use less memory and execute faster. The 
 
 GraphQL-DotNet is still faster when validating queries, but this is offset since we are caching validation results. Validation will be one of the things we will work on for version 9.1. So, expect improvements here.
 
-Also, we are putting a lot of work in our new execution plan feature. With execution plans we are seeing 3 times faster queyr executions compared to the current _Hot Chocolate_ version 9 preview bits.
+Also, we are putting a lot of work in our new execution plan feature. With execution plans we are seeing 3 times faster query executions compared to the current _Hot Chocolate_ version 9 preview bits.
 
 The execution plan feature allows us to pre-analyze the query graph and in many cases optimize the execution of resolvers significantly. We will talk about this in more detail after we have shipped version 9.
 
