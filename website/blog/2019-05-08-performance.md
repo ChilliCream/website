@@ -61,7 +61,7 @@ Also, as a side note the version 9 parser now supports all the GraphQL draft fea
 
 ## Resolver Compiler
 
-With version 9 we have removed the Roslyn compiler and are now using the expression compiler to compile our resolvers. This change was done since Roslyn caused the server to consume a lot of memory. Most of the memory was consumed by native metadata references and we were not able to solve that. At Microsoft Build I talked to David Fowler about that and he knew about the issue and recommended that we move to expressions. The downside here is that the resolvers produced by the expression compiler are actually a little bit slower than resolvers compiled with roslyn. This has many reasons I do not want to go in here.
+With version 9 we have removed the Roslyn compiler and are now using the expression compiler to compile our resolvers. This change was done since Roslyn caused the server to consume a lot of memory. Most of the memory was consumed by native metadata references and we were not able to solve that memory consumption issue. At Microsoft Build I talked to David Fowler about that and he knew about the issue and recommended that we move to expressions. The downside here is that the resolvers produced by the expression compiler are actually a little bit slower than resolvers compiled with roslyn. This has many reasons I do not want to go in here.
 
 With version 9.1 we will further optimize the resolver compilation by allowing lazy compilation, this will improve startup performance and memory usage.
 
