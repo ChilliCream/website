@@ -78,9 +78,16 @@
 <p>Moreover, our new parser is now a <code>ref struct</code> meaning that all the memory we allocate for the parser state is allocated on the stack.</p>
 <p>We still will keep our old parser around and will update both parsers going forward.</p>
 <p>But we did not stop here. Actually, the GraphQL HTTP request is really bad to be processed efficiently. So, with version 9 we are actually still parsing from a string with our new parser.</p>
+<p><strong>GraphQL Request Example</strong>:</p>
+<pre><code class="hljs css language-json">{
+  "query": "...",
+  "operationName": "...",
+  "variables": { "myVariable": "someValue", ... }
+}
+</code></pre>
 <p>The issue here is that we first have to parse the server request which is JSON and then can use the GraphQL query stored as string in the JSON structure to parse the actual GraphQL query document.</p>
 <p>This means that with version 9 we are around 2 to 3 times faster than any .Net parser implementation.</p>
-<p>But as I said we are <strong>NOT</strong> stopping here, we are working on a new specialized request parser that will integrate the JSON parser with the GraphQL parser. That means that we are able to read the GraphQL request directly from the network stream and parse it without any manifestation to a string.</p>
+<p>But as I said we are <strong>NOT</strong> stopping here, we are working on a new specialized request parser that will integrate the JSON parser with the GraphQL parser. That means that we are able to read the GraphQL request directly from the network stream and parse it without any manifestation to a string object.</p>
 <p>Version 9 will bring the new <code>Utf8GraphQLParser</code> and we will follow that up with the <code>Utf8GraphQLRequestParser</code> in version 9.1.</p>
 <p>In our experiments we see that this new request parser is about 10 times faster then the GraphQL-DotNet parser combined with Json.Net.</p>
 <p>Also, as a side note the version 9 parser now supports all the GraphQL draft features and represents the most GraphQL spec compliant implementation on the .Net platform.</p>
