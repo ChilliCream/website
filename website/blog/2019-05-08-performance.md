@@ -37,11 +37,21 @@ We still will keep our old parser around and will update both parsers going forw
 
 But we did not stop here. Actually, the GraphQL HTTP request is really bad to be processed efficiently. So, with version 9 we are actually still parsing from a string with our new parser.
 
+__GraphQL Request Example__:
+
+```json
+{
+  "query": "...",
+  "operationName": "...",
+  "variables": { "myVariable": "someValue", ... }
+}
+```
+
 The issue here is that we first have to parse the server request which is JSON and then can use the GraphQL query stored as string in the JSON structure to parse the actual GraphQL query document.
 
 This means that with version 9 we are around 2 to 3 times faster than any .Net parser implementation.
 
-But as I said we are __NOT__ stopping here, we are working on a new specialized request parser that will integrate the JSON parser with the GraphQL parser. That means that we are able to read the GraphQL request directly from the network stream and parse it without any manifestation to a string.
+But as I said we are __NOT__ stopping here, we are working on a new specialized request parser that will integrate the JSON parser with the GraphQL parser. That means that we are able to read the GraphQL request directly from the network stream and parse it without any manifestation to a string object.
 
 Version 9 will bring the new `Utf8GraphQLParser` and we will follow that up with the `Utf8GraphQLRequestParser` in version 9.1.
 
