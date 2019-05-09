@@ -19,7 +19,7 @@ Lets have a look at what we did with version 9 and what we are planing to do in 
 
 The version 8 parser that we have built and maintained since version 1 was a very close port of the nodejs parser of `graphql-js`. `graphql-js` is the reference implementation of _GraphQL_ and also is basically the core of _Apollo_ and _relayjs_.
 
-The problem that we had with the approach of the parser was that it parsed on a string. Basically, the parser tokenized the string which meant that there was a lot of substrings creating new strings and so on.
+The problem that we had with the approach of the parser was that it parsed a string. Basically, the parser tokenized the string which meant that there was a lot of substrings creating new strings and so on.
 
 Each time we use the V8 parser to parse a _GraphQL_ request we basically created a lot of objects. Instead of just producing our parsed _GraphQL_ document we have created a lot of garbage for the runtime to clean up.
 
