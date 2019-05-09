@@ -81,17 +81,15 @@ The serialization of query results is one of the areas we want to improve. Micro
 
 ## Summary
 
-We are investing heavily in performance and stability. One other area we are working on is the subscription implementation. We will replace the current implementation with one built on top of the Microsoft pipeline API, this is why we are moving again subscription stitching to the next version.
+We are investing heavily in performance and stability and see perfomance as feature. One other area we are working on is the subscription implementation. We will replace the current implementation with one built on top of the Microsoft pipeline API, this is why we are moving again subscription stitching to the next version.
 
-Stitching is also one area we will start to improve performance wise once we have the execution plan feature implemented.
+Stitching is also one area we will start to improve performance-wise once we have the execution plan feature implemented.
 
 The bottom line here is that if you go with _Hot Chocolate_ you will get the most spec compliant and most performant GraphQL server on the .Net platform.
 
-Each time a GraphQL spec element hits draft we will implement it with _Hot Chocolate_, this means that with _Hot Chocolate_ you will get the latest GraphQL features.
+Each time a GraphQL spec element hits draft status we will go ahead and implement it with _Hot Chocolate_, this means that with _Hot Chocolate_ you will always get the latest GraphQL features.
 
-Also, we are working to have all the benchmarkings read with GraphQL-Bench. This will make transparant what we are testing and will let us more easily assess where we are heading performance wise.
-
-
+Also, we are working to have all the benchmarkings ready with GraphQL-Bench. This will make it more transparant what we are testing and will let us more easily assess where we are heading performance wise.
 
 | [HotChocolate Slack Channel](https://join.slack.com/t/hotchocolategraphql/shared_invite/enQtNTA4NjA0ODYwOTQ0LTBkZjNjZWIzMmNlZjQ5MDQyNDNjMmY3NzYzZjgyYTVmZDU2YjVmNDlhNjNlNTk2ZWRiYzIxMTkwYzA4ODA5Yzg) | [Hot Chocolate Documentation](https://hotchocolate.io) | [Hot Chocolate on GitHub](https://github.com/ChilliCream/hotchocolate) |
 | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------ | ---------------------------------------------------------------------- |
