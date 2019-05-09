@@ -25,7 +25,7 @@ Each time we use the V8 parser to parse a _GraphQL_ request we basically created
 
 With version 9 we wrote the parser from scratch to be allocation free. This means that we only use memory to create our GraphQL document tree but not for the actual parsing.
 
-In order to do that we are no longer parsing using a string but a `ReadOnlySpan<byte>`. With spans on byte we can basically read the query from a binary stream and produce the GraphQL document without producing string object.
+In order to do that we are no longer parsing using a string but a `ReadOnlySpan<byte>`. With spans on byte we can basically read the query from a binary stream and produce the GraphQL document without producing string object. Also, the span allows us to slice the incoming data and create new windows on the underlying memory. So, each time I slice the data, I no longer create new string objects that the GC has to get rid of. All of the GraphQL keywords in document that is being parsed are never transformed to a string but will only be represented to the parser as one byte. Also, comments and descriptions will only become strings if they are consumed. On a production GraphQL server we do not have the need to consume comment tokens for instance, so we can just skip over them.
 
 Moreover, our new parser is now a `ref struct` meaning that all the memory we allocate for the parser state is allocated on the stack.
 
