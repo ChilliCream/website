@@ -120,7 +120,7 @@ Furthermore, the new UTF-8 GraphQL parser uses 1/3 of the memory that the `Graph
 
 **Why does the parser still allocate some memory?**
 
-The new parser still allocates some memory since we are producing a syntax tree here. The syntax tree is still the same syntax tree we produced with our old parser implementation in order to be compatible. This is basicalle where the allocation stems from. The parser itself is a `ref struct` and lives on the stack. So, all the parser state is allocated also on the stack and is gone after the execution has finished.
+The new parser still allocates some memory since we are producing a syntax tree here. The syntax tree is still the same syntax tree we produced with our old parser implementation in order to be compatible. This is where the allocation stems from. The parser itself is a `ref struct` and lives on the stack. So, all the parser state is allocated also on the stack and is gone after the execution has finished.
 
 **So, how do we compare to graphql-js?**
 
