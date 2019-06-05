@@ -103,10 +103,10 @@ Starting with this version we have begun to invest into making _Hot Chocolate_ o
 
 With version 9 we are introducing the first step on this road with our new UTF-8 GraphQL parser. This new parser is not anymore, a port of the original graphql-js parser but a reimplementation that uses the raw bytes instead of strings, meaning we are using all those nice new `Span<T>` APIs. This makes it use less memory and perform faster. The new UTF-8 GraphQL parser is the fastest and most standard compliant parser on the .Net platform.
 
-<img src="images/lexer_mem.png" height="300" width="300">
-<img src="images/lexer_perf.png" height="300" width="300">
-<img src="images/parser_mem.png" height="300" width="300">
-<img src="images/parser_perf.png" height="300" width="300">
+<img src="../static/img/lexer_mem.png" height="300" width="300">
+<img src="../static/img/lexer_perf.png" height="300" width="300">
+<img src="../static/img/parser_mem.png" height="300" width="300">
+<img src="../static/img/parser_perf.png" height="300" width="300">
 
 **What do these charts mean?**
 
@@ -136,8 +136,8 @@ Apart from that we have started making our execution engine more efficient. We a
 
 With our release today _Hot Chocolate_ is depending on the use case at least to times faster in executing queries and uses half of the memory compared to GraphQL-DotNet. If you are using schema-first then the performance gains are more dramatic and you could look at up to 13 times faster execution performance compared to GraphQL-DotNet.
 
-<img src="images/exec_mem.png" height="300" width="300">
-<img src="images/exec_perf.png" height="300" width="300">
+<img src="../static/img/exec_mem.png" height="300" width="300">
+<img src="../static/img/exec_perf.png" height="300" width="300">
 
 **What will the new UTF-8 request parser help?**
 
@@ -159,7 +159,7 @@ When we released _Hot Chocolate_ version 8 we announced a new _Hot Chocolate Dev
 
 Today we are anouncing _Banana Cakepop_, a new tool that will help you explore and query GraphQL schemas.
 
-<img src="images/banana.png">
+<img src="../static/img/banana.png">
 
 _Banana Cakepop_ is **NOT** built on top of GraphiQL like all the other tools but built from the ground up with **Monaco** at its heart.
 
