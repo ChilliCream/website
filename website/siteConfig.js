@@ -23,6 +23,7 @@ const siteConfig = {
     blog: true,
     label: "Blog"
   }],
+  usePrism: true,
   headerIcon: "img/signet.png",
   footerIcon: "img/signet.png",
   favicon: "img/favicon.png",
