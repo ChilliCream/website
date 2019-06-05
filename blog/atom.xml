@@ -2,12 +2,25 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://chillicream.com/blog</id>
     <title>ChilliCream Blog</title>
-    <updated>2019-05-08T06:00:00Z</updated>
+    <updated>2019-06-05T06:00:00Z</updated>
     <generator>Feed for Node.js</generator>
     <link rel="alternate" href="https://chillicream.com/blog"/>
     <subtitle>The best place to stay up-to-date with the latest ChilliCream news and events.</subtitle>
     <logo>https://chillicream.com/img/signet.png</logo>
     <rights>Copyright © 2019 ChilliCream</rights>
+    <entry>
+        <title type="html"><![CDATA[GraphQL - Hot Chocolate 9.0.0]]></title>
+        <id>https://chillicream.com/blog/2019/06/05/hot-chocolate-9.0.0.html</id>
+        <link href="https://chillicream.com/blog/2019/06/05/hot-chocolate-9.0.0.html">
+        </link>
+        <updated>2019-06-05T06:00:00Z</updated>
+        <summary type="html"><![CDATA[<p>Today we have released version 9 of <em>Hot Chocolate</em>. This release was mainly focused on the schema APIs and performance. Furthermore, we started work on the wider <em>ChilliCream GraphQL Platform</em> and today you will get some insides where we are heading with this.</p>
+]]></summary>
+        <author>
+            <name>Michael Staib</name>
+            <uri>https://github.com/michaelstaib</uri>
+        </author>
+    </entry>
     <entry>
         <title type="html"><![CDATA[GraphQL - Hot Chocolate 9.0.0 - Performance Improvements]]></title>
         <id>https://chillicream.com/blog/2019/05/08/performance.html</id>
