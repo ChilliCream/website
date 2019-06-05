@@ -141,10 +141,10 @@
 <h2><a class="anchor" aria-hidden="true" id="performance"></a><a href="#performance" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Performance</h2>
 <p>Starting with this version we have begun to invest into making <em>Hot Chocolate</em> one of the fastest GraphQL servers out there. Do not get me wrong, we are not quite there yet, and it will be an ongoing effort for quite a while.</p>
 <p>With version 9 we are introducing the first step on this road with our new UTF-8 GraphQL parser. This new parser is not anymore, a port of the original graphql-js parser but a reimplementation that uses the raw bytes instead of strings, meaning we are using all those nice new <code>Span&lt;T&gt;</code> APIs. This makes it use less memory and perform faster. The new UTF-8 GraphQL parser is the fastest and most standard compliant parser on the .Net platform.</p>
-<p><img src="../static/img/lexer_mem.png" height="300" width="300">
-<img src="../static/img/lexer_perf.png" height="300" width="300">
-<img src="../static/img/parser_mem.png" height="300" width="300">
-<img src="../static/img/parser_perf.png" height="300" width="300"></p>
+<p><img src="../../../../static/img/lexer_mem.png" height="300" width="300">
+<img src="../../../../static/img/lexer_perf.png" height="300" width="300">
+<img src="../../../../static/img/parser_mem.png" height="300" width="300">
+<img src="../../../../static/img/parser_perf.png" height="300" width="300"></p>
 <p><strong>What do these charts mean?</strong></p>
 <p>The new <code>Utf8GraphQLReader</code> is our new lexer implementation, it does not allocate any extra memory to do its work. All allocations are done on the stack which means that we produce less work for the garbage collector.</p>
 <p>Also, we only need 1/4th of the time to lex a document compared to the <code>GraphQL-DotNet</code> lexer.</p>
@@ -159,8 +159,8 @@
 <p>With our new version 9.1 parser preview we are hitting about 54000 kitchen sink queries a second. While version 9 has become the fastest .Net GraphQL parser implementation version 9.1 will start to rival other platform implementations.</p>
 <p>Apart from that we have started making our execution engine more efficient. We are just starting here and there will be a much larger investment with version 9.1 when we are introducing our new UTF-8 request parser and the new execution plans feature.</p>
 <p>With our release today <em>Hot Chocolate</em> is depending on the use case at least to times faster in executing queries and uses half of the memory compared to GraphQL-DotNet. If you are using schema-first then the performance gains are more dramatic and you could look at up to 13 times faster execution performance compared to GraphQL-DotNet.</p>
-<p><img src="../static/img/exec_mem.png" height="300" width="300">
-<img src="../static/img/exec_perf.png" height="300" width="300"></p>
+<p><img src="../../../../static/img/exec_mem.png" height="300" width="300">
+<img src="../../../../static/img/exec_perf.png" height="300" width="300"></p>
 <p><strong>What will the new UTF-8 request parser help?</strong></p>
 <p>The UTF-8 request parser will be an integrated JSON and GraphQL parser that does not any longer parse first the JSON and then extract a string that is then being parsed by the GraphQL parser. The parser will be able to parse a GraphQL JSON request in one go.</p>
 <p>Also, we will create a server benchmarking suite based on <em>GraphQL Bench</em> so that it is more transparent what we test and how we test.</p>
@@ -171,7 +171,7 @@
 <h2><a class="anchor" aria-hidden="true" id="banana-cakepop"></a><a href="#banana-cakepop" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Banana Cakepop</h2>
 <p>When we released <em>Hot Chocolate</em> version 8 we announced a new <em>Hot Chocolate Developer Tool</em>. Since that announcement we were heavily at work building that new tool.</p>
 <p>Today we are anouncing <em>Banana Cakepop</em>, a new tool that will help you explore and query GraphQL schemas.</p>
-<p><img src="../static/img/banana.png"></p>
+<p><img src="../../../../static/img/banana.png"></p>
 <p><em>Banana Cakepop</em> is <strong>NOT</strong> built on top of GraphiQL like all the other tools but built from the ground up with <strong>Monaco</strong> at its heart.</p>
 <p>We plan to invest a lot more effort into <em>Banana Cakepop</em> going forward. Our plan is to build this ultimate GraphQL developer tool that provides advanced schema browsing, querying GraphQL endpoints, creating runbooks and many more things.</p>
 <p>We will provide a plugin model so that you can add your own extensions.</p>
