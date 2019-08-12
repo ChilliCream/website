@@ -236,3 +236,19 @@ REQUEST PARSER + PARSER PERF
 Subscription now uses pipeline API to abstract sockets.
 
 SERVER MODULARIZATION
+
+## Version 11
+
+Like with every release we are giving a little outlook. As the releases are fluid we are sometimes moving things around.
+
+We want to really foucus on two major topics with this release.
+
+## Query Execution Plans
+
+## Client API
+
+## The Other Things
+
+We also will add more features to our filter API and will add more subscription provider.
+
+Also like with every of our releases we will make the parser more efficient. The next thing here is to use `ReadOnlySlice`
