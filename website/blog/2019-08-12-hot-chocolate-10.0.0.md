@@ -330,7 +330,7 @@ Moreover, this one will be the backbone of our new stitching layer that will bri
 
 The second thing we already started work on is a client API for .NET Core. We are currently experimenting with how we design this new piece of API. We have started a discussion around this in our slack channel and will start with some coding soon.
 
-## Banana Cakepop
+## Banana Cakepop
 
 **Oh, didn`t you forget something?**
 
