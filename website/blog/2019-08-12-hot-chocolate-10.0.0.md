@@ -11,9 +11,9 @@ Today we have released version 10 of _Hot Chocolate_. We originally started buil
 
 ## Filters
 
-So, while we focused a lot on the server implementation we also added some nice features to the GraphQL core. The main feature we added here is the new filter API.
+So, while we focused a lot on the server implementation, we also added some nice features to the GraphQL core. The main feature we added here is the new filter API.
 
-Filters let you query your backend with a powerfoul query input type that translates into native databse queries.
+Filters let you query your backend with a powerful query input type that translates into native database queries.
 
 ```graphql
 {
@@ -54,7 +54,7 @@ public class QueryType
 }
 ```
 
-Also you can customize filters by describing what fields are filterable and what operators are allowed.
+Also, it is possible to customize filters by describing what fields are filterable and what operators are allowed.
 
 ```csharp
 public class QueryType
@@ -69,7 +69,7 @@ public class QueryType
 }
 ```
 
-If you want to use the same filter multiple times all over your schema you can also describe the filter input type separatly.
+If you want to use the same filter multiple times all over your schema you can also describe the filter input type separately.
 
 ```csharp
 public class PersonFilterType
@@ -104,20 +104,20 @@ public class QueryType
 }
 ```
 
-The nice thing here is that the filter works out of the box on `IQueryable` and `IEnumerable` so you can use it for databse queries as well as for in-memory lists.
+The nice thing here is that the filter works out of the box on `IQueryable` and `IEnumerable` so you can use it for database queries as well as for in-memory lists.
 
 With version 10 of _Hot Chocolate_ we are supporting filters on scalar fields. But we are already working on support for object filters and enumerable filters.
 
-Also we are working on sorting which should be included in the first preview of version 11.
+Also, we are working on sorting which should be included in the first preview of version 11.
 
-If you want to give input or follow our work you can head over to these four issues that will be coming with version 11.
+If you want to give input or follow our work, you can head over to these four issues that will be coming with version 11.
 
 - [Object Filters #921](https://github.com/ChilliCream/hotchocolate/issues/921)
 - [IEnumerable Filters #922](https://github.com/ChilliCream/hotchocolate/issues/922)
 - [Sorting #923](https://github.com/ChilliCream/hotchocolate/issues/923)
 - [Aggregations #924](https://github.com/ChilliCream/hotchocolate/issues/924)
 
-> Also if you want to checkout more about filters head over to our [documentation](https://hotchocolate.io/docs/filters).
+> If you want to check out more about filters head over to our [documentation](https://hotchocolate.io/docs/filters).
 
 Let me also thank [Pascal](https://github.com/PascalSenn) for his awesome work on this one.
 
@@ -142,29 +142,29 @@ configuration.EndPoints.Add("host:port");
 services.AddRedisSubscriptionProvider(configuration);
 ```
 
-Thats all you have to do to connect the query engine with `Redis`.
+That\`s all  you have to do to connect the query engine with `Redis`.
 
-\*\*So why would we want to use `Redis` here anyway.""
+**So why should we want to use `Redis` anyway.**
 
-The thing with in-memory subscriptions is that they will only work reliable if you have one instance of _Hot Chocolate_ if you are using like us something like kubernetes where you scale on demand that you want to make sure that mutations executed in one server raise an event in another one.
+The thing with in-memory subscriptions is that they will only work reliable if you have one instance of _Hot Chocolate_. When you have deployed multiple instance of _Hot Chcocolate_ or if you are scaling on demand with a massive amount of subscribers then you want to make sure that your pub/sub system scales and that mutations executed on one server raise an event on another one.
 
-But there is more, sometimes you want to raise an event without triggering a mutation, maybe there was an event somewhere in your infrastructure that you want to know relay as a GraphQL subscription.
+But there is more, sometimes you want to raise an event without triggering a mutation, maybe there was an event somewhere in your infrastructure that you want to relay as a GraphQL subscription, this can also be done through an external pub/sub system like Redis.
 
-We will add _Kafka_ and _Azure EventHub_ with version 11 and we are also looking into other pub/sub systems, so that you can use with what you feel comfortable.
+With version 11 We will add _Kafka_ and _Azure EventHub_ support and are also looking into other pub/sub systems, so that you can use what ever you feels best to you.
 
 ### Pipelines
 
-We also rebuild the whole WebSocket handling in the server by using the new `Pipeline` API that Microsoft introduced to .Net. This makes it now super efficient how we handle the messages with our new `UTF8RequestParser`. I will tell you more about this further down.
+We also rebuild the whole WebSocket handling in the server by using the new `Pipeline` API that Microsoft introduced to .Net. This makes it now super-efficient how we handle the messages with our new `UTF8RequestParser`. But we are not done here and will with version 11 further optimize our parser to work even better with pipelines.
 
-> Also if you want to checkout more about subscriptions head over to our [documentation](https://hotchocolate.io/docs/code-first-subscription).
+> If you want to check out more about subscriptions head over to our [documentation](https://hotchocolate.io/docs/code-first-subscription).
 
 Let me also thank [Gabriel](https://github.com/glucaci) for his great work on subscriptions.
 
 ## Batching
 
-Another big feature we have invested in was batching. When we started on this one we reflected a lot about how we want to to this and if we realy need it.
+Another big feature we have invested in was batching. When we started on this one we reflected a lot about how we want to this and if we really need this one. In the end we decided that batching could enable great scenarios and is a worth adding to our server.
 
-So, when Lee Byron initially showed batching off he explained that this is useful in-case you want to fetch important data first and the delay more expensive data.
+When Lee Byron initially showed batching off, he explained that this would be useful in cases where you want to fetch important data first and delay more expensive data without needing to issue two separate calls.
 
 They had this example that they want to fetch the news stream of a given user and the comments should appear once those are available.
 
@@ -189,13 +189,13 @@ query StoryComments {
 }
 ```
 
-So, in the above query we would first fetch the stories, collect all the story ids and use these as an input to the next query to fetch all the comments for the former stories.
+In the above query we would first fetch the stories, collect all the story ids and use these as an input to the next query to fetch all the comments for the former stories.
 
-The nice thing is that this is done in one HTTP call and as soon as query one is executed we will write the result into the stream and the client can already work with the data while waiting for the second result.
+The nice thing is that this is done in one HTTP call and as soon as query one is executed, we will write the result into the stream and the client can already work with that data while waiting for the second result.
 
-This all is working over one HTTP call without WebSockets and is super efficient.
+This all is working over one HTTP call without WebSockets and is super-efficient.
 
-**So why did we question its use?**
+**Why did we question its use?**
 
 The thing is that with version 11 we will introduce `@defer` which will allow you to do the following:
 
@@ -215,27 +215,47 @@ query NewsFeed {
 }
 ```
 
-The fragment that is annotated with `@defer` will be defered to when it is ready. This means you can write queries much cleaner with this and reap the same benifits.
+The fragment that is annotated with `@defer` will be deferred to when it is ready. This means you can write queries much cleaner with this and reap the same benefits.
 
-**So, why did we implemeht batching anyway?**
+**What makes batching a great feature then?**
 
 First, you can defer query parts with this now in version 10.
 
 Second, I think batching is very interesting with mutations where you can write complex mutation flows that use the results of one mutation to feed data in the next mutation. The ability to export result data into variables lets you write nice data flows.
 
-Third, we also wanted to support Apollo batching where Apollo collects all the queries of a client in a certain timewindow and sends those in one request to our server. One batch will share the _DataLoader_ instances which means that the batch request will be faster then sending them in separatly.
+Look at how easy you can export data as variable by just adding `@export`.
+
+```graphql
+{
+  foo {
+    bar @export
+  }
+}
+```
+
+What\`s important to know here is that you also can export objects that will convert to a matching input type.
+
+```graphql
+{
+  foo @export(as: "something") {
+    bar
+  }
+}
+```
+
+Third, we also wanted to support Apollo batching where Apollo collects all the queries of a client in a certain time window and sends those in one request to our server. One batch will share the _DataLoader_ instances which means that the batch request will be faster than sending them in separately.
 
 > We are supporting operation batching and request batching and if you would like to know more about it head over to our [documentation](https://hotchocolate.io/docs/batching).
 
 ## Persisted Queries
 
-With version 10 we now support persisted queries. With persisted queries you can now add well-knonw queries to a second-level cache. All queries stored in there are considered valid.
+With version 10 we now support persisted queries. With persisted queries you can add well-knonw queries to a second-level cache. All queries stored in there are considered valid.
 
 **So, what is this for?**
 
-Persisted queries are faster, since we validate those only once. Moreover, you do not need to send us the query everytime, you can instead just send the query name and the server will look up the query and execute it. This can  dramatically improves performance, reduces bandwith and memory usage.
+Persisted queries are faster, since we validate those only once. Moreover, you do not need to send us the query every time, you can instead just send the query name and the server will look up the query and execute it. This can dramatically improves performance, reduces bandwidth and memory usage.
 
-Also this makes it feasable to use a simple `GET` request instead of a `POST` request.
+This makes it feasible to use a simple `GET` request instead of a `POST` request which can also have benefits when using things like CDNs.
 
 `GET http://example.com/graphql?namedQuery=QUERYNAME&variables={"id":"QVBJcy5ndXJ1"}`
 
@@ -245,9 +265,9 @@ We have opted to support both active persisted queries and persisted queries.
 
 ## Server Modularization
 
-With Version 10 we have now a modularized server implementation. That each middleware is placed in its own package. You can still just add our `HotChocolate.AspNetCore` or `HotChocolate.AspNetClassic` package and do not worry what is included in your server. But with version 10 you could now just add some of the middlewares like maybe just HTTP-GET or HTTP-POST. This way if you do not use for instance subscriptions than there will not even be the code for subscriptions.
+With Version 10 we have now a modularized server implementation. That each middleware is placed in its own package. You can still just add our `HotChocolate.AspNetCore` or `HotChocolate.AspNetClassic` package and do not worry what is included in your server. But with version 10 you could now just add some of the middleware like maybe just HTTP-GET or HTTP-POST. This way if you do not use for instance subscriptions than there will not even be the code for subscriptions.
 
-With version 10 we have the following middlewares available:
+With version 10 we have the following middleware available:
 
 - HotChocolate.AspNetCore.HttpPost
 - HotChocolate.AspNetCore.HttpGet
@@ -267,7 +287,7 @@ With the new _UTF-8 request parser_ we can finally just read the binary request 
 
 ## Everything Else
 
-With version 10 we added a ton of bug fixes and also we added a lot of API improvements that will make your day to day business so much easier. 
+With version 10 we added a ton of bug fixes and also, we added a lot of API improvements that will make your day to day business so much easier. 
 
 Like now you can add error filter to the dependency injection instead of registering them with the execution builder.
 
@@ -281,9 +301,9 @@ The same goes for class _DataLoader_.
 services.AddDataLoader<MyCustomDataLoader>();
 ```
 
-When you use this extension we also will add the _DataLoader_ registry.
+When you use this extension, we also will add the _DataLoader_ registry.
 
-Also we refined things like the schema builder so that you can in place now define all the types:
+Also, we refined things like the schema builder so that you can in place now define all the types:
 
 ```csharp
 SchemaBuilder.New()
@@ -296,13 +316,13 @@ There are so many little things that can make your day :)
 
 ## Version 11
 
-Like with every release we are giving a little outlook for the next version. As the releases are fluid we are sometimes moving things around.
+Like with every release we are giving a little outlook for the next version. As the releases are fluid, we are sometimes moving things around.
 
-We want to really foucus on two major topics with the next release.
+We want to really focus on two major topics with the next release.
 
 ## Query Execution Plans
 
-We originally planned for this one for version 10 (aka version 9.1) but decided that the current set of ne features is already a good version that is worth to release. But with the next release this is one of the two things we really will focus on. With this in place we will double down on performance and will introduce features like `@defer` and `@stream`.
+We originally planned for this one for version 10 (aka version 9.1) but decided that the current set of new features is already a good version that is worth to release. But with the next release this is one of the two things we really will focus on. With this in place we will double down on performance and will introduce features like `@defer` and `@stream`.
 
 Moreover, this one will be the backbone of our new stitching layer that will bring lots of new features to schema stitching.
 
@@ -314,9 +334,9 @@ The second thing we already started work on is a client API for .NET Core. We ar
 
 **Oh, didn`t you forget something?**
 
-Yes, yes originally we had planned to release _Banana Cakepop_ alongside this version. We ran into some performance issues with the tree we originally selected when using large schemas with more than 1000 types.
+Yes, yes originally, we had planned to release _Banana Cakepop_ alongside this version. We ran into some performance issues with the tree we originally selected when using large schemas with more than 1000 types.
 
-We have now started to write the tree component ourself which is taking some extra time. We already see that we can handle now massive schemas far beyond 1000 types without any hickups. But we have still lots to do on the new tree.
+We have now started to write the tree component ourselves which is taking some extra time. We already see that we can handle now massive schemas far beyond 1000 types without any hiccups. But we have still lots to do on the new tree.
 
 I hope that we can see the promised preview in the next 4 to 8 weeks. We want to release something really good and not something half-backed.
 
@@ -324,11 +344,11 @@ I hope that we can see the promised preview in the next 4 to 8 weeks. We want to
 
 We also will add more features to our filter API and make working with databases even easier.
 
-Also we will add more subscription provider like Kafka and EventHub.
+Also, we will add more subscription provider like Kafka and EventHub.
 
-Furthermore, we will rework our `Utf8GraphQLReader` to use `ReadOnlySequence<byte>` instead of `ReadOnlySpan<byte>` in order to make this even better work with the Pipeline API. Apart form that we will optimize the syntax tree to be able to work with raw bytes instead of strings. At the moment scalar like String, Int, Float and Enum are parsed as string representation like with the original node parser. The scalar type parses then the string into the native type. The same goes for the new UTF-8 request parser. This is unecessary with the `Utf8Parser` and `Utf8Formater`. We will change the AST to instead have the raw bytes. The current `Value` property will still be there but only for compatibility with tools that use the current version of the AST. The new scalar types will have access to a `ReadOnlySpan<byte>` and can decide how to efficiently parse literals.
+Furthermore, we will rework our `Utf8GraphQLReader` to use `ReadOnlySequence<byte>` instead of `ReadOnlySpan<byte>` in order to make this even better work with the Pipeline API. Apart from that we will optimize the syntax tree to be able to work with raw bytes instead of strings. At the moment scalar like String, Int, Float and Enum are parsed as string representation like with the original node parser. The scalar type parses then the string into the native type. The same goes for the new UTF-8 request parser. This is unnecessary with the `Utf8Parser` and `Utf8Formater`. We will change the AST to instead have the raw bytes. The current `Value` property will still be there but only for compatibility with tools that use the current version of the AST. The new scalar types will have access to a `ReadOnlySpan<byte>` and can decide how to efficiently parse literals.
 
-If you want to get into contact with us head over to our [slack channel](https://join.slack.com/t/hotchocolategraphql/shared_invite/enQtNTA4NjA0ODYwOTQ0LTBkZjNjZWIzMmNlZjQ5MDQyNDNjMmY3NzYzZjgyYTVmZDU2YjVmNDlhNjNlNTk2ZWRiYzIxMTkwYzA4ODA5Yzg) and join our comunity.
+If you want to get into contact with us head over to our [slack channel](https://join.slack.com/t/hotchocolategraphql/shared_invite/enQtNTA4NjA0ODYwOTQ0LTBkZjNjZWIzMmNlZjQ5MDQyNDNjMmY3NzYzZjgyYTVmZDU2YjVmNDlhNjNlNTk2ZWRiYzIxMTkwYzA4ODA5Yzg) and join our community.
 
 | [HotChocolate Slack Channel](https://join.slack.com/t/hotchocolategraphql/shared_invite/enQtNTA4NjA0ODYwOTQ0LTBkZjNjZWIzMmNlZjQ5MDQyNDNjMmY3NzYzZjgyYTVmZDU2YjVmNDlhNjNlNTk2ZWRiYzIxMTkwYzA4ODA5Yzg) | [Hot Chocolate Documentation](https://hotchocolate.io) | [Hot Chocolate on GitHub](https://github.com/ChilliCream/hotchocolate) |
 | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------ | ---------------------------------------------------------------------- |
