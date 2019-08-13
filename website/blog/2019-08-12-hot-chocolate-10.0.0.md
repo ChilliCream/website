@@ -227,28 +227,112 @@ Third, we also wanted to support Apollo batching where Apollo collects all the q
 
 > We are supporting operation batching and request batching and if you would like to know more about it head over to our [documentation](https://hotchocolate.io/docs/batching).
 
+## Persisted Queries
 
+With version 10 we now support persisted queries. With persisted queries you can now add well-knonw queries to a second-level cache. All queries stored in there are considered valid.
 
-PERSISTED QUERIES
+**So, what is this for?**
 
-REQUEST PARSER + PARSER PERF
+Persisted queries are faster, since we validate those only once. Moreover, you do not need to send us the query everytime, you can instead just send the query name and the server will look up the query and execute it. This can  dramatically improves performance, reduces bandwith and memory usage.
 
-Subscription now uses pipeline API to abstract sockets.
+Also this makes it feasable to use a simple `GET` request instead of a `POST` request.
 
-SERVER MODULARIZATION
+`GET http://example.com/graphql?namedQuery=QUERYNAME&variables={"id":"QVBJcy5ndXJ1"}`
+
+We have opted to support both active persisted queries and persisted queries.
+
+> Read more about this [here](https://hotchocolate.io/docs/persisted-queries);
+
+## Server Modularization
+
+With Version 10 we have now a modularized server implementation. That each middleware is placed in its own package. You can still just add our `HotChocolate.AspNetCore` or `HotChocolate.AspNetClassic` package and do not worry what is included in your server. But with version 10 you could now just add some of the middlewares like maybe just HTTP-GET or HTTP-POST. This way if you do not use for instance subscriptions than there will not even be the code for subscriptions.
+
+With version 10 we have the following middlewares available:
+
+- HotChocolate.AspNetCore.HttpPost
+- HotChocolate.AspNetCore.HttpGet
+- HotChocolate.AspNetCore.HttpGetSchema
+- HotChocolate.AspNetCore.Subscriptions
+- HotChocolate.AspNetCore.Authorization
+
+> Read more about this right [here](https://hotchocolate.io/docs/aspnet)
+
+## UTF-8 Request Parser
+
+With GraphQL most requests are provided as `JSON` that contains the request as an escaped string. This is kind of bad for performance since we first parse the `JSON` then take the string and parse again a string that we actually do not need.
+
+With the new _UTF-8 request parser_ we can finally just read the binary request stream and parse the JSON and the GraphQL request in one go. But there is more, we have given our ne UTF-8 request parser access to our document cache, meaning while we parse the json request and hit the part were the GraphQL request is we can look up if this query is already cached this dramatically reduces memory usage and performance since we will not consume in any way the query property.
+
+[PERFORMANCE CHARTS HERE]
+
+## Everything Else
+
+With version 10 we added a ton of bug fixes and also we added a lot of API improvements that will make your day to day business so much easier. 
+
+Like now you can add error filter to the dependency injection instead of registering them with the execution builder.
+
+```csharp
+services.AddErrorFilter<MyCustomErrorFilter>();
+```
+
+The same goes for class _DataLoader_.
+
+```csharp
+services.AddDataLoader<MyCustomDataLoader>();
+```
+
+When you use this extension we also will add the _DataLoader_ registry.
+
+Also we refined things like the schema builder so that you can in place now define all the types:
+
+```csharp
+SchemaBuilder.New()
+  .AddEnumType(d => d.Name("MyEnum").Value("FOO))
+  ...
+  .Create();
+```
+
+There are so many little things that can make your day :)
 
 ## Version 11
 
-Like with every release we are giving a little outlook. As the releases are fluid we are sometimes moving things around.
+Like with every release we are giving a little outlook for the next version. As the releases are fluid we are sometimes moving things around.
 
-We want to really foucus on two major topics with this release.
+We want to really foucus on two major topics with the next release.
 
 ## Query Execution Plans
 
+We originally planned for this one for version 10 (aka version 9.1) but decided that the current set of ne features is already a good version that is worth to release. But with the next release this is one of the two things we really will focus on. With this in place we will double down on performance and will introduce features like `@defer` and `@stream`.
+
+Moreover, this one will be the backbone of our new stitching layer that will bring lots of new features to schema stitching.
+
 ## Client API
+
+The second thing we already started work on is a client API for .NET Core. We are currently experimenting with how we design this new piece of API. We have started a discussion around this in our slack channel and will start with some coding soon.
+
+## Banana Cakepop
+
+**Oh, didn`t you forget something?**
+
+Yes, yes originally we had planned to release _Banana Cakepop_ alongside this version. We ran into some performance issues with the tree we originally selected when using large schemas with more than 1000 types.
+
+We have now started to write the tree component ourself which is taking some extra time. We already see that we can handle now massive schemas far beyond 1000 types without any hickups. But we have still lots to do on the new tree.
+
+I hope that we can see the promised preview in the next 4 to 8 weeks. We want to release something really good and not something half-backed.
 
 ## The Other Things
 
-We also will add more features to our filter API and will add more subscription provider.
+We also will add more features to our filter API and make working with databases even easier.
 
-Also like with every of our releases we will make the parser more efficient. The next thing here is to use `ReadOnlySlice`
+Also we will add more subscription provider like Kafka and EventHub.
+
+Furthermore, we will rework our `Utf8GraphQLReader` to use `ReadOnlySequence<byte>` instead of `ReadOnlySpan<byte>` in order to make this even better work with the Pipeline API. Apart form that we will optimize the syntax tree to be able to work with raw bytes instead of strings. At the moment scalar like String, Int, Float and Enum are parsed as string representation like with the original node parser. The scalar type parses then the string into the native type. The same goes for the new UTF-8 request parser. This is unecessary with the `Utf8Parser` and `Utf8Formater`. We will change the AST to instead have the raw bytes. The current `Value` property will still be there but only for compatibility with tools that use the current version of the AST. The new scalar types will have access to a `ReadOnlySpan<byte>` and can decide how to efficiently parse literals.
+
+If you want to get into contact with us head over to our [slack channel](https://join.slack.com/t/hotchocolategraphql/shared_invite/enQtNTA4NjA0ODYwOTQ0LTBkZjNjZWIzMmNlZjQ5MDQyNDNjMmY3NzYzZjgyYTVmZDU2YjVmNDlhNjNlNTk2ZWRiYzIxMTkwYzA4ODA5Yzg) and join our comunity.
+
+| [HotChocolate Slack Channel](https://join.slack.com/t/hotchocolategraphql/shared_invite/enQtNTA4NjA0ODYwOTQ0LTBkZjNjZWIzMmNlZjQ5MDQyNDNjMmY3NzYzZjgyYTVmZDU2YjVmNDlhNjNlNTk2ZWRiYzIxMTkwYzA4ODA5Yzg) | [Hot Chocolate Documentation](https://hotchocolate.io) | [Hot Chocolate on GitHub](https://github.com/ChilliCream/hotchocolate) |
+| ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------ | ---------------------------------------------------------------------- |
+
+
+[hot chocolate]: https://hotchocolate.io
+[hot chocolate source code]: https://github.com/ChilliCream/hotchocolate
