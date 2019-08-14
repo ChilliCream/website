@@ -162,7 +162,7 @@ Let me also thank [Gabriel](https://github.com/glucaci) for his great work on su
 
 ## Batching
 
-Another big feature we have invested in was batching. When we started on this one we reflected a lot about how we want to do this and if we really need this one. In the end we decided that batching could enable great scenarios and is a worth adding to our server.
+Another big feature we have invested in was batching. When we started on this one we reflected a lot about how we want to do this and if we really need this one. In the end we decided that batching could enable great scenarios and is worth adding to our server.
 
 When Lee Byron initially showed batching off, he explained that this would be useful in cases where you want to fetch important data first and delay more expensive data without needing to issue two separate calls.
 
@@ -281,7 +281,7 @@ With version 10 we have the following middleware available:
 
 With GraphQL most requests are provided as `JSON` that contains the request as an escaped string. This is kind of bad for performance since we first parse the `JSON` then take the string and parse again a string that we actually do not need.
 
-With the new _UTF-8 request parser_ we can finally just read the binary request stream and parse the JSON and the GraphQL request in one go. But there is more, we have given our ne UTF-8 request parser access to our document cache, meaning while we parse the json request and hit the part were the GraphQL request is we can look up if this query is already cached this dramatically reduces memory usage and performance since we will not consume in any way the query property.
+With the new _UTF-8 request parser_ we can finally just read the binary request stream and parse the JSON and the GraphQL request in one go. But there is more, we have given our new UTF-8 request parser access to our document cache, meaning while we parse the JSON request and hit the part were the GraphQL request is, we can look up if this query is already cached. This dramatically reduces memory usage and performance since we will not consume the query property anyway.
 
 [PERFORMANCE CHARTS HERE]
 
