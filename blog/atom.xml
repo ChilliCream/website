@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://chillicream.com/blog</id>
     <title>ChilliCream Blog</title>
-    <updated>2019-08-12T06:00:00Z</updated>
+    <updated>2019-08-14T06:00:00Z</updated>
     <generator>Feed for Node.js</generator>
     <link rel="alternate" href="https://chillicream.com/blog"/>
     <subtitle>The best place to stay up-to-date with the latest ChilliCream news and events.</subtitle>
@@ -10,10 +10,10 @@
     <rights>Copyright © 2019 ChilliCream</rights>
     <entry>
         <title type="html"><![CDATA[GraphQL - Hot Chocolate 10.0.0]]></title>
-        <id>https://chillicream.com/blog/2019/08/12/hot-chocolate-10.0.0.html</id>
-        <link href="https://chillicream.com/blog/2019/08/12/hot-chocolate-10.0.0.html">
+        <id>https://chillicream.com/blog/2019/08/14/hot-chocolate-10.0.0.html</id>
+        <link href="https://chillicream.com/blog/2019/08/14/hot-chocolate-10.0.0.html">
         </link>
-        <updated>2019-08-12T06:00:00Z</updated>
+        <updated>2019-08-14T06:00:00Z</updated>
         <summary type="html"><![CDATA[<p>Today we have released version 10 of <em>Hot Chocolate</em>. We originally started building version 9.1 which grew bigger and at one point became version 10. We have focused a lot on our server implementation. But let me walk you through our latest release.</p>
 ]]></summary>
         <author>
