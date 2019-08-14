@@ -162,7 +162,7 @@ Let me also thank [Gabriel](https://github.com/glucaci) for his great work on su
 
 ## Batching
 
-Another big feature we have invested in was batching. When we started on this one we reflected a lot about how we want to this and if we really need this one. In the end we decided that batching could enable great scenarios and is a worth adding to our server.
+Another big feature we have invested in was batching. When we started on this one we reflected a lot about how we want to do this and if we really need this one. In the end we decided that batching could enable great scenarios and is a worth adding to our server.
 
 When Lee Byron initially showed batching off, he explained that this would be useful in cases where you want to fetch important data first and delay more expensive data without needing to issue two separate calls.
 
