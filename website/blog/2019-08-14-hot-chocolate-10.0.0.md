@@ -36,8 +36,11 @@ All you have to do in your schema type is to add a `UseFiltering` to your field 
 public class QueryType
   : ObjectType<Query>
 {
-    protected override void Configure(IObjetcTypeDescriptor<Query> descriptor) {
-        descriptor.Field(t => t.GetPersons(default)).Type<ListType<PersonType>>().UseFiltering();
+    protected override void Configure(IObjetcTypeDescriptor<Query> descriptor) 
+    {
+        descriptor.Field(t => t.GetPersons(default))
+          .Type<ListType<PersonType>>()
+          .UseFiltering();
     }
 }
 ```
@@ -48,8 +51,11 @@ Filters are easily combined with our pagination.
 public class QueryType
   : ObjectType<Query>
 {
-    protected override void Configure(IObjetcTypeDescriptor<Query> descriptor) {
-        descriptor.Field(t => t.GetPersons(default)).UsePaging<PersonType>().UseFiltering();
+    protected override void Configure(IObjetcTypeDescriptor<Query> descriptor) 
+    {
+        descriptor.Field(t => t.GetPersons(default))
+          .UsePaging<PersonType>()
+          .UseFiltering();
     }
 }
 ```
@@ -60,7 +66,8 @@ Also, it is possible to customize filters by describing what fields are filterab
 public class QueryType
   : ObjectType<Query>
 {
-    protected override void Configure(IObjetcTypeDescriptor<Query> descriptor) {
+    protected override void Configure(IObjetcTypeDescriptor<Query> descriptor) 
+    {
         descriptor
           .Field(t => t.GetPersons(default))
           .UsePaging<PersonType>()
@@ -95,7 +102,8 @@ And then use this filter type where you need it.
 public class QueryType
   : ObjectType<Query>
 {
-    protected override void Configure(IObjetcTypeDescriptor<Query> descriptor) {
+    protected override void Configure(IObjetcTypeDescriptor<Query> descriptor) 
+    {
         descriptor
           .Field(t => t.GetPersons(default))
           .UsePaging<PersonType>()
