@@ -150,7 +150,7 @@ The thing with in-memory subscriptions is that they will only work reliable if y
 
 But there is more, sometimes you want to raise an event without triggering a mutation, maybe there was an event somewhere in your infrastructure that you want to relay as a GraphQL subscription, this can also be done through an external pub/sub system like Redis.
 
-With version 11 We will add _Kafka_ and _Azure EventHub_ support and are also looking into other pub/sub systems, so that you can use what ever you feels best to you.
+With version 11 We will add _Kafka_ and _Azure EventHub_ support and are also looking into other pub/sub systems, so that you can use whatever feels best to you.
 
 ### Pipelines
 
