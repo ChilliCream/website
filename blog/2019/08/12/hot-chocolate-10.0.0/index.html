@@ -1,0 +1,319 @@
+<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><title>GraphQL - Hot Chocolate 10.0.0 · ChilliCream</title><meta name="viewport" content="width=device-width"/><meta name="generator" content="Docusaurus"/><meta name="description" content="Today we have released version 10 of _Hot Chocolate_. We originally started building version 9.1 which grew bigger and at one point became version 10. We have focused a lot on our server implementation. But let me walk you through our latest release."/><meta name="docsearch:language" content="en"/><meta property="og:title" content="GraphQL - Hot Chocolate 10.0.0 · ChilliCream"/><meta property="og:type" content="website"/><meta property="og:url" content="https://chillicream.com/blog/2019/08/12/hot-chocolate-10.0.0"/><meta property="og:description" content="Today we have released version 10 of _Hot Chocolate_. We originally started building version 9.1 which grew bigger and at one point became version 10. We have focused a lot on our server implementation. But let me walk you through our latest release."/><meta name="twitter:card" content="summary"/><meta name="twitter:image" content="https://chillicream.com/img/signet.png"/><link rel="shortcut icon" href="/img/favicon.png"/><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/androidstudio.min.css"/><link rel="alternate" type="application/atom+xml" href="https://chillicream.com/blog/atom.xml" title="ChilliCream Blog ATOM Feed"/><link rel="alternate" type="application/rss+xml" href="https://chillicream.com/blog/feed.xml" title="ChilliCream Blog RSS Feed"/><script>
+              (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+              (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+              m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+              })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+              ga('create', 'UA-72800164-1', 'auto');
+              ga('send', 'pageview');
+            </script><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Yanone+Kaffeesatz:700,400"/><link rel="stylesheet" href="/css/code-block-buttons.css"/><script type="text/javascript" src="https://buttons.github.io/buttons.js"></script><script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.0/clipboard.min.js"></script><script type="text/javascript" src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script><script type="text/javascript" src="/js/code-block-buttons.js"></script><script type="text/javascript" src="/js/google-adsense.js"></script><script type="text/javascript" src="/js/disqus.js"></script><script src="https://unpkg.com/vanilla-back-to-top@7.1.14/dist/vanilla-back-to-top.min.js"></script><script>
+        document.addEventListener('DOMContentLoaded', function() {
+          addBackToTop(
+            {"zIndex":100}
+          )
+        });
+        </script><script src="/js/scrollSpy.js"></script><link rel="stylesheet" href="/css/prism.css"/><link rel="stylesheet" href="/css/main.css"/><script src="/js/codetabs.js"></script></head><body class="sideNavVisible separateOnPageNav"><div class="fixedHeaderContainer"><div class="headerWrapper wrapper"><header><a href="/"><img class="logo" src="/img/signet.png" alt="ChilliCream"/><h2 class="headerTitleWithLogo">ChilliCream</h2></a><div class="navigationWrapper navigationSlider"><nav class="slidingNav"><ul class="nav-site nav-site-internal"><li class="siteNavGroupActive"><a href="/blog/" target="_self">Blog</a></li></ul></nav></div></header></div></div><div class="navPusher"><div class="docMainWrapper wrapper"><div class="docsNavContainer" id="docsNav"><nav class="toc"><div class="toggleNav"><section class="navWrapper wrapper"><div class="navBreadcrumb wrapper"><div class="navToggle" id="navToggler"><div class="hamburger-menu"><div class="line1"></div><div class="line2"></div><div class="line3"></div></div></div><h2><i>›</i><span>All blog posts</span></h2><div class="tocToggler" id="tocToggler"><i class="icon-toc"></i></div></div><div class="navGroups"><div class="navGroup"><h3 class="navGroupCategoryTitle">All blog posts</h3><ul class=""><li class="navListItem navListItemActive"><a class="navItem" href="/blog/2019/08/12/hot-chocolate-10.0.0">GraphQL - Hot Chocolate 10.0.0</a></li><li class="navListItem"><a class="navItem" href="/blog/2019/06/05/hot-chocolate-9.0.0">GraphQL - Hot Chocolate 9.0.0</a></li><li class="navListItem"><a class="navItem" href="/blog/2019/05/08/performance">GraphQL - Hot Chocolate 9.0.0 - Performance Improvements</a></li><li class="navListItem"><a class="navItem" href="/blog/2019/04/12/type-system">GraphQL - Hot Chocolate 9.0.0 - Type System</a></li><li class="navListItem"><a class="navItem" href="/blog/2019/04/11/integration-tests">GraphQL - How to write integration tests against Hot Chocolate</a></li><li class="navListItem"><a class="navItem" href="/blog/2019/03/31/hot-chocolate-0.8.1">GraphQL - Hot Chocolate 0.8.1</a></li><li class="navListItem"><a class="navItem" href="/blog/2019/03/19/logging-with-hotchocolate">GraphQL - Tracing with Hot Chocolate</a></li><li class="navListItem"><a class="navItem" href="/blog/2019/03/04/hot-chocolate-0.8.0">GraphQL - Hot Chocolate 0.8.0</a></li><li class="navListItem"><a class="navItem" href="/blog/2019/02/20/schema-stitching">GraphQL - Schema Stitching with Version 8</a></li><li class="navListItem"><a class="navItem" href="/blog/2019/02/04/instrumentation-and-apollo-tracing">GraphQL .NET Instrumentation API and Apollo Tracing</a></li><li class="navListItem"><a class="navItem" href="/blog/2019/02/04/hot-chocolate-0.7.0">GraphQL - Hot Chocolate 0.7.0</a></li><li class="navListItem"><a class="navItem" href="/blog/2019/01/24/schema-stitching">GraphQL - Schema Stitching</a></li><li class="navListItem"><a class="navItem" href="/blog/2018/11/07/docusaurus-docs-redirect">Docusaurus - How to redirect requests to /docs to a default url instead of getting a 404 error</a></li><li class="navListItem"><a class="navItem" href="/blog/2018/09/02/hot-chocolate-0.4.5">GraphQL - Hot Chocolate 0.4.5</a></li><li class="navListItem"><a class="navItem" href="/blog/2018/07/31/hot-chocolate-0.4.0">GraphQL - Hot Chocolate 0.4.0</a></li><li class="navListItem"><a class="navItem" href="/blog/2018/07/30/green-donut-0.2.0">Green Donut 0.2.0</a></li><li class="navListItem"><a class="navItem" href="/blog/2018/05/03/react-rasta-1.0.0">React Rasta 1.0.0</a></li><li class="navListItem"><a class="navItem" href="/blog/2013/09/12/jquery-steps-form-wizard">How to create a Form Wizard using jQuery Steps</a></li></ul></div></div></section></div><script>
+            var coll = document.getElementsByClassName('collapsible');
+            var checkActiveCategory = true;
+            for (var i = 0; i < coll.length; i++) {
+              var links = coll[i].nextElementSibling.getElementsByTagName('*');
+              if (checkActiveCategory){
+                for (var j = 0; j < links.length; j++) {
+                  if (links[j].classList.contains('navListItemActive')){
+                    coll[i].nextElementSibling.classList.toggle('hide');
+                    coll[i].childNodes[1].classList.toggle('rotate');
+                    checkActiveCategory = false;
+                    break;
+                  }
+                }
+              }
+
+              coll[i].addEventListener('click', function() {
+                var arrow = this.childNodes[1];
+                arrow.classList.toggle('rotate');
+                var content = this.nextElementSibling;
+                content.classList.toggle('hide');
+              });
+            }
+
+            document.addEventListener('DOMContentLoaded', function() {
+              createToggler('#navToggler', '#docsNav', 'docsSliderActive');
+              createToggler('#tocToggler', 'body', 'tocActive');
+
+              var headings = document.querySelector('.toc-headings');
+              headings && headings.addEventListener('click', function(event) {
+                var el = event.target;
+                while(el !== headings){
+                  if (el.tagName === 'A') {
+                    document.body.classList.remove('tocActive');
+                    break;
+                  } else{
+                    el = el.parentNode;
+                  }
+                }
+              }, false);
+
+              function createToggler(togglerSelector, targetSelector, className) {
+                var toggler = document.querySelector(togglerSelector);
+                var target = document.querySelector(targetSelector);
+
+                if (!toggler) {
+                  return;
+                }
+
+                toggler.onclick = function(event) {
+                  event.preventDefault();
+
+                  target.classList.toggle(className);
+                };
+              }
+            });
+        </script></nav></div><div class="container mainContainer postContainer blogContainer"><div class="wrapper"><div class="lonePost"><div class="post"><header class="postHeader"><h1 class="postHeaderTitle"><a href="/blog/2019/08/12/hot-chocolate-10.0.0">GraphQL - Hot Chocolate 10.0.0</a></h1><p class="post-meta">August 12, 2019</p><div class="authorBlock"><p class="post-authorName"><a href="https://github.com/michaelstaib" target="_blank" rel="noreferrer noopener">Michael Staib</a></p><div class="authorPhoto"><a href="https://github.com/michaelstaib" target="_blank" rel="noreferrer noopener"><img src="https://avatars1.githubusercontent.com/u/9714350?s=100&amp;v=4" alt="Michael Staib"/></a></div></div></header><div><span><p>Today we have released version 10 of <em>Hot Chocolate</em>. We originally started building version 9.1 which grew bigger and at one point became version 10. We have focused a lot on our server implementation. But let me walk you through our latest release.</p>
+<!--truncate-->
+<h2><a class="anchor" aria-hidden="true" id="filters"></a><a href="#filters" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Filters</h2>
+<p>So, while we focused a lot on the server implementation, we also added some nice features to the GraphQL core. The main feature we added here is the new filter API.</p>
+<p>Filters let you query your backend with a powerful query input type that translates into native database queries.</p>
+<pre><code class="hljs css language-graphql"><span class="token punctuation">{</span>
+  persons<span class="token punctuation">(</span>
+    <span class="token attr-name">where</span><span class="token punctuation">:</span> <span class="token punctuation">{</span> <span class="token attr-name">OR</span><span class="token punctuation">:</span> <span class="token punctuation">[</span><span class="token punctuation">{</span> <span class="token attr-name">firstName_starts_with</span><span class="token punctuation">:</span> <span class="token string">"abc"</span> <span class="token punctuation">}</span><span class="token punctuation">,</span> <span class="token punctuation">{</span> <span class="token attr-name">lastName</span><span class="token punctuation">:</span> <span class="token string">"def"</span> <span class="token punctuation">}</span><span class="token punctuation">]</span> <span class="token punctuation">}</span>
+  <span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    firstName
+    lastName
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<p>The above query would translate to a something like <code>persons.Where(t =&gt; t.FirstName.StartsWith(&quot;abc&quot;) || t.LastName == def)</code>.</p>
+<p>This works out of the box if you are using <code>IQueryable</code>.</p>
+<p>All you have to do in your schema type is to add a <code>UseFiltering</code> to your field descriptor.</p>
+<pre><code class="hljs css language-csharp"><span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">QueryType</span>
+  <span class="token punctuation">:</span> <span class="token class-name">ObjectType</span><span class="token operator">&lt;</span>Query<span class="token operator">></span>
+<span class="token punctuation">{</span>
+    <span class="token keyword">protected</span> <span class="token keyword">override</span> <span class="token keyword">void</span> <span class="token function">Configure</span><span class="token punctuation">(</span>IObjetcTypeDescriptor<span class="token operator">&lt;</span>Query<span class="token operator">></span> descriptor<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        descriptor<span class="token punctuation">.</span><span class="token function">Field</span><span class="token punctuation">(</span>t <span class="token operator">=></span> t<span class="token punctuation">.</span><span class="token function">GetPersons</span><span class="token punctuation">(</span><span class="token keyword">default</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">.</span>Type<span class="token operator">&lt;</span>ListType<span class="token operator">&lt;</span>PersonType<span class="token operator">>></span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">UseFiltering</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<p>Filters are easily combined with our pagination.</p>
+<pre><code class="hljs css language-csharp"><span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">QueryType</span>
+  <span class="token punctuation">:</span> <span class="token class-name">ObjectType</span><span class="token operator">&lt;</span>Query<span class="token operator">></span>
+<span class="token punctuation">{</span>
+    <span class="token keyword">protected</span> <span class="token keyword">override</span> <span class="token keyword">void</span> <span class="token function">Configure</span><span class="token punctuation">(</span>IObjetcTypeDescriptor<span class="token operator">&lt;</span>Query<span class="token operator">></span> descriptor<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        descriptor<span class="token punctuation">.</span><span class="token function">Field</span><span class="token punctuation">(</span>t <span class="token operator">=></span> t<span class="token punctuation">.</span><span class="token function">GetPersons</span><span class="token punctuation">(</span><span class="token keyword">default</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token generic-method"><span class="token function">UsePaging</span><span class="token punctuation">&lt;</span><span class="token class-name">PersonType</span><span class="token punctuation">></span></span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">UseFiltering</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<p>Also, it is possible to customize filters by describing what fields are filterable and what operators are allowed.</p>
+<pre><code class="hljs css language-csharp"><span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">QueryType</span>
+  <span class="token punctuation">:</span> <span class="token class-name">ObjectType</span><span class="token operator">&lt;</span>Query<span class="token operator">></span>
+<span class="token punctuation">{</span>
+    <span class="token keyword">protected</span> <span class="token keyword">override</span> <span class="token keyword">void</span> <span class="token function">Configure</span><span class="token punctuation">(</span>IObjetcTypeDescriptor<span class="token operator">&lt;</span>Query<span class="token operator">></span> descriptor<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        descriptor
+          <span class="token punctuation">.</span><span class="token function">Field</span><span class="token punctuation">(</span>t <span class="token operator">=></span> t<span class="token punctuation">.</span><span class="token function">GetPersons</span><span class="token punctuation">(</span><span class="token keyword">default</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+          <span class="token punctuation">.</span><span class="token generic-method"><span class="token function">UsePaging</span><span class="token punctuation">&lt;</span><span class="token class-name">PersonType</span><span class="token punctuation">></span></span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+          <span class="token punctuation">.</span><span class="token function">UseFiltering</span><span class="token punctuation">(</span>d <span class="token operator">=></span> d<span class="token punctuation">.</span><span class="token function">Ignore</span><span class="token punctuation">(</span>t <span class="token operator">=></span> t<span class="token punctuation">.</span>LastName<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<p>If you want to use the same filter multiple times all over your schema you can also describe the filter input type separately.</p>
+<pre><code class="hljs css language-csharp"><span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">PersonFilterType</span>
+    <span class="token punctuation">:</span> <span class="token class-name">FilterInputType</span><span class="token operator">&lt;</span>Person<span class="token operator">></span>
+<span class="token punctuation">{</span>
+    <span class="token keyword">protected</span> <span class="token keyword">override</span> <span class="token keyword">void</span> <span class="token function">Configure</span><span class="token punctuation">(</span>
+        IFilterInputTypeDescriptor<span class="token operator">&lt;</span>Foo<span class="token operator">></span> descriptor<span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+        descriptor
+            <span class="token punctuation">.</span><span class="token function">BindFieldsExplicitly</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+            <span class="token punctuation">.</span><span class="token function">Filter</span><span class="token punctuation">(</span>t <span class="token operator">=></span> t<span class="token punctuation">.</span>Name<span class="token punctuation">)</span>
+            <span class="token punctuation">.</span><span class="token function">BindOperationsExplicitly</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+            <span class="token punctuation">.</span><span class="token function">AllowEquals</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">Name</span><span class="token punctuation">(</span><span class="token string">"equals"</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">And</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+            <span class="token punctuation">.</span><span class="token function">AllowContains</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">Name</span><span class="token punctuation">(</span><span class="token string">"contains"</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">And</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+            <span class="token punctuation">.</span><span class="token function">AllowIn</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">Name</span><span class="token punctuation">(</span><span class="token string">"in"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<p>And then use this filter type where you need it.</p>
+<pre><code class="hljs css language-csharp"><span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">QueryType</span>
+  <span class="token punctuation">:</span> <span class="token class-name">ObjectType</span><span class="token operator">&lt;</span>Query<span class="token operator">></span>
+<span class="token punctuation">{</span>
+    <span class="token keyword">protected</span> <span class="token keyword">override</span> <span class="token keyword">void</span> <span class="token function">Configure</span><span class="token punctuation">(</span>IObjetcTypeDescriptor<span class="token operator">&lt;</span>Query<span class="token operator">></span> descriptor<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        descriptor
+          <span class="token punctuation">.</span><span class="token function">Field</span><span class="token punctuation">(</span>t <span class="token operator">=></span> t<span class="token punctuation">.</span><span class="token function">GetPersons</span><span class="token punctuation">(</span><span class="token keyword">default</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+          <span class="token punctuation">.</span><span class="token generic-method"><span class="token function">UsePaging</span><span class="token punctuation">&lt;</span><span class="token class-name">PersonType</span><span class="token punctuation">></span></span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+          <span class="token punctuation">.</span><span class="token generic-method"><span class="token function">UseFiltering</span><span class="token punctuation">&lt;</span><span class="token class-name">PersonFilterType</span><span class="token punctuation">></span></span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<p>The nice thing here is that the filter works out of the box on <code>IQueryable</code> and <code>IEnumerable</code> so you can use it for database queries as well as for in-memory lists.</p>
+<p>With version 10 of <em>Hot Chocolate</em> we are supporting filters on scalar fields. But we are already working on support for object filters and enumerable filters.</p>
+<p>Also, we are working on sorting which should be included in the first preview of version 11.</p>
+<p>If you want to give input or follow our work, you can head over to these four issues that will be coming with version 11.</p>
+<ul>
+<li><a href="https://github.com/ChilliCream/hotchocolate/issues/921">Object Filters #921</a></li>
+<li><a href="https://github.com/ChilliCream/hotchocolate/issues/922">IEnumerable Filters #922</a></li>
+<li><a href="https://github.com/ChilliCream/hotchocolate/issues/923">Sorting #923</a></li>
+<li><a href="https://github.com/ChilliCream/hotchocolate/issues/924">Aggregations #924</a></li>
+</ul>
+<blockquote>
+<p>If you want to check out more about filters head over to our <a href="https://hotchocolate.io/docs/filters">documentation</a>.</p>
+</blockquote>
+<p>Let me also thank <a href="https://github.com/PascalSenn">Pascal</a> for his awesome work on this one.</p>
+<h2><a class="anchor" aria-hidden="true" id="subscriptions"></a><a href="#subscriptions" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Subscriptions</h2>
+<p>Subscriptions was another big investment that we took for this release.</p>
+<h3><a class="anchor" aria-hidden="true" id="redis"></a><a href="#redis" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Redis</h3>
+<p>For the core API we introduced a <em>Redis</em> subscription provider. This means that you now can use <em>Redis</em> as a pub/sub system without a hassle.</p>
+<pre><code class="hljs css language-csharp"><span class="token keyword">var</span> configuration <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">ConfigurationOptions</span>
+<span class="token punctuation">{</span>
+    Ssl <span class="token operator">=</span> <span class="token keyword">true</span><span class="token punctuation">,</span>
+    AbortOnConnectFail <span class="token operator">=</span> <span class="token keyword">false</span><span class="token punctuation">,</span>
+    Password <span class="token operator">=</span> password
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+configuration<span class="token punctuation">.</span>EndPoints<span class="token punctuation">.</span><span class="token function">Add</span><span class="token punctuation">(</span><span class="token string">"host:port"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+services<span class="token punctuation">.</span><span class="token function">AddRedisSubscriptionProvider</span><span class="token punctuation">(</span>configuration<span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre>
+<p>That`s all  you have to do to connect the query engine with <code>Redis</code>.</p>
+<p><strong>So why should we want to use <code>Redis</code> anyway.</strong></p>
+<p>The thing with in-memory subscriptions is that they will only work reliable if you have one instance of <em>Hot Chocolate</em>. When you have deployed multiple instance of <em>Hot Chcocolate</em> or if you are scaling on demand with a massive amount of subscribers then you want to make sure that your pub/sub system scales and that mutations executed on one server raise an event on another one.</p>
+<p>But there is more, sometimes you want to raise an event without triggering a mutation, maybe there was an event somewhere in your infrastructure that you want to relay as a GraphQL subscription, this can also be done through an external pub/sub system like Redis.</p>
+<p>With version 11 We will add <em>Kafka</em> and <em>Azure EventHub</em> support and are also looking into other pub/sub systems, so that you can use whatever feels best to you.</p>
+<h3><a class="anchor" aria-hidden="true" id="pipelines"></a><a href="#pipelines" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Pipelines</h3>
+<p>We also rebuild the whole WebSocket handling in the server by using the new <code>Pipeline</code> API that Microsoft introduced to .Net. This makes it now super-efficient how we handle the messages with our new <code>UTF8RequestParser</code>. But we are not done here and will with version 11 further optimize our parser to work even better with pipelines.</p>
+<blockquote>
+<p>If you want to check out more about subscriptions head over to our <a href="https://hotchocolate.io/docs/code-first-subscription">documentation</a>.</p>
+</blockquote>
+<p>Let me also thank <a href="https://github.com/glucaci">Gabriel</a> for his great work on subscriptions.</p>
+<h2><a class="anchor" aria-hidden="true" id="batching"></a><a href="#batching" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Batching</h2>
+<p>Another big feature we have invested in was batching. When we started on this one we reflected a lot about how we want to do this and if we really need this one. In the end we decided that batching could enable great scenarios and is worth adding to our server.</p>
+<p>When Lee Byron initially showed batching off, he explained that this would be useful in cases where you want to fetch important data first and delay more expensive data without needing to issue two separate calls.</p>
+<p>They had this example that they want to fetch the news stream of a given user and the comments should appear once those are available.</p>
+<p><code>POST /graphql?batchOperations=[NewsFeed, StoryComments]</code></p>
+<pre><code class="hljs css language-graphql"><span class="token keyword">query</span> NewsFeed <span class="token punctuation">{</span>
+  stories <span class="token punctuation">{</span>
+    id <span class="token directive function">@export</span><span class="token punctuation">(</span><span class="token attr-name">as</span><span class="token punctuation">:</span> <span class="token string">"ids"</span><span class="token punctuation">)</span>
+    actor
+    message
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">query</span> StoryComments <span class="token punctuation">{</span>
+  stories<span class="token punctuation">(</span><span class="token attr-name">ids</span><span class="token punctuation">:</span> <span class="token variable">$ids</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    comments<span class="token punctuation">(</span><span class="token attr-name">first</span><span class="token punctuation">:</span> <span class="token number">2</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      actor
+      message
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<p>In the above query we would first fetch the stories, collect all the story ids and use these as an input to the next query to fetch all the comments for the former stories.</p>
+<p>The nice thing is that this is done in one HTTP call and as soon as query one is executed, we will write the result into the stream and the client can already work with that data while waiting for the second result.</p>
+<p>This all is working over one HTTP call without WebSockets and is super-efficient.</p>
+<p><strong>Why did we question its use?</strong></p>
+<p>The thing is that with version 11 we will introduce <code>@defer</code> which will allow you to do the following:</p>
+<pre><code class="hljs css language-graphql"><span class="token keyword">query</span> NewsFeed <span class="token punctuation">{</span>
+  stories <span class="token punctuation">{</span>
+    id <span class="token directive function">@export</span><span class="token punctuation">(</span><span class="token attr-name">as</span><span class="token punctuation">:</span> <span class="token string">"ids"</span><span class="token punctuation">)</span>
+    actor
+    message
+    <span class="token operator">...</span> <span class="token directive function">@defer</span> <span class="token punctuation">{</span>
+      comments<span class="token punctuation">(</span><span class="token attr-name">first</span><span class="token punctuation">:</span> <span class="token number">2</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        actor
+        message
+      <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<p>The fragment that is annotated with <code>@defer</code> will be deferred to when it is ready. This means you can write queries much cleaner with this and reap the same benefits.</p>
+<p><strong>What makes batching a great feature then?</strong></p>
+<p>First, you can defer query parts with this now in version 10.</p>
+<p>Second, I think batching is very interesting with mutations where you can write complex mutation flows that use the results of one mutation to feed data in the next mutation. The ability to export result data into variables lets you write nice data flows.</p>
+<p>Look at how easy you can export data as variable by just adding <code>@export</code>.</p>
+<pre><code class="hljs css language-graphql"><span class="token punctuation">{</span>
+  foo <span class="token punctuation">{</span>
+    bar <span class="token directive function">@export</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<p>What`s important to know here is that you also can export objects that will convert to a matching input type.</p>
+<pre><code class="hljs css language-graphql"><span class="token punctuation">{</span>
+  foo <span class="token directive function">@export</span><span class="token punctuation">(</span><span class="token attr-name">as</span><span class="token punctuation">:</span> <span class="token string">"something"</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    bar
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<p>Third, we also wanted to support Apollo batching where Apollo collects all the queries of a client in a certain time window and sends those in one request to our server. One batch will share the <em>DataLoader</em> instances which means that the batch request will be faster than sending them in separately.</p>
+<blockquote>
+<p>We are supporting operation batching and request batching and if you would like to know more about it head over to our <a href="https://hotchocolate.io/docs/batching">documentation</a>.</p>
+</blockquote>
+<h2><a class="anchor" aria-hidden="true" id="persisted-queries"></a><a href="#persisted-queries" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Persisted Queries</h2>
+<p>With version 10 we now support persisted queries. With persisted queries you can add well-knonw queries to a second-level cache. All queries stored in there are considered valid.</p>
+<p><strong>So, what is this for?</strong></p>
+<p>Persisted queries are faster, since we validate those only once. Moreover, you do not need to send us the query every time, you can instead just send the query name and the server will look up the query and execute it. This can dramatically improves performance, reduces bandwidth and memory usage.</p>
+<p>This makes it feasible to use a simple <code>GET</code> request instead of a <code>POST</code> request which can also have benefits when using things like CDNs.</p>
+<p><code>GET http://example.com/graphql?namedQuery=QUERYNAME&amp;variables={&quot;id&quot;:&quot;QVBJcy5ndXJ1&quot;}</code></p>
+<p>We have opted to support both active persisted queries and persisted queries.</p>
+<blockquote>
+<p>Read more about this <a href="https://hotchocolate.io/docs/persisted-queries">here</a>;</p>
+</blockquote>
+<h2><a class="anchor" aria-hidden="true" id="server-modularization"></a><a href="#server-modularization" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Server Modularization</h2>
+<p>With Version 10 we have now a modularized server implementation. That each middleware is placed in its own package. You can still just add our <code>HotChocolate.AspNetCore</code> or <code>HotChocolate.AspNetClassic</code> package and do not worry what is included in your server. But with version 10 you could now just add some of the middleware like maybe just HTTP-GET or HTTP-POST. This way if you do not use for instance subscriptions than there will not even be the code for subscriptions.</p>
+<p>With version 10 we have the following middleware available:</p>
+<ul>
+<li>HotChocolate.AspNetCore.HttpPost</li>
+<li>HotChocolate.AspNetCore.HttpGet</li>
+<li>HotChocolate.AspNetCore.HttpGetSchema</li>
+<li>HotChocolate.AspNetCore.Subscriptions</li>
+<li>HotChocolate.AspNetCore.Authorization</li>
+</ul>
+<blockquote>
+<p>Read more about this right <a href="https://hotchocolate.io/docs/aspnet">here</a></p>
+</blockquote>
+<h2><a class="anchor" aria-hidden="true" id="utf-8-request-parser"></a><a href="#utf-8-request-parser" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>UTF-8 Request Parser</h2>
+<p>With GraphQL most requests are provided as <code>JSON</code> that contains the request as an escaped string. This is kind of bad for performance since we first parse the <code>JSON</code> then take the string and parse again a string that we actually do not need.</p>
+<p>With the new <em>UTF-8 request parser</em> we can finally just read the binary request stream and parse the JSON and the GraphQL request in one go. But there is more, we have given our new UTF-8 request parser access to our document cache, meaning while we parse the JSON request and hit the part were the GraphQL request is, we can look up if this query is already cached. This dramatically reduces memory usage and performance since we will not consume the query property anyway.</p>
+<p><img src="../../../../img/request_parser_mem.png" height="300" width="300"></p>
+<p>The new request parser does only allocate 1/3 of the memory that GraphQL-DotNet uses with it`s combination of JSON.Net and it`s string based GraphQL parser.</p>
+<p>The Hot Chocolate GraphQL parser is twice as fast than the GraphQL-DotNet parser on average. The whole request pipeline is 3 times faster on average, but we are not done yet and will double down on performance with the new query execution plans and our updated syntax tree that allows to further reduce string usage.</p>
+<h2><a class="anchor" aria-hidden="true" id="everything-else"></a><a href="#everything-else" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Everything Else</h2>
+<p>With version 10 we added a ton of bug fixes and also, we added a lot of API improvements that will make your day to day business so much easier.</p>
+<p>Like now you can add error filter to the dependency injection instead of registering them with the execution builder.</p>
+<pre><code class="hljs css language-csharp">services<span class="token punctuation">.</span><span class="token generic-method"><span class="token function">AddErrorFilter</span><span class="token punctuation">&lt;</span><span class="token class-name">MyCustomErrorFilter</span><span class="token punctuation">></span></span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre>
+<p>The same goes for class <em>DataLoader</em>.</p>
+<pre><code class="hljs css language-csharp">services<span class="token punctuation">.</span><span class="token generic-method"><span class="token function">AddDataLoader</span><span class="token punctuation">&lt;</span><span class="token class-name">MyCustomDataLoader</span><span class="token punctuation">></span></span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre>
+<p>When you use this extension, we also will add the <em>DataLoader</em> registry.</p>
+<p>Also, we refined things like the schema builder so that you can in place now define all the types:</p>
+<pre><code class="hljs css language-csharp">SchemaBuilder<span class="token punctuation">.</span><span class="token function">New</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+  <span class="token punctuation">.</span><span class="token function">AddEnumType</span><span class="token punctuation">(</span>d <span class="token operator">=></span> d<span class="token punctuation">.</span><span class="token function">Name</span><span class="token punctuation">(</span><span class="token string">"MyEnum"</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">Value</span><span class="token punctuation">(</span>"FOO<span class="token punctuation">)</span><span class="token punctuation">)</span>
+  <span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>
+  <span class="token punctuation">.</span><span class="token function">Create</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre>
+<p>There are so many little things that can make your day :)</p>
+<h2><a class="anchor" aria-hidden="true" id="version-11"></a><a href="#version-11" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Version 11</h2>
+<p>Like with every release we are giving a little outlook for the next version. As the releases are fluid, we are sometimes moving things around.</p>
+<p>We want to really focus on two major topics with the next release.</p>
+<h2><a class="anchor" aria-hidden="true" id="query-execution-plans"></a><a href="#query-execution-plans" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Query Execution Plans</h2>
+<p>We originally planned for this one for version 10 (aka version 9.1) but decided that the current set of new features is already a good version that is worth to release. But with the next release this is one of the two things we really will focus on. With this in place we will double down on performance and will introduce features like <code>@defer</code> and <code>@stream</code>.</p>
+<p>Moreover, this one will be the backbone of our new stitching layer that will bring lots of new features to schema stitching.</p>
+<h2><a class="anchor" aria-hidden="true" id="client-api"></a><a href="#client-api" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Client API</h2>
+<p>The second thing we already started work on is a client API for .NET Core. We are currently experimenting with how we design this new piece of API. We have started a discussion around this in our slack channel and will start with some coding soon.</p>
+<h2><a class="anchor" aria-hidden="true" id="banana-cakepop"></a><a href="#banana-cakepop" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Banana Cakepop</h2>
+<p><strong>Oh, didn`t you forget something?</strong></p>
+<p>Yes, yes originally, we had planned to release <em>Banana Cakepop</em> alongside this version. We ran into some performance issues with the tree we originally selected when using large schemas with more than 1000 types.</p>
+<p>We have now started to write the tree component ourselves which is taking some extra time. We already see that we can handle now massive schemas far beyond 1000 types without any hiccups. But we have still lots to do on the new tree.</p>
+<p>I hope that we can see the promised preview in the next 4 to 8 weeks. We want to release something really good and not something half-backed.</p>
+<h2><a class="anchor" aria-hidden="true" id="the-other-things"></a><a href="#the-other-things" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>The Other Things</h2>
+<p>We also will add more features to our filter API and make working with databases even easier.</p>
+<p>Also, we will add more subscription provider like Kafka and EventHub.</p>
+<p>Furthermore, we will rework our <code>Utf8GraphQLReader</code> to use <code>ReadOnlySequence&lt;byte&gt;</code> instead of <code>ReadOnlySpan&lt;byte&gt;</code> in order to make this even better work with the Pipeline API. Apart from that we will optimize the syntax tree to be able to work with raw bytes instead of strings. At the moment scalar like String, Int, Float and Enum are parsed as string representation like with the original node parser. The scalar type parses then the string into the native type. The same goes for the new UTF-8 request parser. This is unnecessary with the <code>Utf8Parser</code> and <code>Utf8Formater</code>. We will change the AST to instead have the raw bytes. The current <code>Value</code> property will still be there but only for compatibility with tools that use the current version of the AST. The new scalar types will have access to a <code>ReadOnlySpan&lt;byte&gt;</code> and can decide how to efficiently parse literals.</p>
+<p>If you want to get into contact with us head over to our <a href="https://join.slack.com/t/hotchocolategraphql/shared_invite/enQtNTA4NjA0ODYwOTQ0LTBkZjNjZWIzMmNlZjQ5MDQyNDNjMmY3NzYzZjgyYTVmZDU2YjVmNDlhNjNlNTk2ZWRiYzIxMTkwYzA4ODA5Yzg">slack channel</a> and join our community.</p>
+<table>
+<thead>
+<tr><th><a href="https://join.slack.com/t/hotchocolategraphql/shared_invite/enQtNTA4NjA0ODYwOTQ0LTBkZjNjZWIzMmNlZjQ5MDQyNDNjMmY3NzYzZjgyYTVmZDU2YjVmNDlhNjNlNTk2ZWRiYzIxMTkwYzA4ODA5Yzg">HotChocolate Slack Channel</a></th><th><a href="https://hotchocolate.io">Hot Chocolate Documentation</a></th><th><a href="https://github.com/ChilliCream/hotchocolate">Hot Chocolate on GitHub</a></th></tr>
+</thead>
+<tbody>
+</tbody>
+</table>
+</span></div></div><div class="blogSocialSection"><div class="blogSocialSectionItem"><a href="https://twitter.com/share" class="twitter-share-button" data-text="GraphQL - Hot Chocolate 10.0.0" data-url="https://chillicream.com/blog/2019/08/12/hot-chocolate-10.0.0" data-related="true" data-show-count="false">Tweet</a></div></div></div><div class="blog-recent"><a class="button" href="/blog">Recent posts</a></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#filters">Filters</a></li><li><a href="#subscriptions">Subscriptions</a><ul class="toc-headings"><li><a href="#redis">Redis</a></li><li><a href="#pipelines">Pipelines</a></li></ul></li><li><a href="#batching">Batching</a></li><li><a href="#persisted-queries">Persisted Queries</a></li><li><a href="#server-modularization">Server Modularization</a></li><li><a href="#utf-8-request-parser">UTF-8 Request Parser</a></li><li><a href="#everything-else">Everything Else</a></li><li><a href="#version-11">Version 11</a></li><li><a href="#query-execution-plans">Query Execution Plans</a></li><li><a href="#client-api">Client API</a></li><li><a href="#banana-cakepop">Banana Cakepop</a></li><li><a href="#the-other-things">The Other Things</a></li></ul></nav></div><footer class="nav-footer" id="footer"><section class="sitemap"><a href="/" class="nav-home"><img src="/img/signet.png" alt="ChilliCream" width="64" height="64"/></a><div><h5>Projects</h5><a href="https://greendonut.io" target="_blank">Green Donut</a><a href="https://hotchocolate.io" target="_blank">Hot Chocolate</a><a href="https://react-rasta.com" target="_blank">React Rasta</a><a href="https://github.com/ChilliCream/thor-core" target="_blank">Thor</a></div><div><h5>Community</h5><a href="https://twitter.com/Chilli_Cream" target="_blank" rel="noreferrer noopener">Follow us on Twitter</a></div><div><h5>More</h5><a href="/blog">Blog</a><a href="https://github.com/ChilliCream/website" target="_blank">GitHub</a><a href="https://github.com/ChilliCream/website/issues" target="_blank">Issues</a><a class="github-button" href="https://github.com/ChilliCream/website" data-icon="octicon-star" data-count-href="/chillicream/website/stargazers" data-show-count="true" data-count-aria-label="# stargazers on GitHub" aria-label="Star this project on GitHub">Star</a></div></section><section class="copyright">Copyright © 2019 ChilliCream</section></footer></div><script>window.twttr=(function(d,s, id){var js,fjs=d.getElementsByTagName(s)[0],t=window.twttr||{};if(d.getElementById(id))return t;js=d.createElement(s);js.id=id;js.src='https://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js, fjs);t._e = [];t.ready = function(f) {t._e.push(f);};return t;}(document, 'script', 'twitter-wjs'));</script></body></html>
