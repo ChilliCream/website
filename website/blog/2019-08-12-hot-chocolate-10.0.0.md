@@ -89,7 +89,7 @@ public class PersonFilterType
 }
 ```
 
-And the use this filter type where you need it.
+And then use this filter type where you need it.
 
 ```csharp
 public class QueryType
