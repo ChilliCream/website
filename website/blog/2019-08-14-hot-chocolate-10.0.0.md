@@ -291,7 +291,9 @@ With GraphQL most requests are provided as `JSON` that contains the request as a
 
 With the new _UTF-8 request parser_ we can finally just read the binary request stream and parse the JSON and the GraphQL request in one go. But there is more, we have given our new UTF-8 request parser access to our document cache, meaning while we parse the JSON request and hit the part were the GraphQL request is, we can look up if this query is already cached. This dramatically reduces memory usage and performance since we will not consume the query property anyway.
 
-<img src="../../../../img/request_parser_mem.png" height="300" width="300">
+<center>
+  <img src="../../../../img/request_parser_mem.png" width="50%">
+</center>
 
 The new request parser does only allocate 1/3 of the memory that GraphQL-DotNet uses with it\`s combination of JSON.Net and it\`s string based GraphQL parser.
 
