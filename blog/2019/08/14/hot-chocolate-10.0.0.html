@@ -172,7 +172,7 @@ configuration<span class="token punctuation">.</span>EndPoints<span class="token
 
 services<span class="token punctuation">.</span><span class="token function">AddRedisSubscriptionProvider</span><span class="token punctuation">(</span>configuration<span class="token punctuation">)</span><span class="token punctuation">;</span>
 </code></pre>
-<p>That`s all  you have to do to connect the query engine with <code>Redis</code>.</p>
+<p>That`s all you have to do to connect the query engine with <code>Redis</code>.</p>
 <p><strong>So why should we want to use <code>Redis</code> anyway.</strong></p>
 <p>The thing with in-memory subscriptions is that they will only work reliable if you have one instance of <em>Hot Chocolate</em>. When you have deployed multiple instance of <em>Hot Chcocolate</em> or if you are scaling on demand with a massive amount of subscribers then you want to make sure that your pub/sub system scales and that mutations executed on one server raise an event on another one.</p>
 <p>But there is more, sometimes you want to raise an event without triggering a mutation, maybe there was an event somewhere in your infrastructure that you want to relay as a GraphQL subscription, this can also be done through an external pub/sub system like Redis.</p>
