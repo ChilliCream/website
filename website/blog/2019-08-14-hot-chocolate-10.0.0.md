@@ -142,7 +142,7 @@ configuration.EndPoints.Add("host:port");
 services.AddRedisSubscriptionProvider(configuration);
 ```
 
-That\`s all  you have to do to connect the query engine with `Redis`.
+That\`s all you have to do to connect the query engine with `Redis`.
 
 **So why should we want to use `Redis` anyway.**
 
@@ -291,7 +291,7 @@ The Hot Chocolate GraphQL parser is twice as fast than the GraphQL-DotNet parser
 
 ## Everything Else
 
-With version 10 we added a ton of bug fixes and also, we added a lot of API improvements that will make your day to day business so much easier. 
+With version 10 we added a ton of bug fixes and also, we added a lot of API improvements that will make your day to day business so much easier.
 
 Like now you can add error filter to the dependency injection instead of registering them with the execution builder.
 
