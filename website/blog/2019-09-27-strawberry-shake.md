@@ -71,9 +71,9 @@ OK, now that we have a project setup lets initialize the project by creating a l
 dotnet graphql init ./StarWars http://localhost:5000/graphql -n StarWars
 ```
 
-> Note: You can pass in the token and scheme if your endpoint is authenticated. There is also an update command to update the local schema.
-
 The init command will download the schema as GraphQL SDL and create a config to refetch the schema. Also, the config contains the client name. The client name defines how the client class is and interface is named.
+
+> Note: You can pass in the token and scheme if your endpoint is authenticated. There is also an update command to update the local schema.
 
 The configuration will look like the following:
 
