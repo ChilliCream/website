@@ -33,7 +33,7 @@ Let us have a look at how we want to tackle things with _Strawberry Shake_. For 
 
 If you want to follow along then install the [.NET Core 3 SDK](https://dotnet.microsoft.com/download/dotnet-core/3.0) . We are also supporting other .NET variants but for this example you will need the .NET Core 3 SDK.
 
-Before we can start let us clone the _Hot Chocolate_ repositor and start our _Star Wars_ server.
+Before we can start let us clone the _Hot Chocolate_ repository and start our _Star Wars_ server.
 
 ```bash
 git clone https://github.com/ChilliCream/hotchocolate.git
@@ -236,7 +236,7 @@ public interface IStarWarsClient
 
 OK, let's get it running and then go into more details. By default the generator will also generate dependency injection code for `Microsoft.Extensions.DependencyInjection`. In order to get our client up and running we just have to set up a dependency injection container.
 
-> Note: You can shut of dependency injection generation with an _MSBuild_ property. The client can also be instantiated with a builder or by using a different dependency injection container.
+> Note: You can shut of dependency injection generation with a _MSBuild_ property. The client can also be instantiated with a builder or by using a different dependency injection container.
 
 Replace you `Program` class with the following code.
 
