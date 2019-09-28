@@ -113,6 +113,9 @@ dotnet <span class="token function">add</span> package Microsoft.Extensions.Depe
 <pre><code class="hljs css language-bash">dotnet graphql init ./StarWars http://localhost:5000/graphql -n StarWars
 </code></pre>
 <p>The init command will download the schema as GraphQL SDL and create a config to refetch the schema. Also, the config contains the client name. The client name defines how the client class is and interface is named.</p>
+<blockquote>
+<p>Note: You can pass in the token and scheme if your endpoint is authenticated. There is also an update command to update the local schema.</p>
+</blockquote>
 <p>The configuration will look like the following:</p>
 <pre><code class="hljs css language-json"><span class="token punctuation">{</span>
   <span class="token property">"Schemas"</span><span class="token operator">:</span> <span class="token punctuation">[</span>
