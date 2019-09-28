@@ -4,7 +4,7 @@
         <title>ChilliCream Blog</title>
         <link>https://chillicream.com/blog</link>
         <description>The best place to stay up-to-date with the latest ChilliCream news and events.</description>
-        <lastBuildDate>Wed, 14 Aug 2019 06:00:00 GMT</lastBuildDate>
+        <lastBuildDate>Fri, 27 Sep 2019 06:00:00 GMT</lastBuildDate>
         <docs>http://blogs.law.harvard.edu/tech/rss</docs>
         <generator>Feed for Node.js</generator>
         <image>
@@ -13,6 +13,16 @@
             <link>https://chillicream.com/blog</link>
         </image>
         <copyright>Copyright © 2019 ChilliCream</copyright>
+        <item>
+            <title><![CDATA[Building a .NET GraphQL Client API]]></title>
+            <link>https://chillicream.com/blog/2019/09/27/strawberry-shake.html</link>
+            <guid>https://chillicream.com/blog/2019/09/27/strawberry-shake.html</guid>
+            <pubDate>Fri, 27 Sep 2019 06:00:00 GMT</pubDate>
+            <description><![CDATA[<p>We for a while now have two big GraphQL server projects on the .NET platform. So, if you just want to build a decent GraphQL server you can pick and choose between <em>GraphQL .NET</em> or <em>Hot Chocolate</em>.</p>
+<p>If you are looking at consuming a GraphQL server in your <em>Blazor</em> or <em>Xamarin</em> application, then things are not so promising. You can either go with a bare bone client from the <em>GraphQL .NET</em> project or you can decide to go it alone and build on <code>HttpClient</code>.</p>
+<p>After the version 10 release of our <em>Hot Chocolate</em> GraphQL server we have started to build a new GraphQL client API that is more in line with how people in JavaScript consume GraphQL endpoints.</p>
+]]></description>
+        </item>
         <item>
             <title><![CDATA[GraphQL - Hot Chocolate 10.0.0]]></title>
             <link>https://chillicream.com/blog/2019/08/14/hot-chocolate-10.0.0.html</link>
