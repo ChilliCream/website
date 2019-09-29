@@ -8,6 +8,7 @@
 // See https://docusaurus.io/docs/site-config.html for all the possible
 
 const title = "ChilliCream";
+const shopUrl = "https://shop.chillicream.com";
 
 const siteConfig = {
   title,
@@ -19,10 +20,18 @@ const siteConfig = {
   projectName: "website",
   organizationName: "chillicream",
   repoUrl: "https://github.com/ChilliCream/website",
-  headerLinks: [{
-    blog: true,
-    label: "Blog"
-  }],
+  shopUrl,
+  headerLinks: [
+    {
+      blog: true,
+      label: "Blog"
+    },
+    {
+      href: shopUrl,
+      label: "Shop",
+      external: true
+    }
+  ],
   usePrism: true,
   headerIcon: "img/signet.png",
   footerIcon: "img/signet.png",
