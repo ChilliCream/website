@@ -95,14 +95,14 @@ dotnet run --project examples/AspNetCore.StarWars/
 <p>Now that we have our <em>Star Wars</em> server running, lets create a folder for our client and install the <em>Strawberry Shake</em> tools.</p>
 <pre><code class="hljs css language-bash"><span class="token function">mkdir</span> berry
 dotnet new tool-manifest
-dotnet tool <span class="token function">install</span> StrawberryShake.Tools --version <span class="token number">11.0</span>.0-preview.26 --local
+dotnet tool <span class="token function">install</span> StrawberryShake.Tools --version <span class="token number">11.0</span>.0-preview.35 --local
 </code></pre>
 <p>In our example we are using the new .NET CLI local tools. <code>dotnet new tool-manifest</code> creates the tools manifest which basically is like a packages.config and holds the information of which tools in which version we are using.</p>
-<p>The next command <code>dotnet tool install StrawberryShake.Tools --version 11.0.0-preview.26 --local</code> installs our <em>Strawberry Shake</em> tools.</p>
+<p>The next command <code>dotnet tool install StrawberryShake.Tools --version 11.0.0-preview.35 --local</code> installs our <em>Strawberry Shake</em> tools.</p>
 <p>Next we need a little project. Let’s create a new console application so that we can easily run and debug what we are doing.</p>
 <pre><code class="hljs css language-bash">dotnet new console -n BerryClient
 <span class="token builtin class-name">cd</span> BerryClient
-dotnet <span class="token function">add</span> package StrawberryShake --version <span class="token number">11.0</span>.0-preview.26
+dotnet <span class="token function">add</span> package StrawberryShake --version <span class="token number">11.0</span>.0-preview.35
 dotnet <span class="token function">add</span> package Microsoft.Extensions.Http --version <span class="token number">3.0</span>.0
 dotnet <span class="token function">add</span> package Microsoft.Extensions.DependencyInjection --version <span class="token number">3.0</span>.0
 </code></pre>
