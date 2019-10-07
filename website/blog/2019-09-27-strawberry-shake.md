@@ -46,19 +46,19 @@ Now that we have our _Star Wars_ server running, lets create a folder for our cl
 ```bash
 mkdir berry
 dotnet new tool-manifest
-dotnet tool install StrawberryShake.Tools --version 11.0.0-preview.26 --local
+dotnet tool install StrawberryShake.Tools --version 11.0.0-preview.35 --local
 ```
 
 In our example we are using the new .NET CLI local tools. `dotnet new tool-manifest` creates the tools manifest which basically is like a packages.config and holds the information of which tools in which version we are using.
 
-The next command `dotnet tool install StrawberryShake.Tools --version 11.0.0-preview.26 --local` installs our _Strawberry Shake_ tools.
+The next command `dotnet tool install StrawberryShake.Tools --version 11.0.0-preview.35 --local` installs our _Strawberry Shake_ tools.
 
 Next we need a little project. Let’s create a new console application so that we can easily run and debug what we are doing.
 
 ```bash
 dotnet new console -n BerryClient
 cd BerryClient
-dotnet add package StrawberryShake --version 11.0.0-preview.26
+dotnet add package StrawberryShake --version 11.0.0-preview.35
 dotnet add package Microsoft.Extensions.Http --version 3.0.0
 dotnet add package Microsoft.Extensions.DependencyInjection --version 3.0.0
 ```
