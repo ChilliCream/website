@@ -14,7 +14,7 @@
         <link href="https://chillicream.com/blog/2019/09/27/strawberry-shake.html">
         </link>
         <updated>2019-09-27T06:00:00Z</updated>
-        <summary type="html"><![CDATA[<p><img src="/img/blog/strawberry-shake-banner.svg" alt="Banner"></p>
+        <summary type="html"><![CDATA[<p><img src="/img/blog/strawberry-shake-banner.svg" alt="Strawberry Shake"></p>
 <p>We for a while now have two big GraphQL server projects on the .NET platform. So, if you just want to build a decent GraphQL server you can pick and choose between <em>GraphQL .NET</em> or <em>Hot Chocolate</em>.</p>
 <p>If you are looking at consuming a GraphQL server in your <em>Blazor</em> or <em>Xamarin</em> application, then things are not so promising. You can either go with a bare bone client from the <em>GraphQL .NET</em> project or you can decide to go it alone and build on <code>HttpClient</code>.</p>
 <p>After the version 10 release of our <em>Hot Chocolate</em> GraphQL server we have started to build a new GraphQL client API that is more in line with how people in JavaScript consume GraphQL endpoints.</p>
@@ -30,7 +30,8 @@
         <link href="https://chillicream.com/blog/2019/08/14/hot-chocolate-10.0.0.html">
         </link>
         <updated>2019-08-14T06:00:00Z</updated>
-        <summary type="html"><![CDATA[<p>Today we have released version 10 of <em>Hot Chocolate</em>. We originally started building version 9.1 which grew bigger and at one point became version 10. We have focused a lot on our server implementation. But let me walk you through our latest release.</p>
+        <summary type="html"><![CDATA[<p><img src="/img/blog/hotchocolate-banner.svg" alt="Hot Chocolate"></p>
+<p>Today we have released version 10 of <em>Hot Chocolate</em>. We originally started building version 9.1 which grew bigger and at one point became version 10. We have focused a lot on our server implementation. But let me walk you through our latest release.</p>
 ]]></summary>
         <author>
             <name>Michael Staib</name>
