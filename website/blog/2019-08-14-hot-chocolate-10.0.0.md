@@ -5,6 +5,8 @@ authorURL: https://github.com/michaelstaib
 authorImageURL: https://avatars1.githubusercontent.com/u/9714350?s=100&v=4
 ---
 
+![Hot Chocolate](/img/blog/hotchocolate-banner.svg)
+
 Today we have released version 10 of _Hot Chocolate_. We originally started building version 9.1 which grew bigger and at one point became version 10. We have focused a lot on our server implementation. But let me walk you through our latest release.
 
 <!--truncate-->

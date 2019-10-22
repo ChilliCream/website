@@ -5,7 +5,7 @@ authorURL: https://github.com/michaelstaib
 authorImageURL: https://avatars1.githubusercontent.com/u/9714350?s=100&v=4
 ---
 
-![Banner](/img/blog/strawberry-shake-banner.svg)
+![Strawberry Shake](/img/blog/strawberry-shake-banner.svg)
 
 We for a while now have two big GraphQL server projects on the .NET platform. So, if you just want to build a decent GraphQL server you can pick and choose between _GraphQL .NET_ or _Hot Chocolate_.
 
