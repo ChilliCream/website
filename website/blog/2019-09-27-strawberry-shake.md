@@ -5,6 +5,8 @@ authorURL: https://github.com/michaelstaib
 authorImageURL: https://avatars1.githubusercontent.com/u/9714350?s=100&v=4
 ---
 
+![Banner](/img/blog/strawberry-shake-banner.svg)
+
 We for a while now have two big GraphQL server projects on the .NET platform. So, if you just want to build a decent GraphQL server you can pick and choose between _GraphQL .NET_ or _Hot Chocolate_.
 
 If you are looking at consuming a GraphQL server in your _Blazor_ or _Xamarin_ application, then things are not so promising. You can either go with a bare bone client from the _GraphQL .NET_ project or you can decide to go it alone and build on `HttpClient`.
