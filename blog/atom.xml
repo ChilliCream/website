@@ -2,12 +2,28 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://chillicream.com/blog</id>
     <title>ChilliCream Blog</title>
-    <updated>2019-09-27T06:00:00Z</updated>
+    <updated>2019-11-25T06:00:00Z</updated>
     <generator>Feed for Node.js</generator>
     <link rel="alternate" href="https://chillicream.com/blog"/>
     <subtitle>The best place to stay up-to-date with the latest ChilliCream news and events.</subtitle>
     <logo>https://chillicream.com/img/signet.png</logo>
     <rights>Copyright © 2019 ChilliCream</rights>
+    <entry>
+        <title type="html"><![CDATA[Building a real-time .NET GraphQL Client API]]></title>
+        <id>https://chillicream.com/blog/2019/11/25/strawberry-shake_2.html</id>
+        <link href="https://chillicream.com/blog/2019/11/25/strawberry-shake_2.html">
+        </link>
+        <updated>2019-11-25T06:00:00Z</updated>
+        <summary type="html"><![CDATA[<p><img src="/img/blog/strawberry-shake-banner.svg" alt="Strawberry Shake"></p>
+<p>We are busy, busy, busy working on version 11 of <em>Hot Chocolate</em> and <em>Strawberry Shake</em>.</p>
+<p>In this post I want to explore the client side of GraphQL on .NET more with a special emphasis on subscriptions.</p>
+<p>Since, with the new version of <em>Strawberry Shake</em> our initial blog has become kind of invalid I also will walk you trough the basics again before heading into subscriptions and what lies beyond.</p>
+]]></summary>
+        <author>
+            <name>Michael Staib</name>
+            <uri>https://github.com/michaelstaib</uri>
+        </author>
+    </entry>
     <entry>
         <title type="html"><![CDATA[Building a .NET GraphQL Client API]]></title>
         <id>https://chillicream.com/blog/2019/09/27/strawberry-shake.html</id>
