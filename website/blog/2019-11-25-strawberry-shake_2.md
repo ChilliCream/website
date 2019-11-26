@@ -200,7 +200,7 @@ public interface IHasName
 
 Let us reflect on that, fragments not only let us re-use type selections in our query document but also let us create and mold our C# API into a clean type structure. This puts us as the consumer of _Strawberry Shake_ in the driver seat.
 
-**We** decide what data you **need** and how they are **shaped**.
+**We** decide what data we **need** and how they are **shaped**.
 
 > We are currently looking into how we can aggregate data and flatten the type structure. We initially thought about introducing some directives to flatten the type structure. But as we thought further on that and we really felt we want to have something like [lodash](https://github.com/APIs-guru/graphql-lodash). We are still discussing on what we want to do here. So stay tuned.
 
