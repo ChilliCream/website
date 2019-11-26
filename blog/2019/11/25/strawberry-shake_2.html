@@ -87,7 +87,8 @@ The <em>Strawberry Shake</em> CLI tools are optional but make initializing the c
 dotnet new tool-manifest
 dotnet tool <span class="token function">install</span> StrawberryShake.Tools --version <span class="token number">11.0</span>.0-preview.58 --local
 </code></pre>
-<p>In our example we are using the new .NET CLI local tools. <code>dotnet new tool-manifest</code> creates the tools manifest which basically is like a packages.config and holds the information of which tools in which version we are using.</p>
+<p>In our example we are using the new .NET CLI local tools. <code>dotnet new tool-manifest</code> creates the tools manifest which basically is like a packages.config and holds the information of which tools in which version we are using in our directory.</p>
+<p>This is the great thing about local tools if you think about it, you can install tools to your repository and have always the right set of tools available to you in the moment you clone that repository.</p>
 <p>The next command <code>dotnet tool install StrawberryShake.Tools --version 11.0.0-preview.58 --local</code> installs our <em>Strawberry Shake</em> tools. Once we have a final release of <em>Strawberry Shake</em> you do not need to speciefy the version anymore.</p>
 <p>Next we need a little project. Let’s create a new console application so that we can easily run and debug what we are doing.</p>
 <pre><code class="hljs css language-bash">dotnet new console -n BerryClient
