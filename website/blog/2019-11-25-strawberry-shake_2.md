@@ -38,7 +38,9 @@ dotnet new tool-manifest
 dotnet tool install StrawberryShake.Tools --version 11.0.0-preview.58 --local
 ```
 
-In our example we are using the new .NET CLI local tools. `dotnet new tool-manifest` creates the tools manifest which basically is like a packages.config and holds the information of which tools in which version we are using.
+In our example we are using the new .NET CLI local tools. `dotnet new tool-manifest` creates the tools manifest which basically is like a packages.config and holds the information of which tools in which version we are using in our directory.
+
+This is the great thing about local tools if you think about it, you can install tools to your repository and have always the right set of tools available to you in the moment you clone that repository.
 
 The next command `dotnet tool install StrawberryShake.Tools --version 11.0.0-preview.58 --local` installs our _Strawberry Shake_ tools. Once we have a final release of _Strawberry Shake_ you do not need to speciefy the version anymore.
 
