@@ -97,7 +97,7 @@ dotnet <span class="token function">add</span> package StrawberryShake --version
 dotnet <span class="token function">add</span> package Microsoft.Extensions.Http --version <span class="token number">3.0</span>.0
 dotnet <span class="token function">add</span> package Microsoft.Extensions.DependencyInjection --version <span class="token number">3.0</span>.0
 </code></pre>
-<p>OK, now that we have a project setup lets initialize the project by creating a local schema. Like with <em>relay</em> we are holding a local schema file that can be extended with local types and fields. Our <em>Graphql</em> compiler will use this schema information to validate the queries.</p>
+<p>OK, now that we have a project setup lets initialize the project by creating a local schema. Like with <em>Relay</em> we are holding a local schema file that can be extended with local types and fields. Our <em>GraphQL</em> compiler will use this schema information to validate the queries we write. This makes <em>GraphQL</em> query documents a part of the compilation process and with that a first-class citizen of our C# library.</p>
 <blockquote>
 <p>For the next step ensure that the <em>Star Wars</em> <em>GraphQL</em> server is running since we will fetch the schema from the server.</p>
 </blockquote>
@@ -106,7 +106,7 @@ dotnet <span class="token function">add</span> package Microsoft.Extensions.Depe
 </blockquote>
 <pre><code class="hljs css language-bash">dotnet graphql init http://localhost:5000/graphql -n StarWars -p ./StarWars
 </code></pre>
-<p>The init command will download the schema as GraphQL SDL and create a config to re-fetch the schema. Also, the config contains the client name. The client name defines how the client class and interface is named.</p>
+<p>The init command will download the schema as GraphQL SDL and create a config to re-fetch the schema. Also, the config contains the client name. The client name defines how the client class and interface shall be named.</p>
 <blockquote>
 <p>Note: You can pass in the token and scheme if your endpoint is authenticated. There is also an update command to update the local schema.</p>
 </blockquote>
@@ -123,10 +123,10 @@ dotnet <span class="token function">add</span> package Microsoft.Extensions.Depe
   <span class="token property">"ClientName"</span><span class="token operator">:</span> <span class="token string">"StarWarsClient"</span>
 <span class="token punctuation">}</span>
 </code></pre>
-<p>OK, now let’s get started by creating our first client API. For this open your editor of choice. I can recommend using <em>VSCode</em> for this at the moment since you will get GraphQL highlighting. As we move forward, we will refine the tooling more and provide proper IntelliSense.</p>
+<p>OK, now let’s get started by creating our first client API. For this open your editor of choice. I can recommend using <em>VSCode</em> for this at the moment since you will get GraphQL highlighting. As we move forward, we will refine the tooling and provide proper IntelliSense.</p>
 <p>Now let us create a new file in our <code>StarWars</code> folder called <code>Queries.graphql</code> and add the following query:</p>
 <blockquote>
-<p>The file does not necessarily have to be called queries. You can call it however you want. The GraphQL compiler will figure out what files contain queries and what contain schema definitions.</p>
+<p>The file does not necessarily have to be called queries. You can call it however you want. The GraphQL compiler will figure out what files contain queries and what files contain schema definitions.</p>
 </blockquote>
 <pre><code class="hljs css language-graphql"><span class="token keyword">query</span> getFoo <span class="token punctuation">{</span>
   foo
@@ -138,7 +138,7 @@ dotnet <span class="token function">add</span> package Microsoft.Extensions.Depe
 <p>When we now compile, we get an <em>MSBuild</em> error on which we can click in <em>VSCode</em> and we are pointed to the place in our query file from which the error stems from. The error tells us that there is no field <code>foo</code> on the <code>Query</code> type.</p>
 <pre><code class="hljs css language-bash">/Users/michael/Local/play/berry/BerryClient/StarWars/Queries.graphql<span class="token punctuation">(</span><span class="token number">2,3</span><span class="token punctuation">)</span>: error GQL: The field <span class="token variable"><span class="token variable">`</span>foo<span class="token variable">`</span></span> does not exist on the <span class="token builtin class-name">type</span> <span class="token variable"><span class="token variable">`</span>Query<span class="token variable">`</span></span><span class="token builtin class-name">.</span> <span class="token punctuation">[</span>/Users/michael/Local/play/berry/BerryClient/BerryClient.csproj<span class="token punctuation">]</span>
 </code></pre>
-<p>Your GraphQL query document is not just a string, it properly compiles and is fully typed. Let's change our query to the following and compile again:</p>
+<p>Your GraphQL query document is not just a string, it properly compiles and is fully typed. Let's change our query and compile again:</p>
 <pre><code class="hljs css language-graphql"><span class="token keyword">query</span> getFoo <span class="token punctuation">{</span>
   hero <span class="token punctuation">{</span>
     name
@@ -148,14 +148,14 @@ dotnet <span class="token function">add</span> package Microsoft.Extensions.Depe
 <pre><code class="hljs css language-bash">dotnet build
 </code></pre>
 <p>Now our project changes and we get a new <code>Generated</code> folder that has all the types that we need to communicate with our backend.</p>
-<p>Let us have a look at our client interface for a minute.</p>
+<p>Let us have a closer look at our client interface for a minute.</p>
 <pre><code class="hljs css language-csharp"><span class="token keyword">public</span> <span class="token keyword">interface</span> <span class="token class-name">IStarWarsClient</span>
 <span class="token punctuation">{</span>
     Task<span class="token operator">&lt;</span>IOperationResult<span class="token operator">&lt;</span>IGetFoo<span class="token operator">>></span> <span class="token function">GetFooAsync</span><span class="token punctuation">(</span>
         <span class="token class-name">CancellationToken</span> cancellationToken <span class="token operator">=</span> <span class="token keyword">default</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 <span class="token punctuation">}</span>
 </code></pre>
-<p>Let us reflect on that. The query document can hold multiple named operations. In essence the query document describes the interface between the client and the server. Each named operation will become one method in your client that will execute that exact operation on the server.</p>
+<p>The named operation <code>getFoo</code> has become the method <code>GetFooAsync</code> in our generated client. This is nice since we kind of control from our GraphQL document the shape of our C# API. But there is more to that. A query document can hold multiple named operations. In essence the query document describes the interface between the client and the server.</p>
 <pre><code class="hljs css language-graphql"><span class="token keyword">query</span> function_a <span class="token punctuation">{</span>
   <span class="token operator">...</span>
 <span class="token punctuation">}</span>
@@ -168,8 +168,7 @@ dotnet <span class="token function">add</span> package Microsoft.Extensions.Depe
   <span class="token operator">...</span>
 <span class="token punctuation">}</span>
 </code></pre>
-<p>Since, with GraphQL you essentially design your own service API by writing a query document your types can become quite messy very quickly.</p>
-<p>In order to <strong>AVOID</strong> getting a messy API and to give you control over how your C# API will look like we are using fragments to infer types.</p>
+<p>Since, with GraphQL you essentially design your own service API by writing a query document you want to have control over the structure of your generated types. <em>Strawberry Shake</em> uses fragments to help you describe clean and reusable code components.</p>
 <p>Let us redesign our query with fragments and make it a bit more complex.</p>
 <pre><code class="hljs css language-graphql"><span class="token keyword">query</span> getHero <span class="token punctuation">{</span>
   hero <span class="token punctuation">{</span>
@@ -210,8 +209,10 @@ dotnet <span class="token function">add</span> package Microsoft.Extensions.Depe
     <span class="token keyword">string</span> Name <span class="token punctuation">{</span> <span class="token keyword">get</span><span class="token punctuation">;</span> <span class="token punctuation">}</span>
 <span class="token punctuation">}</span>
 </code></pre>
+<p>Let us reflect on that, fragments not only let us re-use type selections in our query document but also let us create and mold our C# API into a clean type structure. This puts us as the consumer of <em>Strawberry Shake</em> in the driver seat.</p>
+<p><strong>We</strong> decide what data you <strong>need</strong> and how they are <strong>shaped</strong>.</p>
 <blockquote>
-<p>We are currently looking into how we can aggregate data and flatten the type structure. We initially thought about introducing some directives to flatten the type structure. But as we thought further on that we really felt we want to have something like <a href="https://github.com/APIs-guru/graphql-lodash">lodash</a>. We are still discussing on what we do here. So stay tuned.</p>
+<p>We are currently looking into how we can aggregate data and flatten the type structure. We initially thought about introducing some directives to flatten the type structure. But as we thought further on that and we really felt we want to have something like <a href="https://github.com/APIs-guru/graphql-lodash">lodash</a>. We are still discussing on what we want to do here. So stay tuned.</p>
 </blockquote>
 <p>Let's make one more tweak to our query and then we get this example running.</p>
 <pre><code class="hljs css language-graphql"><span class="token keyword">query</span> getHero<span class="token punctuation">(</span><span class="token variable">$episode</span><span class="token punctuation">:</span> Episode<span class="token punctuation">)</span> <span class="token punctuation">{</span>
@@ -235,7 +236,7 @@ dotnet <span class="token function">add</span> package Microsoft.Extensions.Depe
   name
 <span class="token punctuation">}</span>
 </code></pre>
-<p>By defining a variable with our operation we now can pass in arguments into our operation.</p>
+<p>By defining a variable with our operation we now can pass in arguments. This makes our operation re-usable and a good interface with the server. GraphQL servers can pre-compile and optimize those parametrized query documents.</p>
 <pre><code class="hljs css language-csharp"><span class="token keyword">public</span> <span class="token keyword">interface</span> <span class="token class-name">IStarWarsClient</span>
 <span class="token punctuation">{</span>
     Task<span class="token operator">&lt;</span>IOperationResult<span class="token operator">&lt;</span>IGetHero<span class="token operator">>></span> <span class="token function">GetHeroAsync</span><span class="token punctuation">(</span>
@@ -247,9 +248,9 @@ dotnet <span class="token function">add</span> package Microsoft.Extensions.Depe
 <p>By default the generator will also generate dependency injection code for <code>Microsoft.Extensions.DependencyInjection</code>.</p>
 <p>In order to get our client up and running we just have to set up a dependency injection container.</p>
 <blockquote>
-<p>Note: You can shut of dependency injection generation with a <em>MSBuild</em> property. The client can also be instantiated with a builder or by using a different dependency injection container.</p>
+<p>Note: You can shut off dependency injection generation with a <em>MSBuild</em> property. The client can also be instantiated with a builder or by using a different dependency injection container.</p>
 </blockquote>
-<p>Replace you <code>Program</code> class with the following code.</p>
+<p>Replace your <code>Program</code> class with the following code.</p>
 <pre><code class="hljs css language-csharp"><span class="token keyword">class</span> <span class="token class-name">Program</span>
 <span class="token punctuation">{</span>
     <span class="token keyword">static</span> <span class="token keyword">async</span> <span class="token class-name">Task</span> <span class="token function">Main</span><span class="token punctuation">(</span><span class="token keyword">string</span><span class="token punctuation">[</span><span class="token punctuation">]</span> args<span class="token punctuation">)</span>
@@ -275,11 +276,19 @@ dotnet <span class="token function">add</span> package Microsoft.Extensions.Depe
 <pre><code class="hljs css language-bash">R2-D2
 Luke Skywalker
 </code></pre>
+<p>That is quite awesome. The client is easy to setup and easy to use. We just had to initialize our project and write a GraphQL query document and everything was generated so that we can focus on using our GraphQL endpoint instead of writing a bunch of code that we do not want to actually write. Moreover, we only get the types from the schema that we actually use in our query documents, that means we are not burdened with all the schema types and fields and so on that we do not need and do not want.</p>
+<p><em>Strawberry Shake</em> let`s you take all the power of GraphQL and package it up into a fully typed client that works well with .NET. It does not limit you by introducing a new programming model like Linq or some other .NET API, instead <em>Strawberry Shake</em> makes <strong>GraphQL a first class citizen in the .NET world</strong>.</p>
+<p>OK, now let us have a look at the result object since we also carefully discussed how we expose results to the consumer.</p>
+<p>The result of an operation can be a <code>IOperationResult&lt;T&gt;</code> or a <code>IResponseStream&lt;T&gt;</code>.</p>
+<p>The operation result represents a single result and we expose the GraphQL result structure as specified in the GraphQL spec.</p>
+<p>This means that we give you a chance to take advantage of partial results in case of errors. However, we also make it easy to raise an exception in case of any error with the <code>EnsureNoErrors</code> method on the result object. This is kind of like with responses from a <code>HttpClient</code>.</p>
+<p>Also, we allow you to have full access to provider specific data that is included in a dictionary called <code>Extensions</code>. This for instances is used in cases like active persisted queries or other provider specific extensions.</p>
 <h2><a class="anchor" aria-hidden="true" id="renaming-type-elements"></a><a href="#renaming-type-elements" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Renaming Type Elements</h2>
 <p>Did you notice the enum type <code>Episode.Newhope</code> in the upper example. This really is not nice to see as a C# developer :). Since the generator is built on top of the stitching API we easily can amend things like that in order to make our client API nice to use.</p>
-<p>So, before we go in subscription let`s fix it :)</p>
-<p>First, add another GraphQL file and call it <code>StarWars.Extensions.graphql</code>. Again, the name does not really matter, you could call it <code>Foo.graphql</code> and we would also handle it correctly.</p>
-<p>No add the following to the GraphQL file:</p>
+<p>So, before we go into subscriptions let`s fix that :)</p>
+<p>First, add another GraphQL file and call it <code>StarWars.Extensions.graphql</code>. Again, the name does not really matter, you could call it <code>Foo.graphql</code> and <em>Strawberry Shake</em> would also handle it correctly.</p>
+<p>GraphQL allows to extend types with the <code>extend</code> keyword in the GraphQL SDL. In the example below we extend the <code>Episode</code> enum and add a directive (annotation) called <code>@name</code>. The <code>@name</code> directive allows us to provide the generator with a name for a type element that we actually want to use in our C# client API.</p>
+<p>Now add the following type extension to the GraphQL file <code>StarWars.Extensions.graphql</code>:</p>
 <pre><code class="hljs css language-graphql">extend <span class="token keyword">enum</span> <span class="token class-name">Episode</span> <span class="token punctuation">{</span>
   <span class="token constant">NEWHOPE</span> <span class="token directive function">@name</span><span class="token punctuation">(</span><span class="token attr-name">value</span><span class="token punctuation">:</span> <span class="token string">"NewHope"</span><span class="token punctuation">)</span>
 <span class="token punctuation">}</span>
@@ -288,12 +297,12 @@ Luke Skywalker
 <p>The nice thing is that we are just describing what we want to change in this schema extension file, so every time you update the server schema, we will preserve this file and reapply the type extensions to the newly downloaded schema.</p>
 <h2><a class="anchor" aria-hidden="true" id="subscriptions"></a><a href="#subscriptions" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Subscriptions</h2>
 <p>OK, OK, most of this was already in place, so let us have a look at something more challenging like subscriptions.</p>
-<p>Subscriptions will need a state-full connection to a server through a WebSocket. There are other ways to do this like SignalR (which essentially is a socket abstraction) or gRPC or even standard TCP sockets.</p>
+<p>Subscriptions will need a state-full connection to a server through a WebSocket. There are other ways to do this like SignalR (which essentially is a socket abstraction) or gRPC or even over a standard TCP socket.</p>
 <p>While we are in the works to get SignalR and gRPC in let us have a look at how we can do it through WebSockets.</p>
-<p>When we started on this we found that WebSockets should be as easy as setting up the HttpClient nowadays. So, we have introduced a <code>IWebSocketClientFactory</code>. But just having a factory is not enough since we want to maybe pool socket connections and reuse those with multiple subscriptions.</p>
+<p>When we started on this we found that WebSockets should be as easy as setting up the HttpClient nowadays. So, we have introduced a new interface called <code>IWebSocketClientFactory</code>. But just having a factory is not enough since we want to maybe pool socket connections and reuse those with multiple subscriptions.</p>
 <p>With the solution that we are introducing with version 11.0.0-preview.58 we are making WebSockets super simple to setup, and we will do all the hard parts like reusing the connection and things like that without you ever noticing it.</p>
 <p>Let us have a look at how we can get subscriptions to work.</p>
-<p>The first thing we have to do is going back to our query file. The <em>Star Wars</em> server has one subscription that is raised whenever a review is written. So, let’s use it and add it to our query file.</p>
+<p>The first thing we have to do is going back to our query document. The <em>Star Wars</em> server has one subscription that is raised whenever a review is written. So, let’s use it and add it to our query file.</p>
 <pre><code class="hljs css language-graphql"><span class="token keyword">query</span> getHero<span class="token punctuation">(</span><span class="token variable">$episode</span><span class="token punctuation">:</span> Episode<span class="token operator">!</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
   hero<span class="token punctuation">(</span><span class="token attr-name">episode</span><span class="token punctuation">:</span> <span class="token variable">$episode</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
     <span class="token operator">...</span><span class="token fragment function">SomeDroid</span>
@@ -322,7 +331,7 @@ subscription onReviewCreated<span class="token punctuation">(</span><span class=
   name
 <span class="token punctuation">}</span>
 </code></pre>
-<p>Now, lets rebuild our project and the look at the client interface.</p>
+<p>Now, lets rebuild our project and then look at the client interface.</p>
 <pre><code class="hljs css language-csharp"><span class="token keyword">public</span> <span class="token keyword">interface</span> <span class="token class-name">IStarWarsClient</span>
 <span class="token punctuation">{</span>
     Task<span class="token operator">&lt;</span>IOperationResult<span class="token operator">&lt;</span>IGetHero<span class="token operator">>></span> <span class="token function">GetHeroAsync</span><span class="token punctuation">(</span>
@@ -334,14 +343,14 @@ subscription onReviewCreated<span class="token punctuation">(</span><span class=
         <span class="token class-name">CancellationToken</span> cancellationToken <span class="token operator">=</span> <span class="token keyword">default</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 <span class="token punctuation">}</span>
 </code></pre>
-<p>Our client has now a new method that returns a response stream. A response stream is essentially an <code>IAsyncEnumerable</code> that will loop over the subscription event stream.</p>
+<p>Our client has now a new method that returns a response stream. A response stream is essentially an <code>IAsyncEnumerable</code> that will loop over the subscription event stream until the stream completes or the client disposes the stream.</p>
 <p>Now let us put everything together. First we need to configure the WebSocket client connection.</p>
 <pre><code class="hljs css language-csharp">services<span class="token punctuation">.</span><span class="token function">AddWebSocketClient</span><span class="token punctuation">(</span>
     <span class="token string">"StarWarsClient"</span><span class="token punctuation">,</span>
     c <span class="token operator">=></span> c<span class="token punctuation">.</span>Uri <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Uri</span><span class="token punctuation">(</span><span class="token string">"ws://localhost:5000/graphql"</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 </code></pre>
 <p>This kind of looks exactly the way we would configure an HttpClient and it hides all the complex logic about connecting and pooling WebSocket connections. It also lets you easily intercept the connect process to include authentication logic.</p>
-<p>The next thing we need to do is to read from our event stream.</p>
+<p>The next thing we need to do to consume data from subscriptions is to read from our event stream.</p>
 <pre><code class="hljs css language-csharp"><span class="token keyword">class</span> <span class="token class-name">Program</span>
 <span class="token punctuation">{</span>
     <span class="token keyword">static</span> <span class="token keyword">async</span> <span class="token class-name">Task</span> <span class="token function">Main</span><span class="token punctuation">(</span><span class="token keyword">string</span><span class="token punctuation">[</span><span class="token punctuation">]</span> args<span class="token punctuation">)</span>
@@ -366,17 +375,30 @@ subscription onReviewCreated<span class="token punctuation">(</span><span class=
 <span class="token punctuation">}</span>
 </code></pre>
 <p>If you look at the code above it looks so easy how you can use subscription with <em>Strawberry Shake</em>, it almost looks no different from fetching a simple query with the <code>HttpClient</code>. This is exactly what we want the experience to be, simple but when you want to get into the pluming then we will allow you to easily intercept and extend the whole pipeline.</p>
+<p>So, in order to try subscriptions out in your example open a tool like playground and the fire the following query against the local GraphQL Server while your console app is running.</p>
+<pre><code class="hljs css language-graphql"><span class="token keyword">mutation</span> <span class="token punctuation">{</span>
+  createReview<span class="token punctuation">(</span>
+    <span class="token attr-name">episode</span><span class="token punctuation">:</span> <span class="token constant">NEWHOPE</span>
+    <span class="token attr-name">review</span><span class="token punctuation">:</span> <span class="token punctuation">{</span> <span class="token attr-name">commentary</span><span class="token punctuation">:</span> <span class="token string">"Awesome movie."</span><span class="token punctuation">,</span> <span class="token attr-name">stars</span><span class="token punctuation">:</span> <span class="token number">5</span> <span class="token punctuation">}</span>
+  <span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    commentary
+    stars
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<p>As soon as you trigger the above mutation the client will print the commentary to the console, it is kind of like magic :)</p>
 <h2><a class="anchor" aria-hidden="true" id="custom-scalars"></a><a href="#custom-scalars" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Custom Scalars</h2>
-<p>The mean thing with all these examples is that I am mostly using the <em>Star Wars</em> example. The <em>Star Wars</em> uses no custom scalars and is super simple to use. That is the reason why I like to use it for demos, because people get easily aboard with it. But it is also frustrating when you want to go deeper. This is especially true with custom scalars. <em>Strawberry Shake</em> supports an array of scalars that go beyond the GraphQL Spec. But still if you download the GitHub schema for instance you will get a ton of custom scalars.</p>
-<p>With the current version we have made dealing with custom scalars a lot easier. First, if we do not know a scalar, then we will treat it as a <code>String</code>. While this is not always what you want, it lets you get started quickly and then change things when you really need to.</p>
-<p>Let us have a look at how we can bring in a custom scalar. For this example, let us assume we have a scalar called <code>ByteArray</code>. This scalar serializes a <code>System.Byte[]</code> to a base64 string. This is easy enough. So on the client side we want the generator to generate models that expose <code>System.Byte[]</code> as property type. But in the communication between server and client the type is serialized as base64 string.</p>
-<p>So, in order to give the generator a hint about these things we need to extend the schema. So, we would need to create a GraphQL file that holds our schema extensions (basically like with the enum example, where e renamed the enum value). The same way we can extend enums we can extend other types. In this case we want to annotate a scalar type.</p>
+<p>The mean thing with all these examples that I posted in this blog is that I am only using the <em>Star Wars</em> example. The <em>Star Wars</em> uses no custom scalars and is super simple to use. That is the reason why I like to use it for demos, because people get easily on board with it. But it also is frustrating when you want to go deeper. This is especially true with custom scalars.</p>
+<p><em>Strawberry Shake</em> supports an array of built-in scalars that go beyond the GraphQL spec. But still if you download the GitHub schema for instance you will get a ton of custom scalars.</p>
+<p>With the current version we have made dealing with custom scalars a lot easier. First, if we do not know a scalar, then we will treat it as a <code>String</code>. While this is not always what you want, it lets you get started quickly and then change things when you really need them to change.</p>
+<p>Let us have a look at how we can bring in a custom scalar. For this example, let us assume we have a scalar called <code>ByteArray</code>. This scalar serializes a <code>System.Byte[]</code> to a base64 string. This is easy enough. So on the client side we want the generator to generate models that expose <code>System.Byte[]</code> as property type. But in the communication between server and client the type shall be serialized as base64 string.</p>
+<p>So, in order to give the generator a hint about these things we need to extend our schema. We would need to create a GraphQL file that holds our schema extensions (basically like with the enum example, where we renamed the enum value). The same way we can extend enums we can extend other types. In this case we want to annotate a scalar type.</p>
 <pre><code class="hljs css language-graphql">extend <span class="token keyword">scalar</span> <span class="token class-name">ByteArray</span>
   <span class="token directive function">@runtimeType</span><span class="token punctuation">(</span><span class="token attr-name">name</span><span class="token punctuation">:</span> <span class="token string">"System.Byte[]"</span><span class="token punctuation">)</span>
   <span class="token directive function">@serializationType</span><span class="token punctuation">(</span><span class="token attr-name">name</span><span class="token punctuation">:</span> <span class="token string">"System.String"</span><span class="token punctuation">)</span>
 </code></pre>
-<p>The above example declares that the runtime type (the type that is used in the c# models) shall be a <code>System.Byte[]</code> and that the serialization type (the type which client and server use to send the data) shall be a <code>System.String</code>. For the generator that is enough to generate everything accordingly.</p>
-<p>We still have to implement an <code>IValueSerializer</code> to specify the logic how the type shall serialize.</p>
+<p>The above example declares that for the <code>ByteArray</code> scalar the runtime type (the type that is used in the C# models) shall be a <code>System.Byte[]</code> and that the serialization type (the type which client and server use to send the data) shall be a <code>System.String</code>. For the generator that is enough to generate everything accordingly.</p>
+<p>We still have to implement an <code>IValueSerializer</code> to specify the logic how the type shall actually serialize and deserialize.</p>
 <pre><code class="hljs css language-csharp"><span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">ByteArrayValueSerializer</span>
     <span class="token punctuation">:</span> <span class="token class-name">ValueSerializerBase</span><span class="token operator">&lt;</span><span class="token keyword">byte</span><span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">,</span> <span class="token keyword">string</span><span class="token operator">></span>
 <span class="token punctuation">{</span>
@@ -427,9 +449,9 @@ subscription onReviewCreated<span class="token punctuation">(</span><span class=
 </blockquote>
 <h2><a class="anchor" aria-hidden="true" id="digging-deeper"></a><a href="#digging-deeper" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Digging Deeper</h2>
 <p>Apart from being able to add custom scalars we might want to dig deeper and allow new scenarios with our client like persisted queries. It is needles to say that we will add persisted query support out of the box. But it is also a good example to use to show how we can enable advance server / client protocols with <em>Strawberry Shake</em>.</p>
-<p>The way we build in things like that is by providing a operation middleware. This basically works like the query middleware in the server on the request level.</p>
-<p><em>Strawberry Shake</em> allows it to swap out the default operation execution pipeline and add your own custom operation execution pipeline.</p>
-<p>In order to setup a custom operation execution pipeline you can use for instance the <code>HttpPipelineBuilder</code>. Each transport has it`s own transport specific pipeline.</p>
+<p>The way we built-in things like that is by providing a operation middleware. This basically works like the query middleware in the server on the request level.</p>
+<p><em>Strawberry Shake</em> allows us to swap out the default operation execution pipeline and add our own custom operation execution pipeline.</p>
+<p>In order to setup a custom operation execution pipeline you can use for instance the <code>HttpPipelineBuilder</code>. Each transport has it`s own transport specific pipeline since the protocol between socket communication and stateless communication is quite different.</p>
 <pre><code class="hljs css language-csharp">serviceCollection<span class="token punctuation">.</span><span class="token generic-method"><span class="token function">AddSingleton</span><span class="token punctuation">&lt;</span><span class="token class-name">OperationDelegate</span><span class="token punctuation">></span></span><span class="token punctuation">(</span>
     sp <span class="token operator">=></span> HttpPipelineBuilder<span class="token punctuation">.</span><span class="token function">New</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
         <span class="token punctuation">.</span><span class="token generic-method"><span class="token function">Use</span><span class="token punctuation">&lt;</span><span class="token class-name">CreateStandardRequestMiddleware</span><span class="token punctuation">></span></span><span class="token punctuation">(</span><span class="token punctuation">)</span>
@@ -460,14 +482,14 @@ subscription onReviewCreated<span class="token punctuation">(</span><span class=
 </code></pre>
 <h2><a class="anchor" aria-hidden="true" id="generation-options"></a><a href="#generation-options" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Generation Options</h2>
 <p>By default <em>Strawberry Shake</em> generates dependency injection code for <code>Microsoft.Extensions.DependencyInjection</code> this can be switched of by adding the following <code>MSBuild</code> property <code>&lt;GraphQLEnableDI&gt;false&lt;/GraphQLEnableDI&gt;</code>.</p>
-<p>The generator will automatically detect if you are using C# 8.0 with nullables reference types or if you are using an older version of C#.</p>
+<p>The generator will automatically detect if you are using C# 8.0 with nullable reference types or if you are using an older version of C#.</p>
 <p>You can use the following <code>MSBuild</code> properties to control this.</p>
 <pre><code class="hljs css language-xml"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>PropertyGroup</span><span class="token punctuation">></span></span>
   <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>LangVersion</span><span class="token punctuation">></span></span>8.0<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>LangVersion</span><span class="token punctuation">></span></span>
   <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>Nullable</span><span class="token punctuation">></span></span>enable<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>Nullable</span><span class="token punctuation">></span></span>
 <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>PropertyGroup</span><span class="token punctuation">></span></span>
 </code></pre>
-<p>We also by default take the root namespace from the project for generating files. You can however override this by providing the <code>&lt;BerryNamespace /&gt;</code> property. However, we will change this to an item group soon in order to also enable multiple clients in a single project.</p>
+<p>We also by default take the root namespace from the project for generating files. You can however override this by providing the <code>&lt;BerryNamespace /&gt;</code> property. However, we will change this to an item group soon in order to also enable multiple clients in a single project to use different namespaces.</p>
 <pre><code class="hljs css language-xml"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>PropertyGroup</span><span class="token punctuation">></span></span>
   <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>BerryNamespace</span><span class="token punctuation">></span></span>$(RootNamespace)<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>BerryNamespace</span><span class="token punctuation">></span></span>
 <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>PropertyGroup</span><span class="token punctuation">></span></span>
@@ -475,28 +497,29 @@ subscription onReviewCreated<span class="token punctuation">(</span><span class=
 <h2><a class="anchor" aria-hidden="true" id="dependency-injection"></a><a href="#dependency-injection" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Dependency Injection</h2>
 <p>The client API can be used with other dependency injection container and also without dependency injection at all.</p>
 <p>We initially had a limited builder API for this but decided to give it a do over. So, at the moment you could look at the generated dependency injection code and build your own integration.</p>
-<p>We will allow with future build to add custom generators that can provide additional code for custom use cases. The way that would work is that such a generator would sit in a NuGet package that is being added to the project. The custom generator would register its generators to a item group and <em>Strawberry Shake</em> would pick those up and integrate them. These custom generators however are somewhere in the version 12 time frame.</p>
+<p>We will allow with future build to add custom generators that can provide additional code for custom use cases. The way that would work is that such a generator would sit in a NuGet package that is being added to the project. The custom generator would register its generators to an item group and <em>Strawberry Shake</em> would pick those up and integrate them. These custom generators however are somewhere in the version 12 timeframe.</p>
 <h2><a class="anchor" aria-hidden="true" id="roadmap"></a><a href="#roadmap" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Roadmap</h2>
 <p>What are our next steps on <em>Strawberry Shake</em> and when are we planning to release it?</p>
-<p>We have some more ground to cover before we have version 1 complete.</p>
+<p>We have some more ground to cover before we have this version complete.</p>
 <ol>
 <li><p>MSBuild Integration
-We are working on making the <em>MSBuild</em> integration better. There are still instances with <em>VSCode</em> where you have to compile twice. This is OK for a preview, but we are on it and think that in the next view preview builds we will have this fixed. With <em>Visual Studio for Windows</em> you can already enjoy design time code generation. This means that when you save a GraphQL file the generator will update the C# files.</p></li>
+We are working on making the <em>MSBuild</em> integration better. There are still instances with <em>VSCode</em> where you have to compile twice. This is OK for a preview,but we are on it and think that in the next view preview builds we will have this fixed. With <em>Visual Studio for Windows</em> you can already enjoy design time code generation. This means that when you save a GraphQL file the generator will update the C# files.</p></li>
 <li><p>Tooling
 We are heavy at work on <em>Bananacake Pop</em> which is our GraphQL IDE that will help you write and analyze GraphQL queries.
 We plan to use what we have done for <em>Bananacake Pop</em> to create a nice integration with <em>VSCode</em>. We want to have a rich integration with which you can work on huge schemas.</p>
-<p>Beyond <em>VSCode</em> we are looking at writing a nice integration with <em>Visual Studio for Windows</em> and <em>Visual Studio for MacOS</em> that will make <em>Strawberry Shake</em> and <em>GraphQL</em> a first-class citizen in the Microsoft ecosystem.</p>
+<p>Beyond <em>VSCode</em> we are looking at writing a nice integration with <em>Visual Studio for Windows</em> and <em>Visual Studio for macOS</em> that will make <em>Strawberry Shake</em> and <em>GraphQL</em> a first-class citizen in Microsoft IDEs.</p>
 <p>We hope to deliver all of this in the version 11 timeframe.</p></li>
 <li><p>Persisted Query Support
 Persisted queries are one of our very next features that we will add to the client. We want to allow the same flows that we support on the server side.</p></li>
 <li><p>Batching Support
 Batching support with the <code>@export</code> directive is as well planned for the initial release of <em>Strawberry Shake</em>.</p></li>
 <li><p>Code Generation
-The current code generation produces quite nice code, but it can produce issues where the types from your own project collide with the code generation. With the next view builds we will add an option to use full type names in those cases.
-Also, we will add the code generation attribute to the generated files.</p></li>
+The current code generation produces quite nice code, but it can produce issues where the types from your own project collide with the generated code. With the next view builds we will add an option to use full type names in those cases.
+Also, we will add the code generation attribute to the generated files. So there are refinements going on in this area.</p></li>
 <li><p>Defer / Stream
-We are planning to add support for defer and stream to the client. This feature depends on our server implementation so we will have to see how far we are on execution plans before we can start on it.</p></li>
+We are planning to add support for defer and stream to the client. This feature depends on our server implementation so we will have to see how far we are on execution plans before we can start on it for the client.</p></li>
 </ol>
+<p>I hope you enjoy what we are building. We are tying to bring GraphQL on .NET to the next level. While we still are miles away from what the JavaScript world has to offer we hope to close these gaps over the next year and even pull ahead in some areas. We love GraphQL and are passionate about it. We strongly believe that with our newest member <em>Strawberry Shake</em> we really can make things like <em>Xamarin</em> and <em>Blazor</em> so much better. We have planned a lot more and hope to bring data fetching in .NET to a whole new level over the next year. Ideally you just want to decalre in your .NET component the data that you need and all the client logic is infered from that, kind of the way relay works in JavaScript.</p>
 <p>If you want to get into contact with us head over to our <a href="https://join.slack.com/t/hotchocolategraphql/shared_invite/enQtNTA4NjA0ODYwOTQ0LTViMzA2MTM4OWYwYjIxYzViYmM0YmZhYjdiNzBjOTg2ZmU1YmMwNDZiYjUyZWZlMzNiMTk1OWUxNWZhMzQwY2Q">slack channel</a> and join our community.</p>
 <table>
 <thead>
