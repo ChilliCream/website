@@ -1,5 +1,5 @@
 ---
-title: Let supercharge our GraphQL schema capabilities :)
+title: Let supercharge your GraphQL schema :)
 author: Michael Staib
 authorURL: https://github.com/michaelstaib
 authorImageURL: https://avatars1.githubusercontent.com/u/9714350?s=100&v=4
