@@ -1,5 +1,5 @@
 ---
-title: Let supercharge your GraphQL schema :)
+title: Lets supercharge your GraphQL schema :)
 author: Michael Staib
 authorURL: https://github.com/michaelstaib
 authorImageURL: https://avatars1.githubusercontent.com/u/9714350?s=100&v=4
@@ -7,17 +7,21 @@ authorImageURL: https://avatars1.githubusercontent.com/u/9714350?s=100&v=4
 
 ![Hot Chocolate](/img/blog/hotchocolate-banner.svg)
 
-When you think about how we build our GraphQL schemas with _Hot Chocolate_ we always need to fall back to either the schema types or the GraphQL SDL. This brings with it a lot of boiler plate code that we actually could infer from C# code. We decided to push some of the version 11 features down to the version 10 branch to make this possible today.
+When you think about how we build our GraphQL schemas with _Hot Chocolate_ we always need to fall back to either the schema types or the GraphQL SDL in order to get the typings right.
+
+This brings with it a lot of boiler plate code that we actually could infer from our C# code. With version 10.3.0 we have decided to integrate some of the version 11 features to make it possible to have these capabilities now instead of next year.
 
 <!--truncate-->
 
 ## Nullability
 
-First, let us get the obvious out of the way. C# now has nullable reference types, or actually they now have non-null reference types. It does not matter how you look at it but the result is that we now can differentiate between nullable reference types and reference types that cannot be null.
+First, let us get the obvious out of the way. C# with version 8.0 has now nullable reference types, or actually they now have non-null reference types.
 
-With version 10.3.0-preview.2 we can now infer this and you finally do not need helpers like attributes and other things to define your schema types. We got you covered now :)
+It does not matter how you look at it, but the result is that we now can differentiate between nullable reference types and reference types that cannot be null.
 
-So, a simple query like the following:
+With version 10.3.0-preview.2 we can infer these, and you finally do not need helpers like attributes and other things to define your schema types with non-null types.
+
+A simple query like ...
 
 ```csharp
 public class Query
@@ -32,7 +36,7 @@ public class Query
 }
 ```
 
-Is now correctly inferred to:
+... is now correctly inferred to:
 
 ```graphql
 type Query {
@@ -41,13 +45,13 @@ type Query {
 }
 ```
 
-Do not get me wrong here, I still love our schema types and we will nod get rid of them since they are the foundation of every schema. In fact we use them underneath. Moreover, see these improvements more as an additional way that opens up and lets us define GraphQL schemas.
+Do not get me wrong here, I still love our schema types and we will not get rid of them since they are the foundation of every schema. We still are using them in the above example, you just do not need to see them anymore. Moreover, we see these improvements more as an additional way to define a GraphQL schemas with pure C# types.
 
-We in the beginning decided that people should be free in the way how they want to define their schemas and we are committed in investing in all variants here.
+In the beginning we decided that people should be free in their way of how they want to define their schemas. We are still 100% committed to SDL first, code-first with schema types and code-first with pure C# types.
 
 ## Interfaces
 
-Let us dig some deeper with some interfaces. _Hot Chocolate_ can since the version 10 also infer interfaces. This means that we will correctly infer interfaces and their usages.
+Since version 10.0.0 _Hot Chocolate_ is able to infer interface types from API usage. This means that we will correctly infer the interfaces that you use and the types that implement those interfaces.
 
 ```csharp
 public class Query
@@ -102,15 +106,15 @@ type Cat implements Pet {
 }
 ```
 
-This feels awesome. The schema builder translates our C# models exactly the way it was meant to be. We do not have to tell the schema builder any more how to do that it will just work.
+This feels awesome. The schema builder translates our C# types exactly the way we meant them. We do not have to tell the schema builder any more how to do that it will just work.
 
 ## Descriptor Attributes
 
 But what about field middleware and other more complex features like type extensions and so on.
 
-This was something I contemplated for a long time but we are solving this now with powerful descriptor attributes. This basically allows you to create attributes for your schema in which you have access to the descriptors. Let me give you an example for this.
+This was something we contemplated for a long time. In the end we came up with powerful descriptor attributes. This basically allows you to create attributes for your schema in which you have access to the full descriptor API. Let me give you an example for this.
 
-Let's say we want to create a simple middleware that can be put on fields and that applies a `ToUpper` on every resulting `string` in the resolver pipeline.
+Let us say we want to create a simple middleware that can be put on properties and methods and that applies a `ToUpper` on every resulting `string` on the annotated member.
 
 ```csharp
 public sealed class ToUpperAttribute : ObjectFieldDescriptorAttribute
@@ -130,7 +134,7 @@ public sealed class ToUpperAttribute : ObjectFieldDescriptorAttribute
 }
 ```
 
-The neat thing is that we have full access to all the things we have on our fluent API and we can easily package this into attributes that we can then apply to our clean C# code.
+The neat thing is that we have full access to all the things we have on our fluent API. The attributes very cleanly packages all the logic and makes it very easy applicable. By just applying an attribute to a property or method I can add huge functionality to that member (resolver).
 
 ```csharp
 public class Query
