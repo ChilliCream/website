@@ -9,13 +9,14 @@
     <logo>https://chillicream.com/img/signet.png</logo>
     <rights>Copyright © 2019 ChilliCream</rights>
     <entry>
-        <title type="html"><![CDATA[Let supercharge your GraphQL schema :)]]></title>
+        <title type="html"><![CDATA[Lets supercharge your GraphQL schema :)]]></title>
         <id>https://chillicream.com/blog/2019/11/29/schema-design.html</id>
         <link href="https://chillicream.com/blog/2019/11/29/schema-design.html">
         </link>
         <updated>2019-11-29T06:00:00Z</updated>
         <summary type="html"><![CDATA[<p><img src="/img/blog/hotchocolate-banner.svg" alt="Hot Chocolate"></p>
-<p>When you think about how we build our GraphQL schemas with <em>Hot Chocolate</em> we always need to fall back to either the schema types or the GraphQL SDL. This brings with it a lot of boiler plate code that we actually could infer from C# code. We decided to push some of the version 11 features down to the version 10 branch to make this possible today.</p>
+<p>When you think about how we build our GraphQL schemas with <em>Hot Chocolate</em> we always need to fall back to either the schema types or the GraphQL SDL in order to get the typings right.</p>
+<p>This brings with it a lot of boiler plate code that we actually could infer from our C# code. With version 10.3.0 we have decided to integrate some of the version 11 features to make it possible to have these capabilities now instead of next year.</p>
 ]]></summary>
         <author>
             <name>Michael Staib</name>
