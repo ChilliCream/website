@@ -150,9 +150,11 @@ public class Query
 }
 ```
 
-This allows us to enable the full power of schema types with clean C# approach. The new attributes will arrive with 10.3.0-preview.3. We will add attributes for each descriptor type. Moreover, you can apply input and output attributes on the same model and we will create automatically an output- and an input-version of that type.
+This allows us to enable the full power of schema types with pure C# types. The new attributes will arrive with 10.3.0-preview.3 probably on Monday.
 
-We will also provide attribute for all our middleware like paging, filtering and sorting. So, you will have the full power of _Hot Chocolate_ even when you do not use our schema type directly.
+We will add attributes for each descriptor type. Moreover, you can apply input and output attributes on the same type, and we will create automatically an output- and an input-version of that type.
+
+We will also provide attributes for all our middleware like paging, filtering, sorting and authorization. So, you will have the full power of _Hot Chocolate_ even when you do not use our schema type directly.
 
 > I really love this feature :)
 
@@ -160,7 +162,7 @@ We will also provide attribute for all our middleware like paging, filtering and
 
 Another thing we want to make better with 10.3.0 are the code-first type extensions. You could already do cool things with the type extensions but there are two things that did not feel nice enough.
 
-First, we could not define a type for the extensions. We had to either declare fields and provide the type there or we had to specify the field with a string name.
+First, we did not have a generic type extension type. This means that defining fields can sometimes be a pain. We had to either declare fields and provide the declaring type with them or we had to specify the field with a string name.
 
 ```csharp
 public class FooExtension : ObjectTypeExtension
