@@ -181,14 +181,15 @@ SchemaBuilder<span class="token punctuation">.</span><span class="token function
     <span class="token punctuation">}</span>
 <span class="token punctuation">}</span>
 </code></pre>
-<p>This allows us to enable the full power of schema types with clean C# approach. The new attributes will arrive with 10.3.0-preview.3. We will add attributes for each descriptor type. Moreover, you can apply input and output attributes on the same model and we will create automatically an output- and an input-version of that type.</p>
-<p>We will also provide attribute for all our middleware like paging, filtering and sorting. So, you will have the full power of <em>Hot Chocolate</em> even when you do not use our schema type directly.</p>
+<p>This allows us to enable the full power of schema types with pure C# types. The new attributes will arrive with 10.3.0-preview.3 probably on Monday.</p>
+<p>We will add attributes for each descriptor type. Moreover, you can apply input and output attributes on the same type, and we will create automatically an output- and an input-version of that type.</p>
+<p>We will also provide attributes for all our middleware like paging, filtering, sorting and authorization. So, you will have the full power of <em>Hot Chocolate</em> even when you do not use our schema type directly.</p>
 <blockquote>
 <p>I really love this feature :)</p>
 </blockquote>
 <h2><a class="anchor" aria-hidden="true" id="type-extensions"></a><a href="#type-extensions" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Type Extensions</h2>
 <p>Another thing we want to make better with 10.3.0 are the code-first type extensions. You could already do cool things with the type extensions but there are two things that did not feel nice enough.</p>
-<p>First, we could not define a type for the extensions. We had to either declare fields and provide the type there or we had to specify the field with a string name.</p>
+<p>First, we did not have a generic type extension type. This means that defining fields can sometimes be a pain. We had to either declare fields and provide the declaring type with them or we had to specify the field with a string name.</p>
 <pre><code class="hljs css language-csharp"><span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">FooExtension</span> <span class="token punctuation">:</span> <span class="token class-name">ObjectTypeExtension</span>
 <span class="token punctuation">{</span>
     <span class="token keyword">protected</span> <span class="token keyword">override</span> <span class="token keyword">void</span> <span class="token function">Configure</span><span class="token punctuation">(</span><span class="token class-name">ObjectTypeDescriptor</span> descriptor<span class="token punctuation">)</span>
