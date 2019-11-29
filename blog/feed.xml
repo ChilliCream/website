@@ -4,7 +4,7 @@
         <title>ChilliCream Blog</title>
         <link>https://chillicream.com/blog</link>
         <description>The best place to stay up-to-date with the latest ChilliCream news and events.</description>
-        <lastBuildDate>Mon, 25 Nov 2019 06:00:00 GMT</lastBuildDate>
+        <lastBuildDate>Fri, 29 Nov 2019 06:00:00 GMT</lastBuildDate>
         <docs>http://blogs.law.harvard.edu/tech/rss</docs>
         <generator>Feed for Node.js</generator>
         <image>
@@ -13,6 +13,15 @@
             <link>https://chillicream.com/blog</link>
         </image>
         <copyright>Copyright © 2019 ChilliCream</copyright>
+        <item>
+            <title><![CDATA[Let supercharge your GraphQL schema :)]]></title>
+            <link>https://chillicream.com/blog/2019/11/29/schema-design.html</link>
+            <guid>https://chillicream.com/blog/2019/11/29/schema-design.html</guid>
+            <pubDate>Fri, 29 Nov 2019 06:00:00 GMT</pubDate>
+            <description><![CDATA[<p><img src="/img/blog/hotchocolate-banner.svg" alt="Hot Chocolate"></p>
+<p>When you think about how we build our GraphQL schemas with <em>Hot Chocolate</em> we always need to fall back to either the schema types or the GraphQL SDL. This brings with it a lot of boiler plate code that we actually could infer from C# code. We decided to push some of the version 11 features down to the version 10 branch to make this possible today.</p>
+]]></description>
+        </item>
         <item>
             <title><![CDATA[Building a real-time .NET GraphQL Client API]]></title>
             <link>https://chillicream.com/blog/2019/11/25/strawberry-shake_2.html</link>

@@ -1,0 +1,250 @@
+<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><title>Let supercharge your GraphQL schema :) · ChilliCream</title><meta name="viewport" content="width=device-width"/><meta name="generator" content="Docusaurus"/><meta name="description" content="When you think about how we build our GraphQL schemas with _Hot Chocolate_ we always need to fall back to either the schema types or the GraphQL SDL. This brings with it a lot of boiler plate code that we actually could infer from C# code. We decided to push some of the version 11 features down to the version 10 branch to make this possible today."/><meta name="docsearch:language" content="en"/><meta property="og:title" content="Let supercharge your GraphQL schema :) · ChilliCream"/><meta property="og:type" content="website"/><meta property="og:url" content="https://chillicream.com/blog/2019/11/29/schema-design"/><meta property="og:description" content="When you think about how we build our GraphQL schemas with _Hot Chocolate_ we always need to fall back to either the schema types or the GraphQL SDL. This brings with it a lot of boiler plate code that we actually could infer from C# code. We decided to push some of the version 11 features down to the version 10 branch to make this possible today."/><meta name="twitter:card" content="summary"/><meta name="twitter:image" content="https://chillicream.com/img/signet.png"/><link rel="shortcut icon" href="/img/favicon.png"/><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/androidstudio.min.css"/><link rel="alternate" type="application/atom+xml" href="https://chillicream.com/blog/atom.xml" title="ChilliCream Blog ATOM Feed"/><link rel="alternate" type="application/rss+xml" href="https://chillicream.com/blog/feed.xml" title="ChilliCream Blog RSS Feed"/><script>
+              (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+              (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+              m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+              })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+              ga('create', 'UA-72800164-1', 'auto');
+              ga('send', 'pageview');
+            </script><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Yanone+Kaffeesatz:700,400"/><link rel="stylesheet" href="/css/code-block-buttons.css"/><script type="text/javascript" src="https://buttons.github.io/buttons.js"></script><script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.0/clipboard.min.js"></script><script type="text/javascript" src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script><script type="text/javascript" src="/js/code-block-buttons.js"></script><script type="text/javascript" src="/js/google-adsense.js"></script><script type="text/javascript" src="/js/disqus.js"></script><script src="https://unpkg.com/vanilla-back-to-top@7.1.14/dist/vanilla-back-to-top.min.js"></script><script>
+        document.addEventListener('DOMContentLoaded', function() {
+          addBackToTop(
+            {"zIndex":100}
+          )
+        });
+        </script><script src="/js/scrollSpy.js"></script><link rel="stylesheet" href="/css/prism.css"/><link rel="stylesheet" href="/css/main.css"/><script src="/js/codetabs.js"></script></head><body class="sideNavVisible separateOnPageNav"><div class="fixedHeaderContainer"><div class="headerWrapper wrapper"><header><a href="/"><img class="logo" src="/img/signet.png" alt="ChilliCream"/><h2 class="headerTitleWithLogo">ChilliCream</h2></a><div class="navigationWrapper navigationSlider"><nav class="slidingNav"><ul class="nav-site nav-site-internal"><li class="siteNavGroupActive"><a href="/blog/" target="_self">Blog</a></li><li class=""><a href="https://shop.chillicream.com" target="_blank">Shop</a></li></ul></nav></div></header></div></div><div class="navPusher"><div class="docMainWrapper wrapper"><div class="docsNavContainer" id="docsNav"><nav class="toc"><div class="toggleNav"><section class="navWrapper wrapper"><div class="navBreadcrumb wrapper"><div class="navToggle" id="navToggler"><div class="hamburger-menu"><div class="line1"></div><div class="line2"></div><div class="line3"></div></div></div><h2><i>›</i><span>All blog posts</span></h2><div class="tocToggler" id="tocToggler"><i class="icon-toc"></i></div></div><div class="navGroups"><div class="navGroup"><h3 class="navGroupCategoryTitle">All blog posts</h3><ul class=""><li class="navListItem navListItemActive"><a class="navItem" href="/blog/2019/11/29/schema-design">Let supercharge your GraphQL schema :)</a></li><li class="navListItem"><a class="navItem" href="/blog/2019/11/25/strawberry-shake_2">Building a real-time .NET GraphQL Client API</a></li><li class="navListItem"><a class="navItem" href="/blog/2019/09/27/strawberry-shake">Building a .NET GraphQL Client API</a></li><li class="navListItem"><a class="navItem" href="/blog/2019/08/14/hot-chocolate-10.0.0">GraphQL - Hot Chocolate 10.0.0</a></li><li class="navListItem"><a class="navItem" href="/blog/2019/06/05/hot-chocolate-9.0.0">GraphQL - Hot Chocolate 9.0.0</a></li><li class="navListItem"><a class="navItem" href="/blog/2019/05/08/performance">GraphQL - Hot Chocolate 9.0.0 - Performance Improvements</a></li><li class="navListItem"><a class="navItem" href="/blog/2019/04/12/type-system">GraphQL - Hot Chocolate 9.0.0 - Type System</a></li><li class="navListItem"><a class="navItem" href="/blog/2019/04/11/integration-tests">GraphQL - How to write integration tests against Hot Chocolate</a></li><li class="navListItem"><a class="navItem" href="/blog/2019/03/31/hot-chocolate-0.8.1">GraphQL - Hot Chocolate 0.8.1</a></li><li class="navListItem"><a class="navItem" href="/blog/2019/03/19/logging-with-hotchocolate">GraphQL - Tracing with Hot Chocolate</a></li><li class="navListItem"><a class="navItem" href="/blog/2019/03/04/hot-chocolate-0.8.0">GraphQL - Hot Chocolate 0.8.0</a></li><li class="navListItem"><a class="navItem" href="/blog/2019/02/20/schema-stitching">GraphQL - Schema Stitching with Version 8</a></li><li class="navListItem"><a class="navItem" href="/blog/2019/02/04/instrumentation-and-apollo-tracing">GraphQL .NET Instrumentation API and Apollo Tracing</a></li><li class="navListItem"><a class="navItem" href="/blog/2019/02/04/hot-chocolate-0.7.0">GraphQL - Hot Chocolate 0.7.0</a></li><li class="navListItem"><a class="navItem" href="/blog/2019/01/24/schema-stitching">GraphQL - Schema Stitching</a></li><li class="navListItem"><a class="navItem" href="/blog/2018/11/07/docusaurus-docs-redirect">Docusaurus - How to redirect requests to /docs to a default url instead of getting a 404 error</a></li><li class="navListItem"><a class="navItem" href="/blog/2018/09/02/hot-chocolate-0.4.5">GraphQL - Hot Chocolate 0.4.5</a></li><li class="navListItem"><a class="navItem" href="/blog/2018/07/31/hot-chocolate-0.4.0">GraphQL - Hot Chocolate 0.4.0</a></li><li class="navListItem"><a class="navItem" href="/blog/2018/07/30/green-donut-0.2.0">Green Donut 0.2.0</a></li><li class="navListItem"><a class="navItem" href="/blog/2018/05/03/react-rasta-1.0.0">React Rasta 1.0.0</a></li><li class="navListItem"><a class="navItem" href="/blog/2013/09/12/jquery-steps-form-wizard">How to create a Form Wizard using jQuery Steps</a></li></ul></div></div></section></div><script>
+            var coll = document.getElementsByClassName('collapsible');
+            var checkActiveCategory = true;
+            for (var i = 0; i < coll.length; i++) {
+              var links = coll[i].nextElementSibling.getElementsByTagName('*');
+              if (checkActiveCategory){
+                for (var j = 0; j < links.length; j++) {
+                  if (links[j].classList.contains('navListItemActive')){
+                    coll[i].nextElementSibling.classList.toggle('hide');
+                    coll[i].childNodes[1].classList.toggle('rotate');
+                    checkActiveCategory = false;
+                    break;
+                  }
+                }
+              }
+
+              coll[i].addEventListener('click', function() {
+                var arrow = this.childNodes[1];
+                arrow.classList.toggle('rotate');
+                var content = this.nextElementSibling;
+                content.classList.toggle('hide');
+              });
+            }
+
+            document.addEventListener('DOMContentLoaded', function() {
+              createToggler('#navToggler', '#docsNav', 'docsSliderActive');
+              createToggler('#tocToggler', 'body', 'tocActive');
+
+              var headings = document.querySelector('.toc-headings');
+              headings && headings.addEventListener('click', function(event) {
+                var el = event.target;
+                while(el !== headings){
+                  if (el.tagName === 'A') {
+                    document.body.classList.remove('tocActive');
+                    break;
+                  } else{
+                    el = el.parentNode;
+                  }
+                }
+              }, false);
+
+              function createToggler(togglerSelector, targetSelector, className) {
+                var toggler = document.querySelector(togglerSelector);
+                var target = document.querySelector(targetSelector);
+
+                if (!toggler) {
+                  return;
+                }
+
+                toggler.onclick = function(event) {
+                  event.preventDefault();
+
+                  target.classList.toggle(className);
+                };
+              }
+            });
+        </script></nav></div><div class="container mainContainer postContainer blogContainer"><div class="wrapper"><div class="lonePost"><div class="post"><header class="postHeader"><h1 class="postHeaderTitle"><a href="/blog/2019/11/29/schema-design">Let supercharge your GraphQL schema :)</a></h1><p class="post-meta">November 29, 2019</p><div class="authorBlock"><p class="post-authorName"><a href="https://github.com/michaelstaib" target="_blank" rel="noreferrer noopener">Michael Staib</a></p><div class="authorPhoto"><a href="https://github.com/michaelstaib" target="_blank" rel="noreferrer noopener"><img src="https://avatars1.githubusercontent.com/u/9714350?s=100&amp;v=4" alt="Michael Staib"/></a></div></div></header><div><span><p><img src="/img/blog/hotchocolate-banner.svg" alt="Hot Chocolate"></p>
+<p>When you think about how we build our GraphQL schemas with <em>Hot Chocolate</em> we always need to fall back to either the schema types or the GraphQL SDL. This brings with it a lot of boiler plate code that we actually could infer from C# code. We decided to push some of the version 11 features down to the version 10 branch to make this possible today.</p>
+<!--truncate-->
+<h2><a class="anchor" aria-hidden="true" id="nullability"></a><a href="#nullability" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Nullability</h2>
+<p>First, let us get the obvious out of the way. C# now has nullable reference types, or actually they now have non-null reference types. It does not matter how you look at it but the result is that we now can differentiate between nullable reference types and reference types that cannot be null.</p>
+<p>With version 10.3.0-preview.2 we can now infer this and you finally do not need helpers like attributes and other things to define your schema types. We got you covered now :)</p>
+<p>So, a simple query like the following:</p>
+<pre><code class="hljs css language-csharp"><span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">Query</span>
+<span class="token punctuation">{</span>
+    <span class="token comment">/// &lt;summary></span>
+    <span class="token comment">/// This field says hello.</span>
+    <span class="token comment">/// &lt;/summary></span>
+    <span class="token keyword">public</span> <span class="token keyword">string</span> <span class="token function">SayHello</span><span class="token punctuation">(</span><span class="token keyword">string</span><span class="token punctuation">?</span> name<span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+        <span class="token keyword">return</span> name <span class="token keyword">is</span> <span class="token keyword">null</span> <span class="token punctuation">?</span> <span class="token string">"Hello!"</span> <span class="token punctuation">:</span> $<span class="token string">"Hello {name}!"</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<p>Is now correctly inferred to:</p>
+<pre><code class="hljs css language-graphql"><span class="token keyword">type</span> <span class="token class-name">Query</span> <span class="token punctuation">{</span>
+  <span class="token string">"This field says hello."</span>
+  <span class="token attr-name">sayHello</span><span class="token punctuation">(</span><span class="token attr-name">name</span><span class="token punctuation">:</span> String<span class="token punctuation">)</span><span class="token punctuation">:</span> String<span class="token operator">!</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<p>Do not get me wrong here, I still love our schema types and we will nod get rid of them since they are the foundation of every schema. In fact we use them underneath. Moreover, see these improvements more as an additional way that opens up and lets us define GraphQL schemas.</p>
+<p>We in the beginning decided that people should be free in the way how they want to define their schemas and we are committed in investing in all variants here.</p>
+<h2><a class="anchor" aria-hidden="true" id="interfaces"></a><a href="#interfaces" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Interfaces</h2>
+<p>Let us dig some deeper with some interfaces. <em>Hot Chocolate</em> can since the version 10 also infer interfaces. This means that we will correctly infer interfaces and their usages.</p>
+<pre><code class="hljs css language-csharp"><span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">Query</span>
+<span class="token punctuation">{</span>
+    <span class="token comment">/// &lt;summary></span>
+    <span class="token comment">/// Get my pet :)</span>
+    <span class="token comment">/// &lt;/summary></span>
+    <span class="token keyword">public</span> IPet<span class="token punctuation">?</span> <span class="token function">GetPet</span><span class="token punctuation">(</span><span class="token keyword">int</span> id<span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+        <span class="token comment">// some code</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">public</span> <span class="token keyword">interface</span> <span class="token class-name">IPet</span>
+<span class="token punctuation">{</span>
+    <span class="token comment">// some code</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">Dog</span> <span class="token punctuation">:</span> <span class="token class-name">IPet</span>
+<span class="token punctuation">{</span>
+    <span class="token comment">// some code</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">Cat</span> <span class="token punctuation">:</span> <span class="token class-name">IPet</span>
+<span class="token punctuation">{</span>
+    <span class="token comment">// some code</span>
+<span class="token punctuation">}</span>
+
+SchemaBuilder<span class="token punctuation">.</span><span class="token function">New</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+    <span class="token punctuation">.</span><span class="token generic-method"><span class="token function">AddQuery</span><span class="token punctuation">&lt;</span><span class="token class-name">Query</span><span class="token punctuation">></span></span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+    <span class="token punctuation">.</span><span class="token generic-method"><span class="token function">AddType</span><span class="token punctuation">&lt;</span><span class="token class-name">Dog</span><span class="token punctuation">></span></span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+    <span class="token punctuation">.</span><span class="token generic-method"><span class="token function">AddType</span><span class="token punctuation">&lt;</span><span class="token class-name">Cat</span><span class="token punctuation">></span></span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+    <span class="token punctuation">.</span><span class="token function">Create</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre>
+<pre><code class="hljs css language-graphql"><span class="token keyword">type</span> <span class="token class-name">Query</span> <span class="token punctuation">{</span>
+  <span class="token string">"Get my pet :)"</span>
+  <span class="token attr-name">pet</span><span class="token punctuation">(</span><span class="token attr-name">id</span><span class="token punctuation">:</span> Int<span class="token operator">!</span><span class="token punctuation">)</span><span class="token punctuation">:</span> IPet
+<span class="token punctuation">}</span>
+
+<span class="token keyword">interface</span> <span class="token class-name">Pet</span> <span class="token punctuation">{</span>
+    // fields
+<span class="token punctuation">}</span>
+
+<span class="token keyword">type</span> <span class="token class-name">Dog</span> <span class="token keyword">implements</span> <span class="token class-name">Pet</span> <span class="token punctuation">{</span>
+    // fields
+<span class="token punctuation">}</span>
+
+<span class="token keyword">type</span> <span class="token class-name">Cat</span> <span class="token keyword">implements</span> <span class="token class-name">Pet</span> <span class="token punctuation">{</span>
+    // fields
+<span class="token punctuation">}</span>
+</code></pre>
+<p>This feels awesome. The schema builder translates our C# models exactly the way it was meant to be. We do not have to tell the schema builder any more how to do that it will just work.</p>
+<h2><a class="anchor" aria-hidden="true" id="descriptor-attributes"></a><a href="#descriptor-attributes" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Descriptor Attributes</h2>
+<p>But what about field middleware and other more complex features like type extensions and so on.</p>
+<p>This was something I contemplated for a long time but we are solving this now with powerful descriptor attributes. This basically allows you to create attributes for your schema in which you have access to the descriptors. Let me give you an example for this.</p>
+<p>Let's say we want to create a simple middleware that can be put on fields and that applies a <code>ToUpper</code> on every resulting <code>string</code> in the resolver pipeline.</p>
+<pre><code class="hljs css language-csharp"><span class="token keyword">public</span> <span class="token keyword">sealed</span> <span class="token keyword">class</span> <span class="token class-name">ToUpperAttribute</span> <span class="token punctuation">:</span> <span class="token class-name">ObjectFieldDescriptorAttribute</span>
+<span class="token punctuation">{</span>
+    <span class="token keyword">protected</span> <span class="token keyword">override</span> <span class="token keyword">void</span> <span class="token function">OnConfigure</span><span class="token punctuation">(</span><span class="token class-name">IObjectFieldDescriptor</span> descriptor<span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+        descriptor<span class="token punctuation">.</span><span class="token function">Use</span><span class="token punctuation">(</span>next <span class="token operator">=></span> <span class="token keyword">async</span> ctx <span class="token operator">=></span>
+        <span class="token punctuation">{</span>
+            <span class="token keyword">await</span> <span class="token function">next</span><span class="token punctuation">(</span>ctx<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+            <span class="token keyword">if</span><span class="token punctuation">(</span>ctx<span class="token punctuation">.</span><span class="token class-name">Result</span> <span class="token keyword">is</span> <span class="token keyword">string</span> s<span class="token punctuation">)</span>
+            <span class="token punctuation">{</span>
+                ctx<span class="token punctuation">.</span>Result <span class="token operator">=</span> s<span class="token punctuation">.</span><span class="token function">ToUpperInvariant</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token punctuation">}</span>
+        <span class="token punctuation">}</span><span class="token punctuation">)</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<p>The neat thing is that we have full access to all the things we have on our fluent API and we can easily package this into attributes that we can then apply to our clean C# code.</p>
+<pre><code class="hljs css language-csharp"><span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">Query</span>
+<span class="token punctuation">{</span>
+    <span class="token comment">/// &lt;summary></span>
+    <span class="token comment">/// This field says hello.</span>
+    <span class="token comment">/// &lt;/summary></span>
+    <span class="token punctuation">[</span><span class="token class-name">ToUpper</span><span class="token punctuation">]</span>
+    <span class="token keyword">public</span> <span class="token keyword">string</span> <span class="token function">SayHello</span><span class="token punctuation">(</span><span class="token keyword">string</span><span class="token punctuation">?</span> name<span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+        <span class="token keyword">return</span> name <span class="token keyword">is</span> <span class="token keyword">null</span> <span class="token punctuation">?</span> <span class="token string">"Hello!"</span> <span class="token punctuation">:</span> $<span class="token string">"Hello {name}!"</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<p>This allows us to enable the full power of schema types with clean C# approach. The new attributes will arrive with 10.3.0-preview.3. We will add attributes for each descriptor type. Moreover, you can apply input and output attributes on the same model and we will create automatically an output- and an input-version of that type.</p>
+<p>We will also provide attribute for all our middleware like paging, filtering and sorting. So, you will have the full power of <em>Hot Chocolate</em> even when you do not use our schema type directly.</p>
+<blockquote>
+<p>I really love this feature :)</p>
+</blockquote>
+<h2><a class="anchor" aria-hidden="true" id="type-extensions"></a><a href="#type-extensions" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Type Extensions</h2>
+<p>Another thing we want to make better with 10.3.0 are the code-first type extensions. You could already do cool things with the type extensions but there are two things that did not feel nice enough.</p>
+<p>First, we could not define a type for the extensions. We had to either declare fields and provide the type there or we had to specify the field with a string name.</p>
+<pre><code class="hljs css language-csharp"><span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">FooExtension</span> <span class="token punctuation">:</span> <span class="token class-name">ObjectTypeExtension</span>
+<span class="token punctuation">{</span>
+    <span class="token keyword">protected</span> <span class="token keyword">override</span> <span class="token keyword">void</span> <span class="token function">Configure</span><span class="token punctuation">(</span><span class="token class-name">ObjectTypeDescriptor</span> descriptor<span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+        descriptor<span class="token punctuation">.</span><span class="token function">Name</span><span class="token punctuation">(</span><span class="token string">"Foo"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        descriptor<span class="token punctuation">.</span><span class="token generic-method"><span class="token function">Field</span><span class="token punctuation">&lt;</span><span class="token class-name">Foo</span><span class="token punctuation">></span></span><span class="token punctuation">(</span>t <span class="token operator">=></span> t<span class="token punctuation">.</span>Bar<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">Use</span><span class="token punctuation">(</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        descriptor<span class="token punctuation">.</span><span class="token function">Field</span><span class="token punctuation">(</span><span class="token string">"baz"</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">Use</span><span class="token punctuation">(</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<p>With the new version we can now basically do the same than we do with standard types by providing a type parameter:</p>
+<pre><code class="hljs css language-csharp"><span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">FooExtension</span> <span class="token punctuation">:</span> <span class="token class-name">ObjectTypeExtension</span><span class="token operator">&lt;</span>Foo<span class="token operator">></span>
+<span class="token punctuation">{</span>
+    <span class="token keyword">protected</span> <span class="token keyword">override</span> <span class="token keyword">void</span> <span class="token function">Configure</span><span class="token punctuation">(</span>ObjectTypeDescriptor<span class="token operator">&lt;</span>Foo<span class="token operator">></span> descriptor<span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+        descriptor<span class="token punctuation">.</span><span class="token function">Name</span><span class="token punctuation">(</span><span class="token string">"Foo"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        descriptor<span class="token punctuation">.</span><span class="token function">Field</span><span class="token punctuation">(</span>t <span class="token operator">=></span> t<span class="token punctuation">.</span>Bar<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">Use</span><span class="token punctuation">(</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<p>The second thing that is sometimes good and other times bad is that we have to provide an name. With 10.3.0 we first of all can now infer the type from the mode.</p>
+<p>You also can just type in the name like before. Or you provide as with the type that you want to actually extend.</p>
+<pre><code class="hljs css language-csharp"><span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">FooExtension</span> <span class="token punctuation">:</span> <span class="token class-name">ObjectTypeExtension</span><span class="token operator">&lt;</span>Foo<span class="token operator">></span>
+<span class="token punctuation">{</span>
+    <span class="token keyword">protected</span> <span class="token keyword">override</span> <span class="token keyword">void</span> <span class="token function">Configure</span><span class="token punctuation">(</span>ObjectTypeDescriptor<span class="token operator">&lt;</span>Foo<span class="token operator">></span> descriptor<span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+        descriptor<span class="token punctuation">.</span><span class="token generic-method"><span class="token function">Extend</span><span class="token punctuation">&lt;</span><span class="token class-name">FooType</span><span class="token punctuation">></span></span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+        descriptor<span class="token punctuation">.</span><span class="token function">Field</span><span class="token punctuation">(</span>t <span class="token operator">=></span> t<span class="token punctuation">.</span>Bar<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">Use</span><span class="token punctuation">(</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<h2><a class="anchor" aria-hidden="true" id="optional"></a><a href="#optional" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Optional</h2>
+<p>Another concept we will introduce with 10.3.0 is optionals. This is often a thing we want to use when we are talking about input types. We have introduced this concept already with <em>Strawberry Shake</em> and like it a lot.</p>
+<p>So, we are porting it now back to the server. In your resolvers you can now use for every argument the optional wrapper type and this will tell you if the argument was not provided. This will allow you to easily do partial updates. We could do partial updates before but not as elegant as now. With version 11 we will improve on that by having a nice patch type.</p>
+<pre><code class="hljs css language-csharp"><span class="token keyword">public</span> <span class="token keyword">async</span> Task<span class="token operator">&lt;</span>Foo<span class="token operator">></span> <span class="token function">GetMyFoo</span><span class="token punctuation">(</span>Optional<span class="token operator">&lt;</span><span class="token keyword">string</span><span class="token operator">></span> id<span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+    <span class="token comment">// ...</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<p>Also you can use optionals in input objects.</p>
+<pre><code class="hljs css language-csharp"><span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">Foo</span>
+<span class="token punctuation">{</span>
+    <span class="token keyword">public</span> Optional<span class="token operator">&lt;</span><span class="token keyword">string</span><span class="token operator">></span> Bar <span class="token punctuation">{</span> <span class="token keyword">get</span><span class="token punctuation">;</span> <span class="token keyword">set</span><span class="token punctuation">;</span> <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<p>The nice thing with the inputs are that they implicitly convert.</p>
+<pre><code class="hljs css language-csharp"><span class="token keyword">var</span> foo <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Foo</span> <span class="token punctuation">{</span> Bar <span class="token operator">=</span> <span class="token string">"My String"</span> <span class="token punctuation">}</span><span class="token punctuation">;</span>
+</code></pre>
+<h2><a class="anchor" aria-hidden="true" id="wrapping-it-up"></a><a href="#wrapping-it-up" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Wrapping it up</h2>
+<p><em>Hot Chocolate</em> 10.3.0 will bring a lot new improvements to how we can create GraphQL schemas. All these changes are just additions and there are no breaking changes involved meaning we give you a lot of version 11 productivity improvements now.</p>
+<p>So, when can you expect 10.3.0. We will deliver nullable ref types with 10.3.0-preview.2 (tonight) and the attributes will come 10.3.0-preview.3. We think the final version should be ready end of next week. We initially planned end of this week but we still have some bug fixing to do.</p>
+<p>I hope you are as exited as I am about this. Happy Thanksgiving :) and get a super awesome <em>Hot Chocolate</em> with marshmallows to get into your GraphQL groove.</p>
+<p>If you want to get into contact with us head over to our <a href="https://join.slack.com/t/hotchocolategraphql/shared_invite/enQtNTA4NjA0ODYwOTQ0LTViMzA2MTM4OWYwYjIxYzViYmM0YmZhYjdiNzBjOTg2ZmU1YmMwNDZiYjUyZWZlMzNiMTk1OWUxNWZhMzQwY2Q">slack channel</a> and join our community.</p>
+<table>
+<thead>
+<tr><th><a href="https://join.slack.com/t/hotchocolategraphql/shared_invite/enQtNTA4NjA0ODYwOTQ0LTViMzA2MTM4OWYwYjIxYzViYmM0YmZhYjdiNzBjOTg2ZmU1YmMwNDZiYjUyZWZlMzNiMTk1OWUxNWZhMzQwY2Q">HotChocolate Slack Channel</a></th><th><a href="https://hotchocolate.io">Hot Chocolate Documentation</a></th><th><a href="https://github.com/ChilliCream/hotchocolate">Hot Chocolate on GitHub</a></th></tr>
+</thead>
+<tbody>
+</tbody>
+</table>
+</span></div></div><div class="blogSocialSection"><div class="blogSocialSectionItem"><a href="https://twitter.com/share" class="twitter-share-button" data-text="Let supercharge your GraphQL schema :)" data-url="https://chillicream.com/blog/2019/11/29/schema-design" data-related="true" data-show-count="false">Tweet</a></div></div></div><div class="blog-recent"><a class="button" href="/blog">Recent posts</a></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#nullability">Nullability</a></li><li><a href="#interfaces">Interfaces</a></li><li><a href="#descriptor-attributes">Descriptor Attributes</a></li><li><a href="#type-extensions">Type Extensions</a></li><li><a href="#optional">Optional</a></li><li><a href="#wrapping-it-up">Wrapping it up</a></li></ul></nav></div><footer class="nav-footer" id="footer"><section class="sitemap"><a href="/" class="nav-home"><img src="/img/signet.png" alt="ChilliCream" width="64" height="64"/></a><div><h5>Projects</h5><a href="https://greendonut.io" target="_blank">Green Donut</a><a href="https://hotchocolate.io" target="_blank">Hot Chocolate</a><a href="https://react-rasta.com" target="_blank">React Rasta</a><a href="https://github.com/ChilliCream/thor-core" target="_blank">Thor</a></div><div><h5>Community</h5><a href="https://twitter.com/Chilli_Cream" target="_blank" rel="noreferrer noopener">Follow us on Twitter</a></div><div><h5>More</h5><a href="/blog">Blog</a><a href="https://shop.chillicream.com" target="_blank">Shop</a><a href="https://github.com/ChilliCream/website" target="_blank">GitHub</a><a href="https://github.com/ChilliCream/website/issues" target="_blank">Issues</a><a class="github-button" href="https://github.com/ChilliCream/website" data-icon="octicon-star" data-count-href="/chillicream/website/stargazers" data-show-count="true" data-count-aria-label="# stargazers on GitHub" aria-label="Star this project on GitHub">Star</a></div></section><section class="copyright">Copyright © 2019 ChilliCream</section></footer></div><script>window.twttr=(function(d,s, id){var js,fjs=d.getElementsByTagName(s)[0],t=window.twttr||{};if(d.getElementById(id))return t;js=d.createElement(s);js.id=id;js.src='https://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js, fjs);t._e = [];t.ready = function(f) {t._e.push(f);};return t;}(document, 'script', 'twitter-wjs'));</script></body></html>
