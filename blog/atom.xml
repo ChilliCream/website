@@ -2,33 +2,46 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://chillicream.com/blog</id>
     <title>ChilliCream Blog</title>
-    <updated>2019-11-29T06:00:00Z</updated>
-    <generator>Feed for Node.js</generator>
+    <updated>2019-12-26T06:00:00.000Z</updated>
+    <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://chillicream.com/blog"/>
     <subtitle>The best place to stay up-to-date with the latest ChilliCream news and events.</subtitle>
     <logo>https://chillicream.com/img/signet.png</logo>
     <rights>Copyright © 2019 ChilliCream</rights>
     <entry>
+        <title type="html"><![CDATA[GraphQL - Hot Chocolate 10.0.0]]></title>
+        <id>https://chillicream.com/blog/2019/12/26/hotchocolate-10.3.0.html</id>
+        <link href="https://chillicream.com/blog/2019/12/26/hotchocolate-10.3.0.html"/>
+        <updated>2019-12-26T06:00:00.000Z</updated>
+        <summary type="html"><![CDATA[<p><img src="/img/blog/hotchocolate-banner.svg" alt="Hot Chocolate"></p>
+<p>Today we are releasing <em>Hot Chocolate</em> version 10.3.0. Although the version number sounds like a small change, it is quite a nice update with lots of new features making <em>Hot Chocolate</em> the most versatile and feature rich GraphQL server on the .NET platform.</p>
+]]></summary>
+        <author>
+            <name>Michael Staib</name>
+            <email/>
+            <uri>https://github.com/michaelstaib</uri>
+        </author>
+    </entry>
+    <entry>
         <title type="html"><![CDATA[Lets supercharge your GraphQL schema :)]]></title>
         <id>https://chillicream.com/blog/2019/11/29/schema-design.html</id>
-        <link href="https://chillicream.com/blog/2019/11/29/schema-design.html">
-        </link>
-        <updated>2019-11-29T06:00:00Z</updated>
+        <link href="https://chillicream.com/blog/2019/11/29/schema-design.html"/>
+        <updated>2019-11-29T06:00:00.000Z</updated>
         <summary type="html"><![CDATA[<p><img src="/img/blog/hotchocolate-banner.svg" alt="Hot Chocolate"></p>
 <p>When you think about how we build our GraphQL schemas with <em>Hot Chocolate</em> we always need to fall back to either the schema types or the GraphQL SDL in order to get the typings right.</p>
 <p>This brings with it a lot of boiler plate code that we actually could infer from our C# code. With version 10.3.0 we have decided to integrate some of the version 11 features to make it possible to have these capabilities now instead of next year.</p>
 ]]></summary>
         <author>
             <name>Michael Staib</name>
+            <email/>
             <uri>https://github.com/michaelstaib</uri>
         </author>
     </entry>
     <entry>
         <title type="html"><![CDATA[Building a real-time .NET GraphQL Client API]]></title>
         <id>https://chillicream.com/blog/2019/11/25/strawberry-shake_2.html</id>
-        <link href="https://chillicream.com/blog/2019/11/25/strawberry-shake_2.html">
-        </link>
-        <updated>2019-11-25T06:00:00Z</updated>
+        <link href="https://chillicream.com/blog/2019/11/25/strawberry-shake_2.html"/>
+        <updated>2019-11-25T06:00:00.000Z</updated>
         <summary type="html"><![CDATA[<p><img src="/img/blog/strawberry-shake-banner.svg" alt="Strawberry Shake"></p>
 <p>We are busy, busy, busy working on version 11 of <em>Hot Chocolate</em> and <em>Strawberry Shake</em>.</p>
 <p>In this post I want to explore the client side of GraphQL on .NET more with a special emphasis on subscriptions.</p>
@@ -36,15 +49,15 @@
 ]]></summary>
         <author>
             <name>Michael Staib</name>
+            <email/>
             <uri>https://github.com/michaelstaib</uri>
         </author>
     </entry>
     <entry>
         <title type="html"><![CDATA[Building a .NET GraphQL Client API]]></title>
         <id>https://chillicream.com/blog/2019/09/27/strawberry-shake.html</id>
-        <link href="https://chillicream.com/blog/2019/09/27/strawberry-shake.html">
-        </link>
-        <updated>2019-09-27T06:00:00Z</updated>
+        <link href="https://chillicream.com/blog/2019/09/27/strawberry-shake.html"/>
+        <updated>2019-09-27T06:00:00.000Z</updated>
         <summary type="html"><![CDATA[<p><img src="/img/blog/strawberry-shake-banner.svg" alt="Strawberry Shake"></p>
 <p>We for a while now have two big GraphQL server projects on the .NET platform. So, if you just want to build a decent GraphQL server you can pick and choose between <em>GraphQL .NET</em> or <em>Hot Chocolate</em>.</p>
 <p>If you are looking at consuming a GraphQL server in your <em>Blazor</em> or <em>Xamarin</em> application, then things are not so promising. You can either go with a bare bone client from the <em>GraphQL .NET</em> project or you can decide to go it alone and build on <code>HttpClient</code>.</p>
@@ -52,138 +65,138 @@
 ]]></summary>
         <author>
             <name>Michael Staib</name>
+            <email/>
             <uri>https://github.com/michaelstaib</uri>
         </author>
     </entry>
     <entry>
         <title type="html"><![CDATA[GraphQL - Hot Chocolate 10.0.0]]></title>
         <id>https://chillicream.com/blog/2019/08/14/hot-chocolate-10.0.0.html</id>
-        <link href="https://chillicream.com/blog/2019/08/14/hot-chocolate-10.0.0.html">
-        </link>
-        <updated>2019-08-14T06:00:00Z</updated>
+        <link href="https://chillicream.com/blog/2019/08/14/hot-chocolate-10.0.0.html"/>
+        <updated>2019-08-14T06:00:00.000Z</updated>
         <summary type="html"><![CDATA[<p><img src="/img/blog/hotchocolate-banner.svg" alt="Hot Chocolate"></p>
 <p>Today we have released version 10 of <em>Hot Chocolate</em>. We originally started building version 9.1 which grew bigger and at one point became version 10. We have focused a lot on our server implementation. But let me walk you through our latest release.</p>
 ]]></summary>
         <author>
             <name>Michael Staib</name>
+            <email/>
             <uri>https://github.com/michaelstaib</uri>
         </author>
     </entry>
     <entry>
         <title type="html"><![CDATA[GraphQL - Hot Chocolate 9.0.0]]></title>
         <id>https://chillicream.com/blog/2019/06/05/hot-chocolate-9.0.0.html</id>
-        <link href="https://chillicream.com/blog/2019/06/05/hot-chocolate-9.0.0.html">
-        </link>
-        <updated>2019-06-05T06:00:00Z</updated>
+        <link href="https://chillicream.com/blog/2019/06/05/hot-chocolate-9.0.0.html"/>
+        <updated>2019-06-05T06:00:00.000Z</updated>
         <summary type="html"><![CDATA[<p>Today we have released version 9 of <em>Hot Chocolate</em>. This release was mainly focused on the schema APIs and performance. Furthermore, we started work on the wider <em>ChilliCream GraphQL Platform</em> and today you will get some insides where we are heading with this.</p>
 ]]></summary>
         <author>
             <name>Michael Staib</name>
+            <email/>
             <uri>https://github.com/michaelstaib</uri>
         </author>
     </entry>
     <entry>
         <title type="html"><![CDATA[GraphQL - Hot Chocolate 9.0.0 - Performance Improvements]]></title>
         <id>https://chillicream.com/blog/2019/05/08/performance.html</id>
-        <link href="https://chillicream.com/blog/2019/05/08/performance.html">
-        </link>
-        <updated>2019-05-08T06:00:00Z</updated>
+        <link href="https://chillicream.com/blog/2019/05/08/performance.html"/>
+        <updated>2019-05-08T06:00:00.000Z</updated>
         <summary type="html"><![CDATA[<p>Today we release preview 27 of version 9 and we are heading toward RC status which we are planning to hit next week.</p>
 <p>This post will describe what we have done since preview 9 and where we are heading.</p>
 ]]></summary>
         <author>
             <name>Michael Staib</name>
+            <email/>
             <uri>https://github.com/michaelstaib</uri>
         </author>
     </entry>
     <entry>
         <title type="html"><![CDATA[GraphQL - Hot Chocolate 9.0.0 - Type System]]></title>
         <id>https://chillicream.com/blog/2019/04/12/type-system.html</id>
-        <link href="https://chillicream.com/blog/2019/04/12/type-system.html">
-        </link>
-        <updated>2019-04-12T06:00:00Z</updated>
+        <link href="https://chillicream.com/blog/2019/04/12/type-system.html"/>
+        <updated>2019-04-12T06:00:00.000Z</updated>
         <summary type="html"><![CDATA[<p>Originally, I wanted to write a little post about what we are currently working on in version 9 and how those things are coming along, but every time I started writing on this post it got longer and longer and it felt a bit too messy.</p>
 <p>Starting with this post we will start talking about version 9 in more detail. We will split this into several blog posts that will cover different parts of the new version. This post will focus on the type system improvements.</p>
 ]]></summary>
         <author>
             <name>Michael Staib</name>
+            <email/>
             <uri>https://github.com/michaelstaib</uri>
         </author>
     </entry>
     <entry>
         <title type="html"><![CDATA[GraphQL - How to write integration tests against Hot Chocolate]]></title>
         <id>https://chillicream.com/blog/2019/04/11/integration-tests.html</id>
-        <link href="https://chillicream.com/blog/2019/04/11/integration-tests.html">
-        </link>
-        <updated>2019-04-11T06:00:00Z</updated>
+        <link href="https://chillicream.com/blog/2019/04/11/integration-tests.html"/>
+        <updated>2019-04-11T06:00:00.000Z</updated>
         <summary type="html"><![CDATA[<p>Today I was asked in our slack channel how one could write an integration test against <em>Hot Chocolate</em> without setting up an ASP.Net Core <em>TestServer</em>.
 Though the ASP.Net Core <em>TestServer</em> API is quite nice, it is much more cumbersome to test a schema this way.</p>
 ]]></summary>
         <author>
             <name>Michael Staib</name>
+            <email/>
             <uri>https://github.com/michaelstaib</uri>
         </author>
     </entry>
     <entry>
         <title type="html"><![CDATA[GraphQL - Hot Chocolate 0.8.1]]></title>
         <id>https://chillicream.com/blog/2019/03/31/hot-chocolate-0.8.1.html</id>
-        <link href="https://chillicream.com/blog/2019/03/31/hot-chocolate-0.8.1.html">
-        </link>
-        <updated>2019-03-31T06:00:00Z</updated>
+        <link href="https://chillicream.com/blog/2019/03/31/hot-chocolate-0.8.1.html"/>
+        <updated>2019-03-31T06:00:00.000Z</updated>
         <summary type="html"><![CDATA[<p>Today we release version 8.1 (0.8.1) of <em>Hot Chocolate</em>. This release brings improvements and bug fixes to the current version 8 release.</p>
 ]]></summary>
         <author>
             <name>Michael Staib</name>
+            <email/>
             <uri>https://github.com/michaelstaib</uri>
         </author>
     </entry>
     <entry>
         <title type="html"><![CDATA[GraphQL - Tracing with Hot Chocolate]]></title>
         <id>https://chillicream.com/blog/2019/03/19/logging-with-hotchocolate.html</id>
-        <link href="https://chillicream.com/blog/2019/03/19/logging-with-hotchocolate.html">
-        </link>
-        <updated>2019-03-19T06:00:00Z</updated>
+        <link href="https://chillicream.com/blog/2019/03/19/logging-with-hotchocolate.html"/>
+        <updated>2019-03-19T06:00:00.000Z</updated>
         <summary type="html"><![CDATA[<p>One common question that comes up on our slack channel is if <em>Hot Chocolate</em> supports some kind of logging infrastructure. My personal opinion here is that logging/tracing is often very project specific and an API should not force one specific logging solution onto its users.</p>
 <p>Instead we have opted to provide diagnostic events through Microsoft`s diagnostic source which does not force us to serialize any payloads. This in turn gives you the ability to pick and choose the information that best fits your need for your tracing/logging solution.</p>
 <p>This post will walk you through on how to add a logger of your choice to <em>Hot Chocolate</em> and get exactly the right amount of information for your project.</p>
 ]]></summary>
         <author>
             <name>Michael Staib</name>
+            <email/>
             <uri>https://github.com/michaelstaib</uri>
         </author>
     </entry>
     <entry>
         <title type="html"><![CDATA[GraphQL - Hot Chocolate 0.8.0]]></title>
         <id>https://chillicream.com/blog/2019/03/04/hot-chocolate-0.8.0.html</id>
-        <link href="https://chillicream.com/blog/2019/03/04/hot-chocolate-0.8.0.html">
-        </link>
-        <updated>2019-03-04T06:00:00Z</updated>
+        <link href="https://chillicream.com/blog/2019/03/04/hot-chocolate-0.8.0.html"/>
+        <updated>2019-03-04T06:00:00.000Z</updated>
         <summary type="html"><![CDATA[<p>Today we are releasing Hot Chocolate version 8 (0.8.0) which mainly focused on schema stitching and brings our stitching layer to a whole new level.</p>
 ]]></summary>
         <author>
             <name>Michael Staib</name>
+            <email/>
             <uri>https://github.com/michaelstaib</uri>
         </author>
     </entry>
     <entry>
         <title type="html"><![CDATA[GraphQL - Schema Stitching with Version 8]]></title>
         <id>https://chillicream.com/blog/2019/02/20/schema-stitching.html</id>
-        <link href="https://chillicream.com/blog/2019/02/20/schema-stitching.html">
-        </link>
-        <updated>2019-02-20T06:00:00Z</updated>
+        <link href="https://chillicream.com/blog/2019/02/20/schema-stitching.html"/>
+        <updated>2019-02-20T06:00:00.000Z</updated>
         <summary type="html"><![CDATA[<p>With version 8 of Hot Chocolate we have mainly focused on schema stitching. One of the most requested features in this area was auto-stitching. Auto-stitching will enable us to automatically pull in schemas from other GraphQL servers and merge those into one schema.</p>
 ]]></summary>
         <author>
             <name>Michael Staib</name>
+            <email/>
             <uri>https://github.com/michaelstaib</uri>
         </author>
     </entry>
     <entry>
         <title type="html"><![CDATA[GraphQL .NET Instrumentation API and Apollo Tracing]]></title>
         <id>https://chillicream.com/blog/2019/02/04/instrumentation-and-apollo-tracing.html</id>
-        <link href="https://chillicream.com/blog/2019/02/04/instrumentation-and-apollo-tracing.html">
-        </link>
-        <updated>2019-02-04T06:00:00Z</updated>
+        <link href="https://chillicream.com/blog/2019/02/04/instrumentation-and-apollo-tracing.html"/>
+        <updated>2019-02-04T06:00:00.000Z</updated>
         <summary type="html"><![CDATA[<p>Today we have released Hot Chocolate <code>0.7.0</code>, containing one cool new feature,
 we wanne talk about here, namely <em>Apollo Tracing</em> which is extremely powerful in
 identifing things like performance bottlenecks in our <em>GraphQL</em> <em>APIs</em> for
@@ -194,41 +207,41 @@ this blog article we will focus on these two topics.</p>
 ]]></summary>
         <author>
             <name>Rafael Staib</name>
+            <email/>
             <uri>https://github.com/rstaib</uri>
         </author>
     </entry>
     <entry>
         <title type="html"><![CDATA[GraphQL - Hot Chocolate 0.7.0]]></title>
         <id>https://chillicream.com/blog/2019/02/04/hot-chocolate-0.7.0.html</id>
-        <link href="https://chillicream.com/blog/2019/02/04/hot-chocolate-0.7.0.html">
-        </link>
-        <updated>2019-02-04T06:00:00Z</updated>
+        <link href="https://chillicream.com/blog/2019/02/04/hot-chocolate-0.7.0.html"/>
+        <updated>2019-02-04T06:00:00.000Z</updated>
         <summary type="html"><![CDATA[<p>Today we have released Hot Chocolate version 0.7.0 which brings a lot of new features, improvements and bug fixes. With this post I walk you through the major changes.</p>
 ]]></summary>
         <author>
             <name>Michael Staib</name>
+            <email/>
             <uri>https://github.com/michaelstaib</uri>
         </author>
     </entry>
     <entry>
         <title type="html"><![CDATA[GraphQL - Schema Stitching]]></title>
         <id>https://chillicream.com/blog/2019/01/24/schema-stitching.html</id>
-        <link href="https://chillicream.com/blog/2019/01/24/schema-stitching.html">
-        </link>
-        <updated>2019-01-24T06:00:00Z</updated>
+        <link href="https://chillicream.com/blog/2019/01/24/schema-stitching.html"/>
+        <updated>2019-01-24T06:00:00.000Z</updated>
         <summary type="html"><![CDATA[<p>What is schema stitching actually? Schema stitching is the capability to merge multiple GraphQL schemas into one schema on which queries can be queried.</p>
 ]]></summary>
         <author>
             <name>Michael Staib</name>
+            <email/>
             <uri>https://github.com/michaelstaib</uri>
         </author>
     </entry>
     <entry>
         <title type="html"><![CDATA[Docusaurus - How to redirect requests to /docs to a default url instead of getting a 404 error]]></title>
         <id>https://chillicream.com/blog/2018/11/07/docusaurus-docs-redirect.html</id>
-        <link href="https://chillicream.com/blog/2018/11/07/docusaurus-docs-redirect.html">
-        </link>
-        <updated>2018-11-07T06:00:00Z</updated>
+        <link href="https://chillicream.com/blog/2018/11/07/docusaurus-docs-redirect.html"/>
+        <updated>2018-11-07T06:00:00.000Z</updated>
         <summary type="html"><![CDATA[<p>I recently run into an HTTP 404 error when calling /docs on my <em>Docusaurus</em> websites. This isn't
 actually nice, because I expected to land on my documentation entry page e.g. introduction. First I
 thought, perhaps this is an issue with my setup. But I found out that even the <em>Docusaurus</em> website
@@ -238,72 +251,73 @@ I try to help everyone saving their time and making the experience with <em>Docu
 ]]></summary>
         <author>
             <name>Rafael Staib</name>
+            <email/>
             <uri>https://github.com/rstaib</uri>
         </author>
     </entry>
     <entry>
         <title type="html"><![CDATA[GraphQL - Hot Chocolate 0.4.5]]></title>
         <id>https://chillicream.com/blog/2018/09/02/hot-chocolate-0.4.5.html</id>
-        <link href="https://chillicream.com/blog/2018/09/02/hot-chocolate-0.4.5.html">
-        </link>
-        <updated>2018-09-02T06:00:00Z</updated>
+        <link href="https://chillicream.com/blog/2018/09/02/hot-chocolate-0.4.5.html"/>
+        <updated>2018-09-02T06:00:00.000Z</updated>
         <summary type="html"><![CDATA[<p>With version 0.4.5 we closed a lot of spec gaps and refined the schema configuration API.</p>
 ]]></summary>
         <author>
             <name>Michael Staib</name>
+            <email/>
             <uri>https://github.com/michaelstaib</uri>
         </author>
     </entry>
     <entry>
         <title type="html"><![CDATA[GraphQL - Hot Chocolate 0.4.0]]></title>
         <id>https://chillicream.com/blog/2018/07/31/hot-chocolate-0.4.0.html</id>
-        <link href="https://chillicream.com/blog/2018/07/31/hot-chocolate-0.4.0.html">
-        </link>
-        <updated>2018-07-31T06:00:00Z</updated>
+        <link href="https://chillicream.com/blog/2018/07/31/hot-chocolate-0.4.0.html"/>
+        <updated>2018-07-31T06:00:00.000Z</updated>
         <summary type="html"><![CDATA[<p>With this version we introduce support for <em>DataLoaders</em> and custom context objects.</p>
 ]]></summary>
         <author>
             <name>Michael Staib</name>
+            <email/>
             <uri>https://github.com/michaelstaib</uri>
         </author>
     </entry>
     <entry>
         <title type="html"><![CDATA[Green Donut 0.2.0]]></title>
         <id>https://chillicream.com/blog/2018/07/30/green-donut-0.2.0.html</id>
-        <link href="https://chillicream.com/blog/2018/07/30/green-donut-0.2.0.html">
-        </link>
-        <updated>2018-07-30T06:00:00Z</updated>
+        <link href="https://chillicream.com/blog/2018/07/30/green-donut-0.2.0.html"/>
+        <updated>2018-07-30T06:00:00.000Z</updated>
         <summary type="html"><![CDATA[<p>Today we proudly released the first version of <em>Green Donut</em> -- a <em>DataLoader</em> implementation for
 <em>.net core</em> and <em>classic</em>.</p>
 ]]></summary>
         <author>
             <name>Rafael Staib</name>
+            <email/>
             <uri>https://github.com/rstaib</uri>
         </author>
     </entry>
     <entry>
         <title type="html"><![CDATA[React Rasta 1.0.0]]></title>
         <id>https://chillicream.com/blog/2018/05/03/react-rasta-1.0.0.html</id>
-        <link href="https://chillicream.com/blog/2018/05/03/react-rasta-1.0.0.html">
-        </link>
-        <updated>2018-05-03T06:00:00Z</updated>
+        <link href="https://chillicream.com/blog/2018/05/03/react-rasta-1.0.0.html"/>
+        <updated>2018-05-03T06:00:00.000Z</updated>
         <summary type="html"><![CDATA[<p>Today we proudly released the first version of <em>React Rasta</em>.</p>
 ]]></summary>
         <author>
             <name>Rafael Staib</name>
+            <email/>
             <uri>https://github.com/rstaib</uri>
         </author>
     </entry>
     <entry>
         <title type="html"><![CDATA[How to create a Form Wizard using jQuery Steps]]></title>
         <id>https://chillicream.com/blog/2013/09/12/jquery-steps-form-wizard.html</id>
-        <link href="https://chillicream.com/blog/2013/09/12/jquery-steps-form-wizard.html">
-        </link>
-        <updated>2013-09-12T06:00:00Z</updated>
+        <link href="https://chillicream.com/blog/2013/09/12/jquery-steps-form-wizard.html"/>
+        <updated>2013-09-12T06:00:00.000Z</updated>
         <summary type="html"><![CDATA[<p>This blog article was previously published on <em><a href="http://www.rafaelstaib.com/post/How-to-create-a-Form-Wizard-using-jQuery-Steps">http://www.rafaelstaib.com/post/How-to-create-a-Form-Wizard-using-jQuery-Steps</a></em>.</p>
 ]]></summary>
         <author>
             <name>Rafael Staib</name>
+            <email/>
             <uri>https://github.com/rstaib</uri>
         </author>
     </entry>

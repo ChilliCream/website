@@ -4,15 +4,24 @@
         <title>ChilliCream Blog</title>
         <link>https://chillicream.com/blog</link>
         <description>The best place to stay up-to-date with the latest ChilliCream news and events.</description>
-        <lastBuildDate>Fri, 29 Nov 2019 06:00:00 GMT</lastBuildDate>
+        <lastBuildDate>Thu, 26 Dec 2019 06:00:00 GMT</lastBuildDate>
         <docs>http://blogs.law.harvard.edu/tech/rss</docs>
-        <generator>Feed for Node.js</generator>
+        <generator>https://github.com/jpmonette/feed</generator>
         <image>
             <title>ChilliCream Blog</title>
             <url>https://chillicream.com/img/signet.png</url>
             <link>https://chillicream.com/blog</link>
         </image>
         <copyright>Copyright © 2019 ChilliCream</copyright>
+        <item>
+            <title><![CDATA[GraphQL - Hot Chocolate 10.0.0]]></title>
+            <link>https://chillicream.com/blog/2019/12/26/hotchocolate-10.3.0.html</link>
+            <guid>https://chillicream.com/blog/2019/12/26/hotchocolate-10.3.0.html</guid>
+            <pubDate>Thu, 26 Dec 2019 06:00:00 GMT</pubDate>
+            <description><![CDATA[<p><img src="/img/blog/hotchocolate-banner.svg" alt="Hot Chocolate"></p>
+<p>Today we are releasing <em>Hot Chocolate</em> version 10.3.0. Although the version number sounds like a small change, it is quite a nice update with lots of new features making <em>Hot Chocolate</em> the most versatile and feature rich GraphQL server on the .NET platform.</p>
+]]></description>
+        </item>
         <item>
             <title><![CDATA[Lets supercharge your GraphQL schema :)]]></title>
             <link>https://chillicream.com/blog/2019/11/29/schema-design.html</link>
