@@ -5,9 +5,11 @@ authorURL: https://github.com/michaelstaib
 authorImageURL: https://avatars1.githubusercontent.com/u/9714350?s=100&v=4
 ---
 
-For years now ww .NET developers have looked a little envious to the JavaScript platform in regards to GraphQL. All the cool tools and libraries where there. .NET just could not live up to what was available in the JavaScrip real.
+For years now we .NET developers have looked a little envious to the JavaScript platform in regards to GraphQL. All the cool tools and libraries where there. Our platform just could not stack up to what was available in the JavaScript realm.
 
-This is why we started our work on the _Hot Chocolate_ server. We wanted to bring something of these awesome ideas that we could see on other platforms in regard to GraphQL home .NET.
+This is why we started our work on the _Hot Chocolate_ server. We wanted to bring something of these awesome ideas that we could see on other platforms home to .NET.
+
+There are always different phases in software development and for people on the outside it sometimes is difficult to see the whole picture. I think with the next view releases that are now coming over the next three month this picture will become clearer.
 
 While until now you could only see fragments of what we are building with todays preview 1 of _Banana Cake Pop_ we will start releasing previews of the wider GraphQL platform that we are working on.
 
@@ -33,9 +35,13 @@ But we never really just wanted to build a GraphQL IDE, our second goal on this 
 
 ## Schema Registry
 
-The schema registry will be the central service in your backend that keeps track of schema and query changes in your environment. Track which parts of your schema are used and which part of your schemas can be deprecated or removed with out the risk of disrupting your services. The schema registry will be closely couples with analytics data so that you can immediately see what resolvers are performing well or what resolvers are causing performance issues. The schema registry will be tightly coupled with the visual studio integration so that we can already tell you which code change will cause which client to break. Also we will point you to slow performing resolvers.
+The schema registry will be the central service in your backend that keeps track of schema and query changes in your environment. 
 
-Also we will let you explore with visual studio and the schema registry how your schema is composed with _Hot Chocolate_ schema stitching from micro services that power it.
+Track which parts of your schema are used and which part of your schemas can be deprecated or removed with out the risk of disrupting your services. 
+
+The schema registry will be fed with analytics data so that you can immediately see what resolvers are performing well or what resolvers are problematic. Moreover it will be tightly coupled with the visual studio integration so that we can already tell you which code change will cause clients to break before you even committed your code. 
+
+Also we will let you explore with visual studio how your schema is composed with _Hot Chocolate_ schema stitching from micro services that power it. How does your data flow and how is the query engine optimizing fetches.
 
 ## Query Execution Plans
 
