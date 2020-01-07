@@ -9,7 +9,12 @@ For years now we .NET developers have looked a little envious to the JavaScript 
 
 This is why we started our work on the _Hot Chocolate_ server. We wanted to bring something of these awesome ideas that we could see on other platforms home to .NET.
 
-There are always different phases in software development and for people on the outside it sometimes is difficult to see the whole picture. I think with the next view releases that are now coming over the next three month this picture will become clearer.
+There are always different phases in software development and for people on the outside it sometimes is difficult to see the whole picture. I think with the next view preview releases that are coming over the next three month this picture will become clear. For me personally it is awesome to see how these things come slowly together. I still remember the day when we tried out GraphQL and decided that we should build a GraphQL platform with .NET.
+
+We have invested a lot of free time into this project ...
+
+
+ The _ChilliCream_ GraphQL platform will add a lo
 
 While until now you could only see fragments of what we are building with todays preview 1 of _Banana Cake Pop_ we will start releasing previews of the wider GraphQL platform that we are working on.
 
