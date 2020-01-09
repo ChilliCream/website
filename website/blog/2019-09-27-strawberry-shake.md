@@ -15,6 +15,8 @@ After the version 10 release of our _Hot Chocolate_ GraphQL server we have start
 
 <!--truncate-->
 
+**This post has been updated, please head over to the newer post [here](2019-11-25-strawberry-shake_2.md).**
+
 ## Introduction
 
 Before we get into it let me first outline what our goals for our approach are:
@@ -342,6 +344,7 @@ If you want to get into contact with us head over to our [slack channel](https:/
 
 | [HotChocolate Slack Channel](https://join.slack.com/t/hotchocolategraphql/shared_invite/enQtNTA4NjA0ODYwOTQ0LTViMzA2MTM4OWYwYjIxYzViYmM0YmZhYjdiNzBjOTg2ZmU1YmMwNDZiYjUyZWZlMzNiMTk1OWUxNWZhMzQwY2Q) | [Hot Chocolate Documentation](https://hotchocolate.io) | [Hot Chocolate on GitHub](https://github.com/ChilliCream/hotchocolate) |
 | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------ | ---------------------------------------------------------------------- |
+
 
 [hot chocolate]: https://hotchocolate.io
 [hot chocolate source code]: https://github.com/ChilliCream/hotchocolate
