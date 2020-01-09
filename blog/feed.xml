@@ -5,14 +5,14 @@
         <link>https://chillicream.com/blog</link>
         <description>The best place to stay up-to-date with the latest ChilliCream news and events.</description>
         <lastBuildDate>Thu, 26 Dec 2019 06:00:00 GMT</lastBuildDate>
-        <docs>http://blogs.law.harvard.edu/tech/rss</docs>
+        <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>https://github.com/jpmonette/feed</generator>
         <image>
             <title>ChilliCream Blog</title>
             <url>https://chillicream.com/img/signet.png</url>
             <link>https://chillicream.com/blog</link>
         </image>
-        <copyright>Copyright © 2019 ChilliCream</copyright>
+        <copyright>Copyright © 2020 ChilliCream</copyright>
         <item>
             <title><![CDATA[GraphQL - Hot Chocolate 10.3.0]]></title>
             <link>https://chillicream.com/blog/2019/12/26/hotchocolate-10.3.0.html</link>
