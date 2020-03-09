@@ -220,6 +220,23 @@ type Query {
 
 This feels natural to us C# developers and lets us write our C# schema without adding clutter.
 
+...
+
+## Subscriptions
+
+## All the rest
+
+Aside from the bigger features we have refined the _Hot Chocolate_ further. We switched from JSON.Net to System.Text.Json for the result serialization. We already use our own Utf8GraphQLRequestParser for the in-coming GraphQL JSON requests. We still use JSON.NET for subscription messages. We will have those last bits of code migrated that use JSON.NET with version 11.
+
+We also fixed a lot of bugs with this release optimized the type discovery and did some other house cleaning tasks.
+
+## Looking ahead
+
+With this release out version 10 is now finally complete. We are now fully focusing on version 11 which will bring a new execution engine that will allow us to create new features that we could not do with the current generation like @defer and @stream.
+
+Version 11 will take GraphQL to gRPC and allow you to serve GraphQL over a multitude of transports. Further, version 11 will fully support GraphQL 2020.
+
+
 
 
 
